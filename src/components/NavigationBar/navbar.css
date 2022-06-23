@@ -1,0 +1,31 @@
+.Navigationbar{
+    flex-flow: column;
+    margin:0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.Navhead{
+    border-bottom: 1px solid white;
+}
+
+.Navbar-wrapper{
+    min-width: 100%;
+    margin:0;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 17px;
+}
+.Category-wrapper{
+    font-size: 23px;
+    /* border-right: 3px solid black; */
+}
+.DarkmodeSwitch{
+    margin-left: 50px;
+    border: 3px solid white;
+    
+}
+
+.DarkmodeSwitch:hover{
+    border:3px solid white
+}
