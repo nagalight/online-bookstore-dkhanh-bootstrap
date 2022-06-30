@@ -1,10 +1,9 @@
 import React from "react";
-import { Container, Button, Nav, Navbar } from "react-bootstrap";
+import {  Button, Container, Nav, Navbar, Carousel, Form } from "react-bootstrap";
 import "./navbar.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGlobe } from '@fortawesome/free-solid-svg-icons'
-
+import { faGlobe, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function NavigationBar(){
@@ -37,12 +36,17 @@ export default function NavigationBar(){
 
                 <Container className="Navhead">
                     <Navbar.Brand style={{ fontSize:'27px' }}>ZA-Bookstore</Navbar.Brand>
+                    <Form inline className="Navbar-Search">
+                        <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
+                    </Form>
+                    <Button variant="outline-success" className="searchButton">
+                        <FontAwesomeIcon icon={faMagnifyingGlass} className="searchIcon"/>
+                    </Button>
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text>
                             <a href="#">Login</a>/<a href="#">Register</a>
                         </Navbar.Text>
                     </Navbar.Collapse>
-                    {/* <Button bg="dark" variant="dark" className="DarkmodeSwitch">Darkmode</Button> */}
                 </Container>
                 <Container>
                     <Nav bg="dark" variant="dark" className="justify-content-start Category-wrapper">
@@ -75,10 +79,7 @@ export default function NavigationBar(){
                     </Nav>
                 </Container>
             </Navbar>
-        </Container>
-        {/* <br/> */}
-        
-        
+        </Container>     
         </>
     )
 }

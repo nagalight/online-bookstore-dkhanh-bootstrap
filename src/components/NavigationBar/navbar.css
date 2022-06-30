@@ -36,3 +36,18 @@
 .categoryItems{
     margin: 0 10px 0;
 }
+.Navbar-Search{
+    margin-left: 50px;
+    width: 65%;
+}
+
+.searchButton{
+    padding-left: 20px; 
+    padding-right:20px;
+}
+
+.searchIcon{
+    padding-left: 5%;
+    padding-right: 5%;
+    
+}
