@@ -1,0 +1,53 @@
+.Navbar-wrapper{
+    min-width: 100%;
+    margin:0;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 17px;
+}
+.Nav-FirstLine{
+    /* font-size: 12px; */
+}
+.Nav-FirstlineItems{
+    font-size: 12px;
+}
+.locationIcon{
+    margin-right: 5px;
+}
+.Navigationbar{
+    flex-flow: column;
+    margin:0;
+    padding-left: 0;
+    padding-right: 0;
+}
+.Navhead{
+    border-bottom: 1px solid white;
+}
+.DarkmodeSwitch{
+    margin-left: 50px;
+    border: 2px solid white;
+}
+.DarkmodeSwitch:hover{
+    border: 2px solid white
+}
+.Category-wrapper{
+    font-size: 23px;
+}
+.categoryItems{
+    margin: 0 10px 0;
+}
+.Navbar-Search{
+    margin-left: 50px;
+    width: 65%;
+}
+
+.searchButton{
+    padding-left: 20px; 
+    padding-right:20px;
+}
+
+.searchIcon{
+    padding-left: 5%;
+    padding-right: 5%;
+    
+}
