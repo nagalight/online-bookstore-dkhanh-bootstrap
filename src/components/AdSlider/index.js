@@ -6,7 +6,7 @@ export default function AdSlider(){
     return(
         <>
         <Container className="adSliderWrapper">
-            <Carousel variant="dark">
+            <Carousel variant="dark" className="adSlider">
                 <Carousel.Item>
                     <Image
                         className="d-block w-100 sliderImage"
@@ -16,13 +16,13 @@ export default function AdSlider(){
                 <Carousel.Item>
                     <Image
                         className="d-block w-100 sliderImage"
-                        src="images\Navbar\fgolb.jpg"
+                        src="images\Navbar\bookstoreslider1.png"
                     />
                 </Carousel.Item>
                 <Carousel.Item>
                     <Image
                         className="d-block w-100 sliderImage"
-                        src="images\Navbar\fgolb.jpg"
+                        src="images\Navbar\bookstoreslider1.png"
                     />
                 </Carousel.Item>
                 

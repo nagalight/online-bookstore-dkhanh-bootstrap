@@ -2,6 +2,9 @@
     min-width: 100%;
     padding: 0;
 }
+.adSlider .carousel-control-next-icon, .carousel-control-prev-icon{
+    display: none;
+}
 .sliderImage{
     height: 500px;
 }
