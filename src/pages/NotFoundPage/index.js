@@ -1,19 +1,16 @@
 import React from "react";
 import {  Container } from "react-bootstrap";
-import "./homepage.css";
-import AdSlider from "../../components/AdSlider";
+import "./notfound.css"
 
-
-export default function HomePage(){
+export default function NotFoundPage(){
     return(
         <>
-        <AdSlider/>
         <Container>
             <Container>
-                <h1>This is Home page</h1>
+                <h1>404</h1>
             </Container>
             <Container>
-                <h3>Work in progress</h3>
+                <h2>Page not exist.</h2>
             </Container>
         </Container>
         </>

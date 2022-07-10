@@ -1,19 +1,17 @@
 import React from "react";
 import {  Container } from "react-bootstrap";
-import "./homepage.css";
-import AdSlider from "../../components/AdSlider";
+import "./inconstruction.css"
 
 
-export default function HomePage(){
+export default function InconstructionPage(){
     return(
         <>
-        <AdSlider/>
         <Container>
             <Container>
-                <h1>This is Home page</h1>
+                <h1>Page in Construction</h1>
             </Container>
             <Container>
-                <h3>Work in progress</h3>
+                <h3>We apology for this inconvinion</h3>
             </Container>
         </Container>
         </>
