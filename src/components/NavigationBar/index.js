@@ -1,12 +1,21 @@
-import React from "react";
-import {  Button, Container, Nav, Navbar, Carousel, Form } from "react-bootstrap";
+import React, { useState } from "react";
+import {  Button, Container, Nav, Navbar, Carousel, Form, Modal } from "react-bootstrap";
 import "./navbar.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGlobe, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
+import LoginForm from "../Login";
+import RegisterForm from "../Register";
+
 
 export default function NavigationBar(){
+    const [showLogin, setShowLogin] = useState(false);
+    const handleShowLogin = () => setShowLogin(true);
+
+    const [showRegister, setShowRegister] = useState(false);
+    const handleShowRegister = () => setShowRegister(true);
+
     return(
         <>
         <Container className="Navbar-wrapper" fixed="top">
@@ -44,7 +53,10 @@ export default function NavigationBar(){
                     </Button>
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text>
-                            <a href="#">Login</a>/<a href="#">Register</a>
+                            <a onClick={handleShowLogin}>Login</a>/<a onClick={handleShowRegister}>Register</a>
+
+                            <LoginForm show={showLogin} onHide={() => setShowLogin(false)}/>
+                            <RegisterForm show={showRegister} onHide={() => setShowRegister(false)}/>
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>
