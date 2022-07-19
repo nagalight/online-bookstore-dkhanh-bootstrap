@@ -2,6 +2,9 @@ import React, {useState} from "react";
 import { Button, Container, Form, Modal } from "react-bootstrap";
 import "./register.css"
 
+import {database} from '../../firebase'
+import {ref,push,child,update} from "firebase/database";
+
 export default function RegisterForm(props){
     const [username, setUsername] = useState(null);
     const [email, setEmail] = useState(null);
@@ -29,7 +32,17 @@ export default function RegisterForm(props){
     }
 
     const handleSubmit  = () => {
-        console.log(username,email,password,confirmPassword,registerCheckbox);
+        console.log(username,email,password,confirmPassword);
+        let obj = {
+            username : username,
+            email : email,
+            password : password,
+            confirmPassword : confirmPassword,
+        }
+        const newPostKey = push(child(ref(database), 'posts')).key;
+        const updates = {};
+        updates['/' + newPostKey] = obj
+        return update(ref(database), updates);
     }
     return(
         <>
