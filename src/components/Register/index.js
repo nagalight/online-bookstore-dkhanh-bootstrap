@@ -1,19 +1,12 @@
 import React, {useState} from "react";
 import { Button, Container, Form, Modal } from "react-bootstrap";
-import "./register.css"
+import "./register.css";
 
-import {database} from '../../firebase'
-import {ref,push,child,update} from "firebase/database";
+import {database} from '../../firebase';
+import {ref,push,child,update, onValue, DataSnapshot, get} from "firebase/database";
 
 export default function RegisterForm(props){
-    const [username, setUsername] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [confirmPassword, setConfirmPassword] = useState(null);
-    const [registerCheckbox, setRegisterCheckbox] = useState(false);
-
     const handleSubmit  = () => {
-        // console.log(registerInput.username,registerInput.email,registerInput.password ,registerInput.confirmPassword);
         let obj = {
             username : registerInput.username,
             email : registerInput.email,
@@ -65,6 +58,7 @@ export default function RegisterForm(props){
                     if(!value) {
                         stateObj[id] = "Please enter Email.";
                     }
+                    break;
          
                 case "password":
                     if (!value) {
@@ -87,7 +81,6 @@ export default function RegisterForm(props){
                 default:
                     break;
             }
-         
             return stateObj;
         });
     }

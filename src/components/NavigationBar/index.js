@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {  Button, Container, Nav, Navbar, Carousel, Form, Modal } from "react-bootstrap";
+import {  Button, Container, Nav, Navbar, Form } from "react-bootstrap";
 import "./navbar.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
