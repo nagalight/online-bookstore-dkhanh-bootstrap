@@ -1,89 +1,27 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { Button, Container, Form, Modal } from "react-bootstrap";
+import { Link} from "react-router-dom";
 import "./register.css";
 
-import {database} from '../../firebase';
+import {database, auth, registerWithEmailAndPassword,} from '../../firebase';
 import {ref,push,child,update, onValue, DataSnapshot, get} from "firebase/database";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 
 export default function RegisterForm(props){
-    const handleSubmit  = () => {
-        let obj = {
-            username : registerInput.username,
-            email : registerInput.email,
-            password : registerInput.password,
-            confirmPassword : registerInput.confirmPassword,
-        }
-        const newPostKey = push(child(ref(database), 'posts')).key;
-        const updates = {};
-        updates['/' + newPostKey] = obj
-        return update(ref(database), updates);
-    }
+    const [summitModalShow, setSummitModalShow] = React.useState(false);
+    const handleShowSummitModal = () => setSummitModalShow(true)
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
+    const [user, loading, error] = useAuthState(auth);
 
-    const [registerInput, setRegisterInput] = useState({
-        username: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-    });
-    const [registerError, setRegisterError] = useState({
-        username: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-    });
-
-    const onRegisterInputChange = e => {
-        const { id, value } = e.target;
-        setRegisterInput(prev => ({
-            ...prev,
-            [id]: value
-          }));
-          console.log(value)
-          validateRegisterInput(e);
-    }
-
-    const validateRegisterInput = e =>{
-        let { id,value } = e.target;
-        setRegisterError(prev => {
-            const stateObj = { ...prev, [id]: "" };
-         
-            switch (id) {
-                case "username":
-                    if (!value) {
-                        stateObj[id] = "Please enter Username.";
-                    }
-                    break;
-                
-                case "email":
-                    if(!value) {
-                        stateObj[id] = "Please enter Email.";
-                    }
-                    break;
-         
-                case "password":
-                    if (!value) {
-                        stateObj[id] = "Please enter Password.";
-                    } else if (registerInput.confirmPassword && value !== registerInput.confirmPassword) {
-                        stateObj["confirmPassword"] = "Password and Confirm Password does not match.";
-                    } else {
-                        stateObj["confirmPassword"] = registerInput.confirmPassword ? "" : registerError.confirmPassword;
-                    }
-                    break;
-         
-                case "confirmPassword":
-                    if (!value) {
-                        stateObj[id] = "Please enter Confirm Password.";
-                    } else if (registerInput.password && value !== registerInput.password) {
-                        stateObj[id] = "Password and Confirm Password does not match.";
-                    }
-                    break;
-         
-                default:
-                    break;
-            }
-            return stateObj;
-        });
-    }
+    const register = () => {
+        if (!username) 
+            alert("Please enter username");
+        registerWithEmailAndPassword(username, email, password);
+        handleShowSummitModal();
+    };
 
     return(
         <>
@@ -93,6 +31,7 @@ export default function RegisterForm(props){
             aria-labelledby="contained-modal-title-vcenter"
             centered
             backdrop="static"
+            className="registerModal"
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
@@ -108,12 +47,10 @@ export default function RegisterForm(props){
                                 type="username" 
                                 size="lg" 
                                 id="username"
-                                value={registerInput.username}
+                                value={username}
                                 placeholder="Enter your Username"
-                                onChange={onRegisterInputChange}
-                                onBlur={validateRegisterInput}
+                                onChange={(e) => setUsername(e.target.value)}
                             />
-                            {registerError.username && <span className='register_err'>{registerError.username}</span>}
                         </Form.Group>
                         <Form.Group className="mb-3" >
                             <Form.Label>Email:</Form.Label>
@@ -121,12 +58,10 @@ export default function RegisterForm(props){
                                 type="email" 
                                 size="lg" 
                                 id="email" 
-                                value={registerInput.email}
+                                value={email}
                                 placeholder="Enter your Email"
-                                onChange={onRegisterInputChange}
-                                onBlur={validateRegisterInput}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
-                            {registerError.email && <span className='register_err'>{registerError.email}</span>}
                         </Form.Group>
                         <Form.Group className="mb-3" >
                             <Form.Label>Password:</Form.Label>
@@ -134,25 +69,10 @@ export default function RegisterForm(props){
                                 type="password" 
                                 size="lg" 
                                 id="password"
-                                value={registerInput.password}
+                                value={password}
                                 placeholder="Enter Password"
-                                onChange={onRegisterInputChange}
-                                onBlur={validateRegisterInput}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
-                            {registerError.password && <span className='register_err'>{registerError.password}</span>}
-                        </Form.Group>
-                        <Form.Group className="mb-3" >
-                            <Form.Label>Confirm Password:</Form.Label>
-                            <Form.Control 
-                                type="password" 
-                                size="lg" 
-                                id="confirmPassword"
-                                value={registerInput.confirmPassword}
-                                placeholder="Confirm Password"
-                                onChange={onRegisterInputChange}
-                                onBlur={validateRegisterInput}
-                            />
-                            {registerError.confirmPassword && <span className='register_err'>{registerError.confirmPassword}</span>}
                         </Form.Group>
                         <Form.Group className="mb-3" >
                             <Form.Check 
@@ -162,9 +82,27 @@ export default function RegisterForm(props){
                                 label="You are agree to our Term of service"
                             />
                         </Form.Group>
-                        <Button variant="primary" size="lg" onClick={()=>handleSubmit()}>Register</Button>
+                        <Button variant="primary" size="lg" onClick={register}>Register</Button>
                     </Form>
                 </Container>
+            </Modal.Body>
+        </Modal>
+        <Modal
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            className="summitModal"
+            show={summitModalShow}
+            onHide={() => setSummitModalShow(false)}
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Aleart
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>Account has been successfully created</p>
             </Modal.Body>
         </Modal>
         </>
