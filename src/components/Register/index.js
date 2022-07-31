@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { Button, Container, Form, Modal } from "react-bootstrap";
 import { Link} from "react-router-dom";
 import "./register.css";
 
-import {database, auth, registerWithEmailAndPassword,} from '../../firebase';
-import {ref,push,child,update, onValue, DataSnapshot, get} from "firebase/database";
+import { auth, registerWithEmailAndPassword } from '../../firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 
 
