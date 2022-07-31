@@ -8,6 +8,8 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  setPersistence, 
+  browserSessionPersistence,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -47,11 +49,26 @@ const registerWithEmailAndPassword = async (username, email, password) => {
     username,
     authProvider: "local",
     email,
+    password,
   });
+};
+
+const logInWithEmailAndPassword = async (email, username, password) => {
+  setPersistence(auth, browserSessionPersistence)
+    .then(() => {
+      return signInWithEmailAndPassword(auth, email, username, password);
+    })
+  // await signInWithEmailAndPassword(auth, email, username, password);
+};
+
+const logout = () => {
+  signOut(auth);
 };
 
 export {
   auth,
   db,
   registerWithEmailAndPassword,
+  logInWithEmailAndPassword,
+  logout
 };

@@ -1,13 +1,14 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {  Button, Container, Form, Modal } from "react-bootstrap";
+import { auth, logInWithEmailAndPassword } from "../../firebase";
+// import { useAuthState } from "react-firebase-hooks/auth";
 import "./login.css"
 
 export default function LoginForm(props){
-    const [loginState, setLoginState] = useState({
-        username:"",
-        password:"",
-        saveLoginState: false
-    })
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     return(
         <>
         <Modal
@@ -23,19 +24,15 @@ export default function LoginForm(props){
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {JSON.stringify(loginState)}
                 <Container className="loginWrapper">
                     <Form className="loginForm">
-                        <Form.Group className="mb-3" controlId="formLoginUsername">
-                            <Form.Label>Username:</Form.Label>
+                        <Form.Group className="mb-3" controlId="formLoginEmail">
+                            <Form.Label>Email:</Form.Label>
                             <Form.Control 
-                                type="username" 
+                                type="email" 
                                 size="lg" 
-                                placeholder="Enter your Username"
-                                onChange={(event) =>{
-                                    const value = event.target.value;
-                                    setLoginState({...loginState, username:value})
-                                }}
+                                placeholder="Enter your Email"
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formLoginPassword">
@@ -44,10 +41,7 @@ export default function LoginForm(props){
                                 type="password" 
                                 size="lg" 
                                 placeholder="Enter Password"
-                                onChange={(event) =>{
-                                    const value = event.target.value;
-                                    setLoginState({...loginState, password:value})
-                                }}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="checkboxLoginKeeplogin">
@@ -61,7 +55,12 @@ export default function LoginForm(props){
                                 }}
                             />
                         </Form.Group>
-                        <Button variant="primary" size="lg" type="summit">Login</Button>
+                        <Button 
+                            variant="primary" 
+                            size="lg" 
+                            // type="summit"
+                            onClick={() => logInWithEmailAndPassword(email, password)} 
+                        >Login</Button>
                     </Form>
                 </Container>
             </Modal.Body>
