@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {  Button, Container, Form, Modal } from "react-bootstrap";
 import { auth, logInWithEmailAndPassword } from "../../firebase";
-// import { useAuthState } from "react-firebase-hooks/auth";
 import "./login.css"
 
 export default function LoginForm(props){
@@ -61,7 +60,6 @@ export default function LoginForm(props){
                             variant="primary" 
                             size="lg" 
                             // type="summit"
-                            // onClick={() => logInWithEmailAndPassword(email, password)}
                             onClick={loggingIn}
                         >Login</Button>
                     </Form>

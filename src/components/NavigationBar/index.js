@@ -42,23 +42,19 @@ export default function NavigationBar(){
     useEffect(() =>{
         onAuthStateChanged(auth, (users) => {
             if (users) {
-                // setLoginState(true)
                 setShowLogedIn("block");
                 setShowNotLogedIn("none");
                 console.log("Loged In")
             } else if(!users) {
-                // setLoginState(false)
                 setShowLogedIn("none");
                 setShowNotLogedIn("block");
                 console.log("Not Loged In")
             }
         });
-        // console.log(loginState);
     },[]);
 
     const loggingOut= () => {
         logout();
-        setShowLogedIn(false) && setShowNotLogedIn(true);
         window.location.reload()
     }
 
@@ -75,7 +71,7 @@ export default function NavigationBar(){
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="Nav-FirstlineItems">
-                            <Nav.Link>Language</Nav.Link>
+                            <Nav.Link>Language: English</Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="Nav-FirstlineItems">
                             <Nav.Link>Q&a</Nav.Link>
@@ -83,7 +79,6 @@ export default function NavigationBar(){
                     </Nav>
                     <Nav className="justify-content-end Nav-Firstline">
                         <Nav.Item className="Nav-FirstlineItems">
-                            {/* <Button bg="dark" variant="dark" className="DarkmodeSwitch">Darkmode</Button> */}
                             <Nav.Link>Darkmode</Nav.Link>
                         </Nav.Item>
                     </Nav>
