@@ -1,12 +1,50 @@
-import React from "react";
-import {  Button, Container, Nav, Navbar, Carousel, Form } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {  Button, Container, Nav, Navbar, Form } from "react-bootstrap";
 import "./navbar.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGlobe, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
+import { auth, db, logout } from "../../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { query, collection, getDocs, where } from "firebase/firestore";
+
+import LoginForm from "../Login";
+import RegisterForm from "../Register";
+
 
 export default function NavigationBar(){
+    const [showLogin, setShowLogin] = useState(false);
+    const handleShowLogin = () => setShowLogin(true);
+
+    const [showRegister, setShowRegister] = useState(false);
+    const handleShowRegister = () => setShowRegister(true);
+
+    const [user, loading, error] = useAuthState(auth);
+    const [username, setUsername] = useState("");
+    const navigate = useNavigate();
+    const fetchUserName = async () => {
+        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+        const doc = await getDocs(q);
+        const data = doc.docs[0].data();
+        setUsername(data.username);
+    }
+    useEffect(() => {
+        if (loading) return;
+        if (!user) return navigate("/");
+        fetchUserName();
+    }, [user, loading]);
+
+    const [loginState, setLoginState] = useState(false);
+    const [showNotLogedIn, setShowNotLogedIn] = useState(true);
+    const [showLogedIn, setShowLogedIn] = useState(false);
+    // const unloginState = ()
+
+    // useEffect(()=> {
+    //     if (!user) {}
+    // })
+
     return(
         <>
         <Container className="Navbar-wrapper" fixed="top">
@@ -43,8 +81,15 @@ export default function NavigationBar(){
                         <FontAwesomeIcon icon={faMagnifyingGlass} className="searchIcon"/>
                     </Button>
                     <Navbar.Collapse className="justify-content-end">
-                        <Navbar.Text>
-                            <a href="#">Login</a>/<a href="#">Register</a>
+                        <Navbar.Text className="notLogin">
+                            <a onClick={handleShowLogin}>Login</a>/<a onClick={handleShowRegister}>Register</a>
+
+                            <LoginForm show={showLogin} onHide={() => setShowLogin(false)}/>
+                            <RegisterForm show={showRegister} onHide={() => setShowRegister(false)}/>
+                        </Navbar.Text>
+                        <Navbar.Text className="wellcomeUser">
+                            Wellcome <a><div>{username}</div><div>{user?.email}</div></a>
+                            <Button variant="danger" size="sm" className="logOutButton" onClick={logout}>Log out</Button>
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>
