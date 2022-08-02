@@ -53,11 +53,9 @@
 }
 
 .notLogin{
-    /* display: none; */
 }
 .wellcomeUser {
     font-size: 17px;
-    /* display: none; */
 }
 
 .logOutButton {
@@ -65,4 +63,7 @@
 }
 .logOutIcon {
     font-size: 17px; 
+}
+.googleLogin{
+    margin-left: 4px;
 }

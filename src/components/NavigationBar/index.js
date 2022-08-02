@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import {  Button, Container, Nav, Navbar, Form } from "react-bootstrap";
 import "./navbar.css"
 
@@ -24,7 +23,6 @@ export default function NavigationBar(){
 
     const [user, loading, error] = useAuthState(auth);
     const [username, setUsername] = useState("");
-    const navigate = useNavigate();
     const fetchUserName = async () => {
         const q = query(collection(db, "users"), where("uid", "==", user?.uid));
         const doc = await getDocs(q);
@@ -56,6 +54,9 @@ export default function NavigationBar(){
     const loggingOut= () => {
         logout();
         window.location.reload()
+    }
+    const test = () => {
+        console.log(username)
     }
 
     return(

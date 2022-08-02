@@ -6,11 +6,10 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
   signOut,
   setPersistence, 
   browserSessionPersistence,
-  onAuthStateChanged,
+  GoogleAuthProvider,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -66,6 +65,22 @@ const logout = () => {
   signOut(auth);
 };
 
+const googleProvider = new GoogleAuthProvider();
+const signInWithGoogle = async () => {
+  const res = await signInWithPopup(auth, googleProvider);
+  const user = res.user;
+  const q = query(collection(db, "users"), where("uid", "==", user.uid));
+  const docs = await getDocs(q);
+  if (docs.docs.length === 0) {
+    await addDoc(collection(db, "users"), {
+      uid: user.uid,
+      username: user.displayName,
+      authProvider: "google",
+      email: user.email,
+    });
+  }
+}
+
 
 
 export {
@@ -74,4 +89,5 @@ export {
   registerWithEmailAndPassword,
   logInWithEmailAndPassword,
   logout,
+  signInWithGoogle,
 };

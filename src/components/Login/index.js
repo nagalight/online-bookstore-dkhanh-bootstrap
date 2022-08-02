@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {  Button, Container, Form, Modal } from "react-bootstrap";
-import { auth, logInWithEmailAndPassword } from "../../firebase";
+import { logInWithEmailAndPassword, signInWithGoogle } from "../../firebase";
 import "./login.css"
 
 export default function LoginForm(props){
@@ -62,6 +62,12 @@ export default function LoginForm(props){
                             // type="summit"
                             onClick={loggingIn}
                         >Login</Button>
+                        <Button
+                            variant="primary"
+                            size="lg"
+                            onClick={signInWithGoogle}
+                            className="googleLogin"
+                        > Login with Google</Button>
                     </Form>
                 </Container>
             </Modal.Body>
