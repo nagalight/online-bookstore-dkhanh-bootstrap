@@ -8,6 +8,9 @@ import "./login.css"
 export default function LoginForm(props){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const loggingIn = () => {
+        logInWithEmailAndPassword(email, password)
+    }
 
     return(
         <>
@@ -51,7 +54,6 @@ export default function LoginForm(props){
                                 label="Keep login"
                                 onChange={(event) =>{
                                     const value = event.target.checked;
-                                    setLoginState({...loginState, saveLoginState:value})
                                 }}
                             />
                         </Form.Group>
@@ -59,7 +61,8 @@ export default function LoginForm(props){
                             variant="primary" 
                             size="lg" 
                             // type="summit"
-                            onClick={() => logInWithEmailAndPassword(email, password)} 
+                            // onClick={() => logInWithEmailAndPassword(email, password)}
+                            onClick={loggingIn}
                         >Login</Button>
                     </Form>
                 </Container>

@@ -10,6 +10,7 @@ import {
   signOut,
   setPersistence, 
   browserSessionPersistence,
+  onAuthStateChanged,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -19,6 +20,7 @@ import {
   where,
   addDoc,
 } from "firebase/firestore";
+import {useState} from "react";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -58,17 +60,18 @@ const logInWithEmailAndPassword = async (email, username, password) => {
     .then(() => {
       return signInWithEmailAndPassword(auth, email, username, password);
     })
-  // await signInWithEmailAndPassword(auth, email, username, password);
 };
 
 const logout = () => {
   signOut(auth);
 };
 
+
+
 export {
   auth,
   db,
   registerWithEmailAndPassword,
   logInWithEmailAndPassword,
-  logout
+  logout,
 };

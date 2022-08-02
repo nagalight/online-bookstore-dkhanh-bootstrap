@@ -4,11 +4,12 @@ import {  Button, Container, Nav, Navbar, Form } from "react-bootstrap";
 import "./navbar.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGlobe, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { faGlobe, faMagnifyingGlass, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
 import { auth, db, logout } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 import LoginForm from "../Login";
 import RegisterForm from "../Register";
@@ -32,18 +33,34 @@ export default function NavigationBar(){
     }
     useEffect(() => {
         if (loading) return;
-        if (!user) return navigate("/");
         fetchUserName();
     }, [user, loading]);
 
-    const [loginState, setLoginState] = useState(false);
-    const [showNotLogedIn, setShowNotLogedIn] = useState(true);
-    const [showLogedIn, setShowLogedIn] = useState(false);
-    // const unloginState = ()
+    const [showNotLogedIn, setShowNotLogedIn] = useState(null);
+    const [showLogedIn, setShowLogedIn] = useState(null);
+    
+    useEffect(() =>{
+        onAuthStateChanged(auth, (users) => {
+            if (users) {
+                // setLoginState(true)
+                setShowLogedIn("block");
+                setShowNotLogedIn("none");
+                console.log("Loged In")
+            } else if(!users) {
+                // setLoginState(false)
+                setShowLogedIn("none");
+                setShowNotLogedIn("block");
+                console.log("Not Loged In")
+            }
+        });
+        // console.log(loginState);
+    },[]);
 
-    // useEffect(()=> {
-    //     if (!user) {}
-    // })
+    const loggingOut= () => {
+        logout();
+        setShowLogedIn(false) && setShowNotLogedIn(true);
+        window.location.reload()
+    }
 
     return(
         <>
@@ -74,22 +91,24 @@ export default function NavigationBar(){
 
                 <Container className="Navhead">
                     <Navbar.Brand style={{ fontSize:'27px' }}>ZA-Bookstore</Navbar.Brand>
-                    <Form inline className="Navbar-Search">
+                    <Form className="Navbar-Search">
                         <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
                     </Form>
                     <Button variant="outline-success" className="searchButton">
                         <FontAwesomeIcon icon={faMagnifyingGlass} className="searchIcon"/>
                     </Button>
                     <Navbar.Collapse className="justify-content-end">
-                        <Navbar.Text className="notLogin">
+                        <Navbar.Text className="notLogin" style={{display:showNotLogedIn}}>
                             <a onClick={handleShowLogin}>Login</a>/<a onClick={handleShowRegister}>Register</a>
 
                             <LoginForm show={showLogin} onHide={() => setShowLogin(false)}/>
                             <RegisterForm show={showRegister} onHide={() => setShowRegister(false)}/>
                         </Navbar.Text>
-                        <Navbar.Text className="wellcomeUser">
-                            Wellcome <a><div>{username}</div><div>{user?.email}</div></a>
-                            <Button variant="danger" size="sm" className="logOutButton" onClick={logout}>Log out</Button>
+                        <Navbar.Text className="wellcomeUser" style={{display:showLogedIn}}>
+                            Wellcome, <Nav.Link style={{padding:'0', display:'unset'}}>{username}</Nav.Link>
+                            <Button variant="danger" size="sm" className="logOutButton" onClick={loggingOut}>
+                                <FontAwesomeIcon icon={faArrowRightFromBracket} className="logOutIcon"/>
+                            </Button>
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>
