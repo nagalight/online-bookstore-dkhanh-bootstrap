@@ -6,10 +6,10 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
   signOut,
   setPersistence, 
   browserSessionPersistence,
+  GoogleAuthProvider,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -19,6 +19,7 @@ import {
   where,
   addDoc,
 } from "firebase/firestore";
+import {useState} from "react";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -58,17 +59,35 @@ const logInWithEmailAndPassword = async (email, username, password) => {
     .then(() => {
       return signInWithEmailAndPassword(auth, email, username, password);
     })
-  // await signInWithEmailAndPassword(auth, email, username, password);
 };
 
 const logout = () => {
   signOut(auth);
 };
 
+const googleProvider = new GoogleAuthProvider();
+const signInWithGoogle = async () => {
+  const res = await signInWithPopup(auth, googleProvider);
+  const user = res.user;
+  const q = query(collection(db, "users"), where("uid", "==", user.uid));
+  const docs = await getDocs(q);
+  if (docs.docs.length === 0) {
+    await addDoc(collection(db, "users"), {
+      uid: user.uid,
+      username: user.displayName,
+      authProvider: "google",
+      email: user.email,
+    });
+  }
+}
+
+
+
 export {
   auth,
   db,
   registerWithEmailAndPassword,
   logInWithEmailAndPassword,
-  logout
+  logout,
+  signInWithGoogle,
 };

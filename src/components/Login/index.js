@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {  Button, Container, Form, Modal } from "react-bootstrap";
-import { auth, logInWithEmailAndPassword } from "../../firebase";
-// import { useAuthState } from "react-firebase-hooks/auth";
+import { logInWithEmailAndPassword, signInWithGoogle } from "../../firebase";
 import "./login.css"
 
 export default function LoginForm(props){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const loggingIn = () => {
+        logInWithEmailAndPassword(email, password)
+    }
 
     return(
         <>
@@ -51,7 +53,6 @@ export default function LoginForm(props){
                                 label="Keep login"
                                 onChange={(event) =>{
                                     const value = event.target.checked;
-                                    setLoginState({...loginState, saveLoginState:value})
                                 }}
                             />
                         </Form.Group>
@@ -59,8 +60,14 @@ export default function LoginForm(props){
                             variant="primary" 
                             size="lg" 
                             // type="summit"
-                            onClick={() => logInWithEmailAndPassword(email, password)} 
+                            onClick={loggingIn}
                         >Login</Button>
+                        <Button
+                            variant="primary"
+                            size="lg"
+                            onClick={signInWithGoogle}
+                            className="googleLogin"
+                        > Login with Google</Button>
                     </Form>
                 </Container>
             </Modal.Body>

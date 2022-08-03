@@ -39,7 +39,7 @@
 }
 .Navbar-Search{
     margin-left: 50px;
-    width: 55%;
+    width: 60%;
 }
 
 .searchButton{
@@ -50,12 +50,20 @@
 .searchIcon{
     padding-left: 5%;
     padding-right: 5%;
-    
 }
 
 .notLogin{
-    /* display: none; */
 }
 .wellcomeUser {
-    font-size: 14px;
+    font-size: 17px;
+}
+
+.logOutButton {
+    margin-left: 3px;
+}
+.logOutIcon {
+    font-size: 17px; 
+}
+.googleLogin{
+    margin-left: 4px;
 }
