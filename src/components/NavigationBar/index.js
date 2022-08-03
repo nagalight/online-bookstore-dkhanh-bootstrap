@@ -42,6 +42,7 @@ export default function NavigationBar(){
             if (users) {
                 setShowLogedIn("block");
                 setShowNotLogedIn("none");
+                setShowLogin(false) && setShowRegister(false);
                 console.log("Loged In")
             } else if(!users) {
                 setShowLogedIn("none");
@@ -54,9 +55,6 @@ export default function NavigationBar(){
     const loggingOut= () => {
         logout();
         window.location.reload()
-    }
-    const test = () => {
-        console.log(username)
     }
 
     return(

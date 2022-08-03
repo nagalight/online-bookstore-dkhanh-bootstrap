@@ -1,10 +1,8 @@
 import React, {useState} from "react";
 import { Button, Container, Form, Modal } from "react-bootstrap";
-import { Link} from "react-router-dom";
 import "./register.css";
 
-import { auth, registerWithEmailAndPassword } from '../../firebase';
-import { useAuthState } from "react-firebase-hooks/auth";
+import { registerWithEmailAndPassword } from '../../firebase';
 
 
 export default function RegisterForm(props){
@@ -13,7 +11,6 @@ export default function RegisterForm(props){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
-    const [user, loading, error] = useAuthState(auth);
 
     const register = () => {
         if (!username) 
