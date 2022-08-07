@@ -1,0 +1,28 @@
+.textWrapper {
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../../../public/images/InconstructionPage/library.jpg) no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+
+}
+.title_bigText{
+    /* padding-top: 15%; */
+    /* text-align: center; */
+    font-size: 50px;
+}
+
+.title_smallText {
+    padding-bottom: 10%;
+    /* text-align: center; */
+    font-size: 40px;
+}
+.constructionIcon{
+    width: 200px;
+    padding-top: 10%;
+}

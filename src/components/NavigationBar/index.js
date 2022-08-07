@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {  Button, Container, Nav, Navbar, Form } from "react-bootstrap";
+import {  Button, Container, Nav, Navbar, Form, Image } from "react-bootstrap";
 import "./navbar.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -84,7 +84,11 @@ export default function NavigationBar(){
                 </Container>
 
                 <Container className="Navhead">
-                    <Navbar.Brand style={{ fontSize:'27px' }}>ZA-Bookstore</Navbar.Brand>
+                    <a href="/" className="siteName">
+                        <Image className="siteName_image" src="images\Navbar\ZAicon192.png"/>
+                        <Navbar.Brand style={{ fontSize:'27px' }}>Bookstore</Navbar.Brand>
+                    </a>
+                    
                     <Form className="Navbar-Search">
                         <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
                     </Form>
@@ -109,30 +113,30 @@ export default function NavigationBar(){
                 <Container>
                     <Nav bg="dark" variant="dark" className="justify-content-start Category-wrapper">
                         <Nav.Item className="categoryItems">
-                            <Nav.Link href="#">Book</Nav.Link>
+                            <Nav.Link href="/inconstruction">Book</Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Nav.Link href="#">Fiction</Nav.Link>
+                            <Nav.Link href="/inconstruction">Fiction</Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Nav.Link href="#">Nonfiction</Nav.Link>
+                            <Nav.Link href="/inconstruction">Nonfiction</Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Nav.Link href="#">eBooks</Nav.Link>
+                            <Nav.Link href="/inconstruction">eBooks</Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Nav.Link href="#">Audiobooks</Nav.Link>
+                            <Nav.Link href="/inconstruction">Audiobooks</Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Nav.Link href="#">Teen</Nav.Link>
+                            <Nav.Link href="/inconstruction">Teen</Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Nav.Link href="#">Kids</Nav.Link>
+                            <Nav.Link href="/inconstruction">Kids</Nav.Link>
                         </Nav.Item>
                     </Nav>
                     <Nav className="justify-content-start Category-wrapper">
                         <Nav.Item >
-                            <Nav.Link href="#">Your Library</Nav.Link>
+                            <Nav.Link href="/inconstruction">Your Library</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Container>
