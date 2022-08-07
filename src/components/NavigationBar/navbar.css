@@ -67,3 +67,11 @@
 .googleLogin{
     margin-left: 4px;
 }
+.siteName {
+    text-decoration: none;
+    display: flex;
+}
+.siteName_image{
+    width: 45px;
+    height: auto;
+}

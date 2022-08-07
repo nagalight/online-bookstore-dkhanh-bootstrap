@@ -1,17 +1,18 @@
 import React from "react";
-import {  Container } from "react-bootstrap";
+import {  Container, Image } from "react-bootstrap";
 import "./inconstruction.css"
 
 
 export default function InconstructionPage(){
     return(
         <>
-        <Container>
-            <Container>
-                <h1>Page in Construction</h1>
+        <Container className="textWrapper">
+            <Image src="images\InconstructionPage\construction.png" className="constructionIcon"/>
+            <Container className="title_bigText">
+                Page in Construction
             </Container>
-            <Container>
-                <h3>We apology for this inconvinion</h3>
+            <Container className="title_smallText">
+                We apology for this inconvinion
             </Container>
         </Container>
         </>
