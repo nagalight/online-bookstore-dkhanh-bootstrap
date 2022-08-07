@@ -1,3 +1,13 @@
 .footerWrapper{
-    background-color: rgb(rgb(80, 80, 80));
+    /* background-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity))!important; */
+    background-size: cover;
+    min-height: 250px;
+    width: 100%;
+    max-width: 100%;
+    margin:0;
+    padding:0;
+    color:white;
+}
+.footerText {
+    font-size: 70px;
 }
