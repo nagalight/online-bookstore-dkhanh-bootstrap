@@ -75,6 +75,9 @@ export default function NavigationBar(){
                         <Nav.Item className="Nav-FirstlineItems">
                             <Nav.Link>Q&a</Nav.Link>
                         </Nav.Item>
+                        <Nav.Item className="Nav-FirstlineItems">
+                            <Nav.Link href="/admin">Manage</Nav.Link>
+                        </Nav.Item>
                     </Nav>
                     <Nav className="justify-content-end Nav-Firstline">
                         <Nav.Item className="Nav-FirstlineItems">
