@@ -3,37 +3,29 @@ import { Container, Tab, Tabs, Table, Button } from "react-bootstrap";
 import "./admin.css";
 
 import { db } from "../../firebase";
-// import { async } from "@firebase/util";
-import { collection, getDocs, query } from "firebase/firestore";   
-import 'firebase/firestore'
+import { collection, onSnapshot, where, query } from "firebase/firestore";   
 
 export default function AdminManagement() {
     const [userData, setUserData] = useState([]);
-    const getUserDataFromFirestore = [];
     
     useEffect(()=>{
-        const fetchUserData = async () => {
-            const querySnapshot = await getDocs(collection(db, "users"));
-            querySnapshot.forEach((doc) => {
-                // console.log(doc.id, " => ", doc.data());
-                console.log(doc.data());
-                getUserDataFromFirestore.push({...doc.data(), key: doc.id})
-            });
-            setUserData(getUserDataFromFirestore);
-            console.log([userData])
-        }   
-        window.addEventListener('load', () => {
-            fetchUserData();
-        });
-        fetchUserData();
-        
+        if (collection){
+            const fetchUserData = () => {
+                const q = query(collection(db, "users"), where("role", "==", 'User'))
+                onSnapshot(q,(querySnapshot)=>{
+                    const getUserDataFromFirestore = [];
+                    querySnapshot.forEach((doc) => {
+                        console.log(doc.id, " => ", doc.data());
+                        getUserDataFromFirestore.push({...doc.data(), key: doc.id})
+                    });
+                    setUserData(getUserDataFromFirestore);
+                });
+            }
+            return fetchUserData;
+        }
     }, [])
     const test = () => {
         console.log(userData)
-    }
-    
-    const test2 = () => {
-        console.log(getUserDataFromFirestore)
     }
     
     return (
@@ -48,7 +40,6 @@ export default function AdminManagement() {
             >
                 <Tab eventKey="admins" title="Admins account">
                     <Button onClick={test}>Test</Button>
-                    <Button onClick={test2}>Test2</Button>
                 </Tab>
                 <Tab eventKey="users" title="Users account">
                     <Button variant="primary">Add Users</Button>
@@ -62,7 +53,7 @@ export default function AdminManagement() {
                         </thead>
                         <tbody>
                             {
-                                userData && userData.map(doc =>{
+                                userData.map(doc =>{
                                     return(
                                         <tr>
                                             <th>{doc.username}</th>
