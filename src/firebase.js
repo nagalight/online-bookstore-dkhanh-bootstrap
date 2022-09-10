@@ -54,7 +54,8 @@ const registerWithEmailAndPassword = async (username, email, password) => {
     authProvider: "Local",
     email,
     password,
-    role:"User"
+    role:"User",
+    isAdmin:false
   });
 };
 
@@ -82,6 +83,7 @@ const signInWithGoogle = async () => {
       authProvider: "Google",
       email: user.email,
       role:"User",
+      isAdmin:false
     });
   }
 }
@@ -95,7 +97,8 @@ const adminAddUser = async (username, email, password) => {
     authProvider: "Local",
     email,
     password,
-    role:"User"
+    role:"User",
+    isAdmin:false
   });
 };
 const adminAddAdmin = async (username, email, password) => {
@@ -107,7 +110,8 @@ const adminAddAdmin = async (username, email, password) => {
     authProvider: "Local",
     email,
     password,
-    role:"Admin"
+    role:"Admin",
+    isAdmin:true
   });
 };
 
