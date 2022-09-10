@@ -2,9 +2,6 @@ import React, {useEffect, useState} from "react";
 import { Container, Tab, Tabs, Table, Button, Form, Modal } from "react-bootstrap";
 import "./admin.css";
 
-// import AddUserForm from "../../components/AddUser";
-// import AddAdminForm from "../../components/AddAdmin";
-
 import { db, adminAddUser, adminAddAdmin } from "../../firebase";
 import { collection, onSnapshot, where, query, doc, deleteDoc } from "firebase/firestore";   
 
@@ -21,7 +18,6 @@ export default function AdminManagement() {
     const [showAddAdminForm, setShowAddAdminForm] = useState(false);
     const handleShowAddAdminForm = () => setShowAddAdminForm(true);
     const handleHideAddAdminForm = () => {
-        // e.preventDefault();
         setShowAddAdminForm(false);
     }
 
@@ -40,38 +36,25 @@ export default function AdminManagement() {
     const fetchAdminData = () => {
         const q = query(collection(db, "users"), where("role", "==", 'Admin'))
         onSnapshot(q,(querySnapshot)=>{
-            const getAdminDataFromFirestore = [];
-            querySnapshot.forEach((doc) => {
-                console.log(doc.id, " => ", doc.data());
-                getAdminDataFromFirestore.push({...doc.data(), key: doc.id})
-            });
-            setAdminData(getAdminDataFromFirestore);
+            setAdminData(
+                querySnapshot.docs.map((doc)=>({
+                    id: doc.id,
+                    data: doc.data()
+                }))
+            );
         });
     }
     
     useEffect(()=>{
         if (collection){
-            // return fetchUserData;
-            // return fetchAdminData;
             fetchUserData();
             fetchAdminData();
         }
     }, [])
 
     const deleteAccountData = (id) =>{
-        // db.collection("users").doc(id).delete();
         deleteDoc(doc(db, "users", id ))
     }
-
-    // useEffect(()=>{
-    //     if (collection){
-    //         return fetchAdminData;
-    //     }
-    // }, [])
-
-    // const deleteUser = async() =>{
-    //     await deleteDoc(doc(db,"users", {uid: getUserDataFromFirestore.uid}));
-    // }
     
     return (
         <>
@@ -98,13 +81,20 @@ export default function AdminManagement() {
                         </thead>
                         <tbody>
                             {
-                                adminData.map(doc =>{
+                                adminData?.map(({ id, data }) =>{
                                     return(
-                                        <tr>
-                                            <th>{doc.username}</th>
-                                            <th>{doc.email}</th>
-                                            <th>{doc.authProvider}</th>
-                                            <th></th>
+                                        <tr key={id}>
+                                            <th>{data.username}</th>
+                                            <th>{data.email}</th>
+                                            <th>{data.authProvider}</th>
+                                            <th>
+                                                <Button
+                                                    variant="danger"
+                                                    onClick={() => {
+                                                        deleteAccountData(id);
+                                                    }}
+                                                >Delete</Button>
+                                            </th>
                                         </tr>
                                     )
                                 })
