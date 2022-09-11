@@ -23,38 +23,63 @@ export default function NavigationBar(){
 
     const [user, loading, error] = useAuthState(auth);
     const [username, setUsername] = useState("");
+
+    const [showNotLogedIn, setShowNotLogedIn] = useState(null);
+    const [showLogedIn, setShowLogedIn] = useState(null);
+    const [role, setRole] = useState(false);
+    const [showManage, setShowManage] = useState(null);
+    
     const fetchUserName = async () => {
         const q = query(collection(db, "users"), where("uid", "==", user?.uid));
         const doc = await getDocs(q);
         const data = doc.docs[0].data();
         setUsername(data.username);
     }
-    useEffect(() => {
-        if (loading) return;
-        fetchUserName();
-    }, [user, loading]);
-
-    const [showNotLogedIn, setShowNotLogedIn] = useState(null);
-    const [showLogedIn, setShowLogedIn] = useState(null);
-    
-    useEffect(() =>{
+    const fetchUserRole = async () =>{
+        const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+        const doc = await getDocs(q);
+        const data = doc.docs[0].data();
+        console.log(data.isAdmin)
+        setRole(data.isAdmin);
+        // console.log(role); 
+    }
+    const logedInDisplay=()=>{
         onAuthStateChanged(auth, (users) => {
             if (users) {
                 setShowLogedIn("block");
                 setShowNotLogedIn("none");
                 setShowLogin(false) && setShowRegister(false);
-                console.log("Loged In")
+                console.log("Loged In");
+                if (role === true){
+                    console.log("This is an Admin account");
+                    setShowManage("block");
+                }else{
+                    console.log("This is an User account");
+                    setShowManage("none");
+                }
             } else if(!users) {
                 setShowLogedIn("none");
                 setShowNotLogedIn("block");
-                console.log("Not Loged In")
+                console.log("Not Loged In") 
             }
-        });
-    },[]);
+        })
+    }
+    useEffect(() => {
+        if (loading) return;
+        fetchUserRole()
+        .then(()=>fetchUserName())
+        .finally(() => logedInDisplay());
+    }, [user, loading, role]);
 
+    
+    
     const loggingOut= () => {
         logout();
         window.location.reload()
+    }
+
+    const test = () => {
+        console.log(showNotLogedIn)
     }
 
     return(
@@ -74,6 +99,12 @@ export default function NavigationBar(){
                         </Nav.Item>
                         <Nav.Item className="Nav-FirstlineItems">
                             <Nav.Link>Q&a</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item className="Nav-FirstlineItems">
+                            <Nav.Link href="/admin" style={{display:showManage}}>Manage</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item className="Nav-FirstlineItems">
+                            <Nav.Link onClick={test}>Test Function</Nav.Link>
                         </Nav.Item>
                     </Nav>
                     <Nav className="justify-content-end Nav-Firstline">

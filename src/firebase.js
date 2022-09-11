@@ -17,7 +17,9 @@ import {
   collection,
   where,
   addDoc,
+  setDoc,
 } from "firebase/firestore";
+import { getDatabase } from "firebase/database";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -37,8 +39,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
+const auth = getAuth(app);
 const db = getFirestore(app);
+const dbRealTime= getDatabase(app);
+const app2 = initializeApp(firebaseConfig, "Secondary");
+const auth2 = getAuth(app2);
 
 const registerWithEmailAndPassword = async (username, email, password) => {
   const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -46,9 +51,11 @@ const registerWithEmailAndPassword = async (username, email, password) => {
   await addDoc(collection(db, "users"), {
     uid: user.uid,
     username,
-    authProvider: "local",
+    authProvider: "Local",
     email,
     password,
+    role:"User",
+    isAdmin:false
   });
 };
 
@@ -73,11 +80,40 @@ const signInWithGoogle = async () => {
     await addDoc(collection(db, "users"), {
       uid: user.uid,
       username: user.displayName,
-      authProvider: "google",
+      authProvider: "Google",
       email: user.email,
+      role:"User",
+      isAdmin:false
     });
   }
 }
+
+const adminAddUser = async (username, email, password) => {
+  const res = await createUserWithEmailAndPassword(auth2, email, password);
+  const user = res.user;
+  await addDoc(collection(db, "users"), {
+    uid: user.uid,
+    username,
+    authProvider: "Local",
+    email,
+    password,
+    role:"User",
+    isAdmin:false
+  });
+};
+const adminAddAdmin = async (username, email, password) => {
+  const res = await createUserWithEmailAndPassword(auth2, email, password);
+  const user = res.user;
+  await addDoc(collection(db, "users"), {
+    uid: user.uid,
+    username,
+    authProvider: "Local",
+    email,
+    password,
+    role:"Admin",
+    isAdmin:true
+  });
+};
 
 
 
@@ -88,4 +124,7 @@ export {
   logInWithEmailAndPassword,
   logout,
   signInWithGoogle,
+  dbRealTime,
+  adminAddUser,
+  adminAddAdmin,
 };

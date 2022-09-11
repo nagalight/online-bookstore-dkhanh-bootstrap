@@ -1,0 +1,16 @@
+.tabWrapper{
+    border: 2px solid black;
+    /* margin: 0; */
+    /* padding: 0; */
+    /* width: 100%; */
+    max-width: 90%;
+    /* background-size: cover; */
+}
+.Title {
+    font-size: 50px;
+}
+.tabTitle {
+    font-size: 30px;
+    margin: 0;
+    
+}
