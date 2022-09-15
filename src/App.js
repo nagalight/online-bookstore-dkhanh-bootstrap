@@ -1,5 +1,5 @@
 import './App.css';
-import React from "react";
+import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NavigationBar from './components/NavigationBar';
@@ -11,14 +11,24 @@ import { routes } from "./routes";
 
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  const spinner = document.getElementById("spinner");
+  if (spinner) {
+    setTimeout(() => {
+      spinner.style.display = "none";
+      setLoading(false);
+    }, 2000);
+  }
   return (
-    <>
-    <BrowserRouter>
-      <NavigationBar />
-      <Routes>{listRoute(routes)}</Routes>
-      <Footer/>
-    </BrowserRouter>
-    </>
+    !loading &&(
+      <>
+      <BrowserRouter>
+        <NavigationBar />
+        <Routes>{listRoute(routes)}</Routes>
+        <Footer/>
+      </BrowserRouter>
+      </>
+    )
   );
 }
 
