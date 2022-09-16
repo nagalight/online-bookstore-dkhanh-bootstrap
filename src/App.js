@@ -12,14 +12,6 @@ import { routes } from "./routes";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const spinner = document.getElementById("spinner");
-  // const loadingTime =
-  // if (spinner) {
-  //   setTimeout(() => {
-  //     // spinner.style.display = "none";
-  //     setLoading(false);
-  //   }, 1000);
-  // }
 
   const handleLoading = () =>{
     setTimeout(() => {
@@ -28,7 +20,7 @@ function App() {
   }
 
   useEffect(() => {
-    window.addEventListener("load", handleLoading)
+    // window.addEventListener("load", handleLoading)
     return () => {
       handleLoading()
     }
