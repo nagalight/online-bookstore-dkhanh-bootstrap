@@ -1,5 +1,5 @@
 import './App.css';
-import React from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NavigationBar from './components/NavigationBar';
@@ -11,14 +11,37 @@ import { routes } from "./routes";
 
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  const handleLoading = () =>{
+    setTimeout(() => {
+      setLoading(false)
+    }, 3000);
+  }
+
+  useEffect(() => {
+    return () => {
+      handleLoading()
+    }
+  }, [])
+
   return (
-    <>
-    <BrowserRouter>
-      <NavigationBar />
-      <Routes>{listRoute(routes)}</Routes>
-      <Footer/>
-    </BrowserRouter>
-    </>
+    !loading ? (
+      <>
+      <Suspense fallback={<div>Loading...</div>}>
+        <BrowserRouter>
+          <NavigationBar />
+          <Routes>{listRoute(routes)}</Routes>
+          <Footer/>
+        </BrowserRouter>
+      </Suspense>
+      </>
+    ) : (
+      <div id='spinner' className='loadingWrapper'>
+        <img className='loadingImage' src="images/Navbar/ZA_icon.png" />
+        <div className='loading'></div>
+      </div>
+    )
   );
 }
 
