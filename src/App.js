@@ -20,13 +20,10 @@ function App() {
   }
 
   useEffect(() => {
-    // window.addEventListener("load", handleLoading)
     return () => {
       handleLoading()
     }
   }, [])
-  
-
 
   return (
     !loading ? (
