@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NavigationBar from './components/NavigationBar';
@@ -13,21 +13,45 @@ import { routes } from "./routes";
 function App() {
   const [loading, setLoading] = useState(true);
   const spinner = document.getElementById("spinner");
-  if (spinner) {
+  // const loadingTime =
+  // if (spinner) {
+  //   setTimeout(() => {
+  //     // spinner.style.display = "none";
+  //     setLoading(false);
+  //   }, 1000);
+  // }
+
+  const handleLoading = () =>{
     setTimeout(() => {
-      spinner.style.display = "none";
-      setLoading(false);
-    }, 2000);
+      setLoading(false)
+    }, 3000);
   }
+
+  useEffect(() => {
+    window.addEventListener("load", handleLoading)
+    return () => {
+      handleLoading()
+    }
+  }, [])
+  
+
+
   return (
-    !loading &&(
+    !loading ? (
       <>
-      <BrowserRouter>
-        <NavigationBar />
-        <Routes>{listRoute(routes)}</Routes>
-        <Footer/>
-      </BrowserRouter>
+      <Suspense fallback={<div>Loading...</div>}>
+        <BrowserRouter>
+          <NavigationBar />
+          <Routes>{listRoute(routes)}</Routes>
+          <Footer/>
+        </BrowserRouter>
+      </Suspense>
       </>
+    ) : (
+      <div id='spinner' className='loadingWrapper'>
+        <img className='loadingImage' src="images/Navbar/ZA_icon.png" />
+        <div className='loading'></div>
+      </div>
     )
   );
 }
