@@ -24,10 +24,10 @@ export default function NavigationBar(){
     const [user, loading, error] = useAuthState(auth);
     const [username, setUsername] = useState("");
 
-    const [showNotLogedIn, setShowNotLogedIn] = useState(null);
-    const [showLogedIn, setShowLogedIn] = useState(null);
+    const [showNotLogedIn, setShowNotLogedIn] = useState("none");
+    const [showLogedIn, setShowLogedIn] = useState("none");
     const [role, setRole] = useState(false);
-    const [showManage, setShowManage] = useState(null);
+    const [showManage, setShowManage] = useState("none");
     
     const fetchUserName = async () => {
         const q = query(collection(db, "users"), where("uid", "==", user?.uid));
@@ -50,6 +50,7 @@ export default function NavigationBar(){
                 setShowNotLogedIn("none");
                 setShowLogin(false) && setShowRegister(false);
                 console.log("Loged In");
+                setShowManage("none");
                 if (role === true){
                     console.log("This is an Admin account");
                     setShowManage("block");
@@ -60,16 +61,17 @@ export default function NavigationBar(){
             } else if(!users) {
                 setShowLogedIn("none");
                 setShowNotLogedIn("block");
+                setShowManage("none");
                 console.log("Not Loged In") 
             }
         })
     }
     useEffect(() => {
-        if (loading) return;
+        // if (loading) return;
         fetchUserRole()
         .then(()=>fetchUserName())
         .finally(() => logedInDisplay());
-    }, [user, loading, role]);
+    }, [user, role]);
 
     
     
