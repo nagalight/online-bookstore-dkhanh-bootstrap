@@ -5,36 +5,38 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 
-import { BrowserRouter, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, NavLink, HashRouter } from "react-router-dom";
 import { listRoute } from "./utils/routes";
 import { routes } from "./routes";
 
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleLoading = () =>{
     setTimeout(() => {
-      setLoading(false)
-    }, 3000);
+      setIsLoading(false)
+    }, 1000);
   }
 
   useEffect(() => {
-    return () => {
-      handleLoading()
+    if (document.referrer === "") {
+      return(
+        handleLoading()
+      )
+    }else{
+      setIsLoading(false)
     }
   }, [])
 
   return (
-    !loading ? (
+    !isLoading ? (
       <>
-      <Suspense fallback={<div>Loading...</div>}>
         <BrowserRouter>
           <NavigationBar />
           <Routes>{listRoute(routes)}</Routes>
           <Footer/>
         </BrowserRouter>
-      </Suspense>
       </>
     ) : (
       <div id='spinner' className='loadingWrapper'>
