@@ -20,6 +20,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { getDatabase } from "firebase/database";
+import { getStorage, } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -44,6 +45,7 @@ const db = getFirestore(app);
 const dbRealTime= getDatabase(app);
 const app2 = initializeApp(firebaseConfig, "Secondary");
 const auth2 = getAuth(app2);
+const bookStorage = getStorage(app);
 
 const registerWithEmailAndPassword = async (username, email, password) => {
   const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -127,4 +129,5 @@ export {
   dbRealTime,
   adminAddUser,
   adminAddAdmin,
+  bookStorage,
 };
