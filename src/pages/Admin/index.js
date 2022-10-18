@@ -91,7 +91,10 @@ export default function AdminManagement() {
     return (
         <>
         <Container className="tabWrapper">
-            <Container className="Title">Administrator Page</Container>
+            <Container className="titleWrapper">
+                <Container className="titleText">Administrator Page</Container>
+                
+            </Container>
             <Tabs
                 defaultActiveKey="admins"
                 id="admin-manage-tab"
@@ -188,7 +191,7 @@ export default function AdminManagement() {
                             bookData?.map(({ id, data }) =>{
                                 return(
                                     <tr key={id}>
-                                        <th style={{width:'150px'}}>
+                                        <th style={{width:'100px'}}>
                                             <Image src={data.image} className="bookCoverImage" />
                                         </th>
                                         <th>{data.title}</th>
@@ -385,16 +388,7 @@ export default function AdminManagement() {
             image: urlImage
         }
 
-        const inputValidation = async(e)=>{
-            e.preventDefault();
-            if (title === "" || author === "" || publicDate === "" || image == null){
-                return console.log("All field need to be fill !!!");
-            }
-            summitImage().then(()=>handleBookSummit());
-        }
-
         const handleBookSummit = () => {
-            // if( urlImage !== ""){
                 try{
                     addBookToDatabase(addingBook);
                     console.log("New book has been add successfully");
@@ -402,8 +396,28 @@ export default function AdminManagement() {
                 }catch(error){
                     console.log(error);
                 }
-            // }
         }
+
+        const inputValidation = async(e)=>{
+            e.preventDefault();
+            if (title === "" || author === "" || publicDate === "" || image == null){
+                return console.log("All field need to be fill !!!");
+            }
+            loopSummit()
+        }
+
+        const loopSummit = () =>{
+            if (urlImage === ""){
+                summitImage();
+            }else if (urlImage !== ""){
+                handleBookSummit();
+            }
+        }
+
+        useEffect(() => {
+            loopSummit()
+            // inputValidation()
+        }, [urlImage])
 
         return(
             <>
