@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from "react";
-import { Container, Tab, Tabs, Table, Button, Form, Modal, Image } from "react-bootstrap";
+import { Container, Tab, Tabs, Table, Button, Form, Modal, Image, InputGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./admin.css";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare, faTrash, faInfo, faUserSlash } from '@fortawesome/free-solid-svg-icons'
 
 import { 
     db, 
@@ -13,14 +16,14 @@ import {
     getBookData,
     bookStorage
 } from "../../firebase";
-import { collection, onSnapshot, where, query, doc, deleteDoc } from "firebase/firestore";
+import { collection, onSnapshot, where, query, doc, deleteDoc, serverTimestamp} from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL} from "firebase/storage";
-import { async } from "@firebase/util";
 
 export default function AdminManagement() {
     const [userData, setUserData] = useState([]);
     const [adminData, setAdminData] = useState([]);
     const [bookData, setBookData] = useState([]);
+    // const [genreData, setGenreData] = useState([]);
     
 
     const [showAddForm, setShowAddForm] = useState(false);
@@ -40,6 +43,7 @@ export default function AdminManagement() {
     const handleShowHideBookForm = () => {
         setShowAddBookForm(false);
     }
+    
     const fetchUserData = () => {
         const q = query(collection(db, "users"), where("role", "==", 'User'))
         onSnapshot(q,(querySnapshot)=>{
@@ -70,7 +74,7 @@ export default function AdminManagement() {
             setBookData(
                 querySnapshot.docs.map((doc)=>({
                     id: doc.id,
-                    data: doc.data()
+                    data: doc.data(),
                 }))
             );
         });
@@ -93,7 +97,6 @@ export default function AdminManagement() {
         <Container className="tabWrapper">
             <Container className="titleWrapper">
                 <Container className="titleText">Administrator Page</Container>
-                
             </Container>
             <Tabs
                 defaultActiveKey="admins"
@@ -102,115 +105,198 @@ export default function AdminManagement() {
                 fill
             >
                 <Tab eventKey="admins" title="Admins account">
-                    <Container className="tabTitle">Admin accounts management</Container>
-                    <Button onClick={handleShowAddAdminForm}>Add Admin account</Button>
-                    <AddAdminForm show={showAddAdminForm} onHide={() => setShowAddAdminForm(false)}/>
-                    <Table  striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Provider</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                adminData?.map(({ id, data }) =>{
-                                    return(
-                                        <tr key={id}>
-                                            <th>{data.username}</th>
-                                            <th>{data.email}</th>
-                                            <th>{data.authProvider}</th>
-                                            <th>
-                                                <Button
-                                                    variant="danger"
-                                                    onClick={() => {
-                                                        deleteAccountData(id);
-                                                    }}
-                                                >Delete</Button>
-                                            </th>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </Table> 
+                    <Container className="tabContainer">
+                        <Container className="tabTitle">Admin accounts management</Container>
+                        <Button onClick={handleShowAddAdminForm}>Add Admin account</Button>
+                        <AddAdminForm show={showAddAdminForm} onHide={() => setShowAddAdminForm(false)}/>
+                        <Table  striped bordered hover>
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Provider</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    adminData?.map(({ id, data }) =>{
+                                        return(
+                                            <tr key={id}>
+                                                <th>{data.username}</th>
+                                                <th>{data.email}</th>
+                                                <th>{data.authProvider}</th>
+                                                <th>
+                                                    <OverlayTrigger
+                                                        placement="bottom"
+                                                        delay={{ show: 250, hide: 400 }}
+                                                        overlay={<Tooltip id="button-tooltip-2">Delete this admin</Tooltip>}
+                                                    >
+                                                        <Button
+                                                            className="btnAction"
+                                                            variant="danger"
+                                                            onClick={() => {
+                                                                deleteAccountData(id);
+                                                            }}
+                                                        >
+                                                            <FontAwesomeIcon icon={faUserSlash}/>
+                                                        </Button>
+                                                    </OverlayTrigger>
+                                                </th>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </Table>    
+                    </Container> 
                 </Tab>
+
                 <Tab eventKey="users" title="Users account">
-                    <Container className="tabTitle">User accounts management</Container>
-                    <Button variant="primary" onClick={handleShowAddForm}>Add Users</Button>
-                    <AddUserForm show={showAddForm} onHide={() => setShowAddForm(false)}/>
-                    <Table  striped bordered hover>
+                    <Container className="tabContainer">
+                        <Container className="tabTitle">User accounts management</Container>
+                        <Button variant="primary" onClick={handleShowAddForm}>Add Users</Button>
+                        <AddUserForm show={showAddForm} onHide={() => setShowAddForm(false)}/>
+                        <Table  striped bordered hover>
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Provider</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    userData?.map(({ id, data }) =>{
+                                        return(
+                                            <tr key={id}>
+                                                <th>{data.username}</th>
+                                                <th>{data.email}</th>
+                                                <th>{data.authProvider}</th>
+                                                <th>
+                                                    <OverlayTrigger
+                                                        placement="bottom"
+                                                        delay={{ show: 250, hide: 400 }}
+                                                        overlay={<Tooltip id="button-tooltip-2">Delete this user</Tooltip>}
+                                                    >
+                                                        <Button
+                                                            className="btnAction"
+                                                            variant="danger"
+                                                            onClick={() => {
+                                                                deleteAccountData(id);
+                                                            }}
+                                                        >
+                                                            <FontAwesomeIcon icon={faUserSlash}/>
+                                                        </Button>
+                                                    </OverlayTrigger>
+                                                    
+                                                </th>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </Table>
+                    </Container>
+                </Tab>
+                
+                <Tab eventKey="books" title="Books">
+                    <Container className="tabContainer">
+                        <Button onClick={handleShowAddBookForm}>Add Book</Button>
+                        <AddBookForm show={showAddBookForm} onHide={() => setShowAddBookForm(false)}/>
+                        <Table responsive>
                         <thead>
                             <tr>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Provider</th>
+                                <th>Image</th>
+                                <th>Book title</th>
+                                <th>Author</th>
+                                <th>Genre</th>
+                                <th>Day of public</th>
+                                <th>Price</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                userData?.map(({ id, data }) =>{
+                                bookData?.map(({ id, data }) =>{
                                     return(
                                         <tr key={id}>
-                                            <th>{data.username}</th>
-                                            <th>{data.email}</th>
-                                            <th>{data.authProvider}</th>
-                                            <th>
-                                                <Button
-                                                    variant="danger"
-                                                    onClick={() => {
-                                                        deleteAccountData(id);
-                                                    }}
-                                                >Delete</Button>
+                                            <th style={{width:'100px'}}>
+                                                <Image src={data.image} className="bookCoverImage" />
+                                            </th>
+                                            <th>{data.title}</th>
+                                            <th>{data.author}</th>
+                                            <th className="genreTagContainer">
+                                                {
+                                                    data.genre.map(genreData =>{
+                                                        return(
+                                                            <Container className="tagContainer">{genreData}</Container>
+                                                        )
+                                                    })
+                                                }
+                                            </th>
+                                            <th>{data.publicDate}</th>
+                                            <th>{data.price} VND</th>
+                                            <th style={{width:'130px'}}>
+                                                <OverlayTrigger
+                                                    placement="bottom"
+                                                    delay={{ show: 250, hide: 400 }}
+                                                    overlay={<Tooltip id="button-tooltip-2">Go to this book product site</Tooltip>}
+                                                >
+                                                    <Button
+                                                        className="btnAction"
+                                                        variant="primary"
+                                                        onClick={() => {
+                                                            // deleteBookOnDatabase(id);
+                                                        }}
+                                                    >
+                                                        <FontAwesomeIcon icon={faInfo}/>
+                                                    </Button>
+                                                </OverlayTrigger>
+
+                                                <OverlayTrigger
+                                                    placement="bottom"
+                                                    delay={{ show: 250, hide: 400 }}
+                                                    overlay={<Tooltip id="button-tooltip-2">Edit this book information</Tooltip>}
+                                                >
+                                                    <Button
+                                                        className="btnAction"
+                                                        variant="secondary"
+                                                        onClick={() => {
+                                                            // deleteBookOnDatabase(id);
+                                                        }}
+                                                    >
+                                                        <FontAwesomeIcon icon={faPenToSquare}/>
+                                                    </Button>
+                                                </OverlayTrigger>
+
+                                                <OverlayTrigger
+                                                    placement="bottom"
+                                                    delay={{ show: 250, hide: 400 }}
+                                                    overlay={<Tooltip id="button-tooltip-2">Delete this book</Tooltip>}
+                                                >
+                                                    <Button
+                                                        className="btnAction"
+                                                        variant="danger"
+                                                        onClick={() => {
+                                                            deleteBookOnDatabase(id);
+                                                        }}
+                                                    >
+                                                        <FontAwesomeIcon icon={faTrash}/>
+                                                    </Button>
+                                                </OverlayTrigger>
+                                                
+                                                
                                             </th>
                                         </tr>
                                     )
                                 })
                             }
                         </tbody>
-                    </Table> 
-                </Tab>
-                <Tab eventKey="books" title="Books">
-                    <Button onClick={handleShowAddBookForm}>Add Book</Button>
-                    <AddBookForm show={showAddBookForm} onHide={() => setShowAddBookForm(false)}/>
-                    <Table responsive>
-                    <thead>
-                        <tr>
-                            <th>Image</th>
-                            <th>Book title</th>
-                            <th>Author</th>
-                            <th>Day of public</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            bookData?.map(({ id, data }) =>{
-                                return(
-                                    <tr key={id}>
-                                        <th style={{width:'100px'}}>
-                                            <Image src={data.image} className="bookCoverImage" />
-                                        </th>
-                                        <th>{data.title}</th>
-                                        <th>{data.author}</th>
-                                        <th>{data.publicDate}</th>
-                                        <th>
-                                            <Button
-                                                variant="danger"
-                                                onClick={() => {
-                                                    deleteBookOnDatabase(id);
-                                                }}
-                                            >Delete</Button>
-                                        </th>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                    </Table> 
+                        </Table>
+                    </Container>
+                     
                 </Tab>
             </Tabs>
         </Container>
@@ -357,9 +443,12 @@ export default function AdminManagement() {
     function AddBookForm(props){
         const [title, setTitle] = useState("");
         const [author, setAuthor] = useState("");
+        const [genre, setGenre] = useState([]);
         const [publicDate, setPublicDate] = useState("");
+        const [price, setPrice] = useState("");
         const [image, setImage] = useState(null);
-        const [urlImage, setUrlImage] = useState("")
+        const [urlImage, setUrlImage] = useState("");
+        // const [addDateTime, setAddDayTime] = useState("");
 
         const handleImageChange = (e) =>{
             if (e.target.files[0]){
@@ -371,7 +460,7 @@ export default function AdminManagement() {
             const imageRef = ref(bookStorage, `BookCover/${image.name}`);
             await uploadBytes(imageRef, image).then(()=>{
                 getDownloadURL(imageRef).then((url)=>{
-                    setUrlImage(url);
+                    setUrlImage(url); 
                     console.log(urlImage); 
                 }).catch(error =>{
                     console.log(error.message, "Error while getting the image url");
@@ -384,8 +473,11 @@ export default function AdminManagement() {
         const addingBook = {
             title,
             author,
+            genre,
             publicDate,
-            image: urlImage
+            price,
+            image: urlImage,
+            addDateTime: serverTimestamp()
         }
 
         const handleBookSummit = () => {
@@ -416,7 +508,6 @@ export default function AdminManagement() {
 
         useEffect(() => {
             loopSummit()
-            // inputValidation()
         }, [urlImage])
 
         return(
@@ -435,7 +526,7 @@ export default function AdminManagement() {
                 <Modal.Body>
                     <Container className="formWrapper">
                         <Form className="addBookForm" onSubmit={inputValidation}>
-                            <Form.Group className="mb-3" >
+                            <Form.Group className="mb-3" id="Title">
                                 <Form.Label>Book title:</Form.Label>
                                 <Form.Control 
                                     type="text" 
@@ -446,7 +537,8 @@ export default function AdminManagement() {
                                     onChange={(e) => setTitle(e.target.value)}
                                 />
                             </Form.Group>
-                            <Form.Group className="mb-3" >
+
+                            <Form.Group className="mb-3" id="Author">
                                 <Form.Label>Author:</Form.Label>
                                 <Form.Control 
                                     type="text" 
@@ -457,7 +549,68 @@ export default function AdminManagement() {
                                     onChange={(e) => setAuthor(e.target.value)}
                                 />
                             </Form.Group>
-                            <Form.Group className="mb-3" >
+
+                            <Form.Group className="mb-3" id="Genre">
+                                <Form.Label>Genre:</Form.Label>
+                                <Container className="gerneWrapper">
+                                    <Container className="genreColumnContainer" id="fictionWrapper">
+                                        <Form.Check 
+                                            type="checkbox" 
+                                            label="Fiction" 
+                                            onChange={(e)=>{
+                                                e.target.checked ? genre.push("Fiction"): setGenre(genre.filter((a) =>(a !== "Fiction")))
+                                            }}
+                                        />
+                                    </Container>
+                                    <Container className="genreColumnContainer" id="nonFictionWrapper">
+                                        <Form.Check 
+                                            type="checkbox" 
+                                            label="Non-Fiction"
+                                            onChange={(e)=>{
+                                                e.target.checked ? genre.push("Non-Fiction"): setGenre(genre.filter((a) =>(a !== "Non-Fiction")))
+                                            }}
+                                        />
+                                    </Container>
+                                    <Container className="genreColumnContainer" id="teenWrapper">
+                                        <Form.Check 
+                                        type="checkbox" 
+                                        label="Teen"
+                                        onChange={(e)=>{
+                                            e.target.checked ? genre.push("Teen"): setGenre(genre.filter((a) =>(a !== "Teen")))
+                                        }}
+                                        />
+                                    </Container>
+                                    <Container className="genreColumnContainer" id="kidWrapper">
+                                        <Form.Check 
+                                            type="checkbox" 
+                                            label="Kid"
+                                            onChange={(e)=>{
+                                                e.target.checked ? genre.push("Kid"): setGenre(genre.filter((a) =>(a !== "Kid")))
+                                            }} 
+                                        />
+                                    </Container>
+                                    <Container className="genreColumnContainer" id="educationWrapper">
+                                        <Form.Check 
+                                            type="checkbox" 
+                                            label="Education"
+                                            onChange={(e)=>{
+                                                e.target.checked ? genre.push("Education"): setGenre(genre.filter((a) =>(a !== "Education")))
+                                            }}
+                                        />
+                                    </Container>
+                                    <Container className="genreColumnContainer" id="historyWrapper">
+                                        <Form.Check 
+                                            type="checkbox" 
+                                            label="History"
+                                            onChange={(e)=>{
+                                                e.target.checked ? genre.push("History"): setGenre(genre.filter((a) =>(a !== "History")))
+                                            }}
+                                        />
+                                    </Container>
+                                </Container>
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" id="PublicDate">
                                 <Form.Label>Date of Public:</Form.Label>
                                 <Form.Control 
                                     type="Date" 
@@ -468,7 +621,23 @@ export default function AdminManagement() {
                                     onChange={(e) => setPublicDate(e.target.value)}
                                 />
                             </Form.Group>
-                            <Form.Group className="mb-3" >
+
+                            <Form.Group className="mb-3" id="Price">
+                                <Form.Label>Price:</Form.Label>
+                                <InputGroup className="mb-3">
+                                    <Form.Control 
+                                        type="number" 
+                                        size="lg" 
+                                        id="price" 
+                                        value={price}
+                                        placeholder="Enter book price"
+                                        onChange={(e) => setPrice(e.target.value)}
+                                    />
+                                    <InputGroup.Text>VND</InputGroup.Text>
+                                </InputGroup>
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" id="CoverImage">
                                 <Form.Label>Book Cover:</Form.Label>
                                 <Form.Control 
                                     type="file" 
@@ -477,6 +646,7 @@ export default function AdminManagement() {
                                     onChange={handleImageChange}
                                 />
                             </Form.Group>
+
                             <Button variant="primary" size="lg" type="Submit">Add Book</Button>
                         </Form>
                     </Container>

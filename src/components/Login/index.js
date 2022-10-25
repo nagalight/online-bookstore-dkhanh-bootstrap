@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
 import {  Button, Container, Form, Modal } from "react-bootstrap";
 import { logInWithEmailAndPassword, signInWithGoogle } from "../../firebase";
 import "./login.css"

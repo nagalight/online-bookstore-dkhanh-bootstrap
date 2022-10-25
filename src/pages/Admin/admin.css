@@ -1,11 +1,15 @@
 .tabWrapper{
     /* border: 2px solid black; */
     /* margin: 0; */
-    /* padding: 0; */
+    padding: 0;
     /* width: 100%; */
     max-width: 90%;
     min-height: 70vh;
     /* background-size: cover; */
+}
+.tabContainer{
+    /* border-top: 2px solid black; */
+    padding: 0;
 }
 .titleWrapper {
     /* font-size: 50px; */
@@ -19,11 +23,33 @@
 }
 .tabTitle {
     font-size: 30px;
-    margin: 0;
+    margin-bottom: 10px;
     
 }
 .bookCoverImage{
     /* width: 100px; */
     width:inherit;
     max-height: 130px;
+}
+.btnAction{
+    margin-left: 2px;
+    margin-right: 2px;
+}
+.genreTagContainer{
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* height:max-content; */
+}
+.tagContainer {
+    background-color: rgb(37, 36, 40);
+    color: white;
+    width: fit-content;
+    height: fit-content;
+    margin: 2px;
+    border-radius: 8%;
+}
+.gerneWrapper{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
 }

@@ -81,7 +81,7 @@ export default function NavigationBar(){
     }
 
     const test = () => {
-        console.log(showNotLogedIn)
+        console.log(showManage)
     }
 
     return(
@@ -93,7 +93,7 @@ export default function NavigationBar(){
                         <Nav.Item className="Nav-FirstlineItems">
                             <Nav.Link>
                                 <FontAwesomeIcon icon={faGlobe} className="locationIcon"/>
-                                Location    
+                                Location: VN    
                             </Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="Nav-FirstlineItems">
@@ -155,16 +155,16 @@ export default function NavigationBar(){
                             <Nav.Link href="/inconstruction">Nonfiction</Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Nav.Link href="/inconstruction">eBooks</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item className="categoryItems">
-                            <Nav.Link href="/inconstruction">Audiobooks</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item className="categoryItems">
                             <Nav.Link href="/inconstruction">Teen</Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
                             <Nav.Link href="/inconstruction">Kids</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item className="categoryItems">
+                            <Nav.Link href="/inconstruction">Education</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item className="categoryItems">
+                            <Nav.Link href="/inconstruction">Magazine</Nav.Link>
                         </Nav.Item>
                     </Nav>
                     <Nav className="justify-content-start Category-wrapper">
