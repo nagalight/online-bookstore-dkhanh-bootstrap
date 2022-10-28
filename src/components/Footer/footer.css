@@ -8,6 +8,30 @@
     padding:0;
     color:white;
 }
-.footerText {
-    font-size: 70px;
+.column_item_title{
+    font-size: 20px;
+    height: 60px;
+    color: rgba(255, 255, 255, 0.674);
+    font-style: bold;
+}
+.column_item_title_second{
+    height: 30px;
+
+}
+.column_item{
+    font-size: 15px;
+    font-style: bold;
+    margin-top: 5px;
+}
+.site_footer_image{
+    width: 60px;
+    height: auto;
+}
+.footer_Credit{
+    height: 20px;
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.549);
+    border-top: 2px solid white;
+    
 }

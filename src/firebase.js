@@ -13,13 +13,18 @@ import {
 import {
   getFirestore,
   query,
+  getDoc,
   getDocs,
   collection,
   where,
   addDoc,
   setDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
 } from "firebase/firestore";
 import { getDatabase } from "firebase/database";
+import { getStorage, } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -44,6 +49,7 @@ const db = getFirestore(app);
 const dbRealTime= getDatabase(app);
 const app2 = initializeApp(firebaseConfig, "Secondary");
 const auth2 = getAuth(app2);
+const bookStorage = getStorage(app);
 
 const registerWithEmailAndPassword = async (username, email, password) => {
   const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -115,6 +121,30 @@ const adminAddAdmin = async (username, email, password) => {
   });
 };
 
+const bookRef = collection(db,"books")
+
+const addBookToDatabase = async (newBook) =>{
+  await addDoc(bookRef, newBook);
+}
+
+const updateBookOnDatabase = async (id, updatedBook) =>{
+  const bookDoc = doc(db, "books", id);
+  await updateDoc(bookDoc, updatedBook);
+}
+
+const deleteBookOnDatabase = async (id) =>{
+  const bookDoc = doc(db, "books", id);
+  await deleteDoc(bookDoc);
+}
+
+const getAllBooksData = async () =>{
+  await getDocs(bookRef);
+}
+
+const getBookData = async (id) =>{
+  const bookDoc = doc(db, "books", id);
+  await getDoc(bookDoc);
+};
 
 
 export {
@@ -127,4 +157,10 @@ export {
   dbRealTime,
   adminAddUser,
   adminAddAdmin,
+  addBookToDatabase,
+  updateBookOnDatabase,
+  deleteBookOnDatabase,
+  getAllBooksData,
+  getBookData,
+  bookStorage,
 };
