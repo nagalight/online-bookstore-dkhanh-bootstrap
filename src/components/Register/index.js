@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Button, Container, Form, Modal } from "react-bootstrap";
+import { Button, Container, Form, Modal, Alert } from "react-bootstrap";
 import "./register.css";
 
 import { registerWithEmailAndPassword } from '../../firebase';
@@ -14,6 +14,7 @@ export default function RegisterForm(props){
     const [passwordConfirm, setPasswordConfirm] = useState("");
     const [termChecked, setTermChecked] = useState(false);
     const [error, setError] = useState("");
+    const [showError, setShowError] = useState("none")
 
     const { signUp } = useAuth()
 
@@ -39,6 +40,14 @@ export default function RegisterForm(props){
     useEffect(() => {
         setError("")
     }, [props])
+    useEffect(()=>{
+        if(error !== ""){
+            setShowError("block")
+        }else{
+            setShowError("none")
+        }
+        
+    }, [error])
     
     
     return(
@@ -57,6 +66,7 @@ export default function RegisterForm(props){
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
+                <Alert variant={'danger'} style={{display:showError}}>{error}</Alert>
                 <Container className="registerWrapper">
                     <Form className="registerForm" onSubmit={handleRegister}>
                         <Form.Group className="mb-3" >
@@ -113,7 +123,6 @@ export default function RegisterForm(props){
                                 onChange={(e)=>{e.target.checked ? setTermChecked(true) : setTermChecked(false)}}
                             />
                         </Form.Group>
-                        <Container className="register_err">{error}</Container>
                         <Button variant="primary" size="lg" type="summit">Register</Button> 
                     </Form>
                 </Container>

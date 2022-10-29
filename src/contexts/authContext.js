@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { auth, db } from '../firebase'
+import { auth, db, googleProvider } from '../firebase'
 import {
     signInWithPopup,
     signInWithEmailAndPassword,
@@ -45,6 +45,30 @@ export function AuthProvider({ children }) {
             isAdmin:false
         });
     };
+
+    const logIn = async (email, username, password) => {
+        setPersistence(auth, browserSessionPersistence)
+          .then(() => {
+            return signInWithEmailAndPassword(auth, email, username, password);
+        })
+    };
+
+    const loginWithGoogle = async () => {
+        const res = await signInWithPopup(auth, googleProvider);
+        const user = res.user;
+        const q = query(collection(db, "users"), where("uid", "==", user.uid));
+        const docs = await getDocs(q);
+        if (docs.docs.length === 0) {
+            await addDoc(collection(db, "users"), {
+                uid: user.uid,
+                username: user.displayName,
+                authProvider: "Google",
+                email: user.email,
+                role:"User",
+                isAdmin:false
+            });
+        }
+    }
     
     useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged(user =>{
@@ -59,6 +83,8 @@ export function AuthProvider({ children }) {
     const value = {
         currentUser,
         signUp,
+        logIn,
+        loginWithGoogle
     }
     return (
         <AuthContext.Provider value={value}>

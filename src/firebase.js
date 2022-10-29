@@ -153,6 +153,7 @@ export {
   registerWithEmailAndPassword,
   logInWithEmailAndPassword,
   logout,
+  googleProvider,
   signInWithGoogle,
   dbRealTime,
   adminAddUser,
