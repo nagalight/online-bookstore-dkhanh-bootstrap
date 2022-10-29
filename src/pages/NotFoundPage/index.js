@@ -8,7 +8,7 @@ import { faFaceFrown } from '@fortawesome/free-solid-svg-icons'
 export default function NotFoundPage(){
     return(
         <>
-        <Container className="textWrapper">
+        <Container className="textNotFoundWrapper">
             <Container>
                 <FontAwesomeIcon icon={faFaceFrown} className="sadIcon"/>
             </Container>

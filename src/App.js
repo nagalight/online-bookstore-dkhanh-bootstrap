@@ -5,12 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 
-import { BrowserRouter, Routes } from "react-router-dom";
-import { listRoute } from "./utils/routes";
-import { routes } from "./routes";
-import AdminRoute from './utils/AdminRoute';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import AdminManagement from './pages/Admin';
+import HomePage from './pages/HomePage';
+import NotFoundPage from './pages/NotFoundPage';
+import InconstructionPage from './pages/InconstructionPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -36,8 +36,15 @@ function App() {
       <>
       <NavigationBar />
       <BrowserRouter>
-        <Routes>{listRoute(routes)}</Routes>
-        <AdminRoute exact path="admin" component={AdminManagement}/>
+        <Routes>
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/home" element={<HomePage/>}/>
+          <Route path="/homepage" element={<HomePage/>}/>
+          <Route path="/admin" element={<AdminManagement/>}/>
+          <Route path="/*" element={<NotFoundPage/>}/>
+          <Route path="/404" element={<NotFoundPage/>}/>
+          <Route path="/inconstruction" element={<InconstructionPage/>}/>
+        </Routes>
       </BrowserRouter>
       <Footer/>
       </>

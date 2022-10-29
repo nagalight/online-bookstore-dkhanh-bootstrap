@@ -41,7 +41,7 @@ export default function NavigationBar(){
         const q = query(collection(db, "users"), where("uid", "==", user?.uid));
         const doc = await getDocs(q);
         const data = doc.docs[0].data();
-        console.log(data.isAdmin)
+        // console.log(data.isAdmin)
         setRole(data.isAdmin);
         // console.log(role); 
     }
@@ -85,7 +85,7 @@ export default function NavigationBar(){
     }
 
     const test = () => {
-        console.log(user)
+        console.log(user.email)
     }
 
     return(
