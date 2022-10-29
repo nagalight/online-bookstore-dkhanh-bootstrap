@@ -1,20 +1,44 @@
-import React, {useState} from "react";
-import {  Button, Container, Form, Modal } from "react-bootstrap";
-import { logInWithEmailAndPassword, signInWithGoogle } from "../../firebase";
+import React, {useState, useEffect} from "react";
+import {  Button, Container, Form, Modal, Alert } from "react-bootstrap";
 import "./login.css"
+
+import { useAuth } from "../../contexts/authContext";
 
 export default function LoginForm(props){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const loggingIn = () => {
-        logInWithEmailAndPassword(email, password)
+    const [error, setError] = useState("");
+    const [showError, setShowError] = useState("none")
+    const { logIn, loginWithGoogle } = useAuth()
+    const loggingIn = (e) => {
+        e.preventDefault();
+        if (!email||!password){
+            setError("Please enter all field to login")
+        }else{
+            try {
+                logIn(email, password)
+            } catch (error) {
+                setError("Failed to login")
+            }
+        }
     }
+    useEffect(() => {
+        setError("")
+    }, [props])
+    useEffect(()=>{
+        if(error !== ""){
+            setShowError("block")
+        }else{
+            setShowError("none")
+        }
+        
+    }, [error])
 
     return(
         <>
         <Modal
             {...props}
-            size="lg"
+            size="md"
             aria-labelledby="contained-modal-title-vcenter"
             centered
             backdrop="static"
@@ -25,6 +49,7 @@ export default function LoginForm(props){
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
+            <Alert variant={'danger'} style={{display:showError}}>{error}</Alert>
                 <Container className="loginWrapper">
                     <Form className="loginForm">
                         <Form.Group className="mb-3" controlId="formLoginEmail">
@@ -64,7 +89,7 @@ export default function LoginForm(props){
                         <Button
                             variant="primary"
                             size="lg"
-                            onClick={signInWithGoogle}
+                            onClick={()=> loginWithGoogle()}
                             className="googleLogin"
                         > Login with Google</Button>
                     </Form>

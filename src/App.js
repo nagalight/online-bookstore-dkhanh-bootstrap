@@ -5,13 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 
-import { BrowserRouter, Routes, NavLink, HashRouter } from "react-router-dom";
-import { listRoute } from "./utils/routes";
-import { routes } from "./routes";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import AdminManagement from './pages/Admin';
+import HomePage from './pages/HomePage';
+import NotFoundPage from './pages/NotFoundPage';
+import InconstructionPage from './pages/InconstructionPage';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLoading = () =>{
     setTimeout(() => {
@@ -32,11 +34,19 @@ function App() {
   return (
     !isLoading ? (
       <>
-        <BrowserRouter>
-          <NavigationBar />
-          <Routes>{listRoute(routes)}</Routes>
-          <Footer/>
-        </BrowserRouter>
+      <NavigationBar />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/home" element={<HomePage/>}/>
+          <Route path="/homepage" element={<HomePage/>}/>
+          <Route path="/admin" element={<AdminManagement/>}/>
+          <Route path="/*" element={<NotFoundPage/>}/>
+          <Route path="/404" element={<NotFoundPage/>}/>
+          <Route path="/inconstruction" element={<InconstructionPage/>}/>
+        </Routes>
+      </BrowserRouter>
+      <Footer/>
       </>
     ) : (
       <div id='spinner' className='loadingWrapper'>

@@ -8,7 +8,7 @@ import { faFaceFrown } from '@fortawesome/free-solid-svg-icons'
 export default function NotFoundPage(){
     return(
         <>
-        <Container className="textWrapper">
+        <Container className="textNotFoundWrapper">
             <Container>
                 <FontAwesomeIcon icon={faFaceFrown} className="sadIcon"/>
             </Container>
@@ -16,7 +16,7 @@ export default function NotFoundPage(){
                 Oops
             </Container>
             <Container className="smallText">
-                You are not supose to be here. Press <a className="homeLink">here</a> to go back to Home Page
+                You are not supose to be here. Press <a className="homeLink" href="/">here</a> to go back to Home Page
             </Container>
         </Container>
         </>

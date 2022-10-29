@@ -3,7 +3,8 @@
     height: auto;
 }
 .register_err {
-    margin: 4px 0 0 0;
+    margin: 0;
+    padding: 0;
     font-size: 13px;
     color: #e64646;
 }
