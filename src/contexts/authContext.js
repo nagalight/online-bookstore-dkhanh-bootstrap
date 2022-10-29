@@ -10,15 +10,10 @@ import {
 } from "firebase/auth";
 import {
     query,
-    getDoc,
     getDocs,
     collection,
     where,
     addDoc,
-    setDoc,
-    updateDoc,
-    deleteDoc,
-    doc,
 } from "firebase/firestore";
 
 const AuthContext = React.createContext()

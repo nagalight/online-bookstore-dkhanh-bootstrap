@@ -21,14 +21,4 @@ export const routes = [
         path: "/inconstruction",
         component: React.lazy(() => import("../pages/InconstructionPage")),
     },
-    {
-        path: "/admin",
-        component: React.lazy(() => import("../pages/Admin")),
-    },
 ]
-// export const protectedRoutes = [
-//     {
-//         path: "/admin",
-//         component: React.lazy(() => import("../pages/Admin")),
-//     },
-// ]

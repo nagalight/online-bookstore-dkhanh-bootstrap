@@ -23,7 +23,7 @@ export default function NavigationBar(){
     const [showRegister, setShowRegister] = useState(false);
     const handleShowRegister = () => setShowRegister(true);
 
-    const [user, loading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const [username, setUsername] = useState("");
 
     const [showNotLogedIn, setShowNotLogedIn] = useState("none");
@@ -85,7 +85,7 @@ export default function NavigationBar(){
     }
 
     const test = () => {
-        console.log(showManage)
+        console.log(user)
     }
 
     return(

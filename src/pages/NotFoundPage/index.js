@@ -16,7 +16,7 @@ export default function NotFoundPage(){
                 Oops
             </Container>
             <Container className="smallText">
-                You are not supose to be here. Press <a className="homeLink">here</a> to go back to Home Page
+                You are not supose to be here. Press <a className="homeLink" href="/">here</a> to go back to Home Page
             </Container>
         </Container>
         </>

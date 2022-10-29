@@ -8,6 +8,9 @@ import Footer from './components/Footer';
 import { BrowserRouter, Routes } from "react-router-dom";
 import { listRoute } from "./utils/routes";
 import { routes } from "./routes";
+import AdminRoute from './utils/AdminRoute';
+
+import AdminManagement from './pages/Admin';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -34,6 +37,7 @@ function App() {
       <NavigationBar />
       <BrowserRouter>
         <Routes>{listRoute(routes)}</Routes>
+        <AdminRoute exact path="admin" component={AdminManagement}/>
       </BrowserRouter>
       <Footer/>
       </>
