@@ -21,7 +21,7 @@ import { ref, uploadBytes, getDownloadURL} from "firebase/storage";
 import { async } from "@firebase/util";
 
 import { useAuth } from "../../contexts/authContext"
-import { Navigate } from "react-router-dom"
+import { Navigate, Link } from "react-router-dom"
 
 export default function AdminManagement() {
     const { currentUser } = useAuth()
@@ -273,15 +273,18 @@ export default function AdminManagement() {
                                                             delay={{ show: 250, hide: 400 }}
                                                             overlay={<Tooltip id="button-tooltip-2">Go to this book product site</Tooltip>}
                                                         >
-                                                            <Button
-                                                                className="btnAction"
-                                                                variant="primary"
-                                                                onClick={() => {
-                                                                    console.log("This book have the id of: " + id);
-                                                                }}
-                                                            >
-                                                                <FontAwesomeIcon icon={faInfo}/>
-                                                            </Button>
+                                                            <Link to={`/books/${id}`}>
+                                                                <Button
+                                                                    className="btnAction"
+                                                                    variant="primary"
+                                                                    onClick={() => {
+                                                                        console.log("This book have the id of: " + id);
+                                                                    }}
+                                                                >
+                                                                    <FontAwesomeIcon icon={faInfo}/>
+                                                                </Button>
+                                                            </Link>
+                                                            
                                                         </OverlayTrigger>
         
                                                         <OverlayTrigger

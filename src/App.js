@@ -11,6 +11,7 @@ import AdminManagement from './pages/Admin';
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import InconstructionPage from './pages/InconstructionPage';
+import BookDetailPage from './pages/BookDetailPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,6 +45,8 @@ function App() {
           <Route path="/*" element={<NotFoundPage/>}/>
           <Route path="/404" element={<NotFoundPage/>}/>
           <Route path="/inconstruction" element={<InconstructionPage/>}/>
+          <Route exact path="/books/:id" element={<BookDetailPage/>}/>
+          <Route exact path="/book" element={<BookDetailPage/>}/>
         </Routes>
       </BrowserRouter>
       <Footer/>

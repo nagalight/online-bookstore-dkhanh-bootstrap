@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {  Button, Container, Nav, Navbar, Form, Image } from "react-bootstrap";
+import {  Button, Container, Nav, Navbar, Form, Image, InputGroup } from "react-bootstrap";
 import "./navbar.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -127,11 +127,14 @@ export default function NavigationBar(){
                     </a>
                     
                     <Form className="Navbar-Search">
-                        <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
+                        <InputGroup>
+                            <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
+                            <Button variant="outline-light" className="searchButton">
+                                <FontAwesomeIcon icon={faMagnifyingGlass} className="searchIcon"/>
+                            </Button>
+                        </InputGroup>
+                        
                     </Form>
-                    <Button variant="outline-success" className="searchButton">
-                        <FontAwesomeIcon icon={faMagnifyingGlass} className="searchIcon"/>
-                    </Button>
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text className="notLogin" style={{display:showNotLogedIn}}>
                             <a onClick={handleShowLogin}>Login</a>/<a onClick={handleShowRegister}>Register</a>
