@@ -1,29 +1,51 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Button, Container, Form, Modal } from "react-bootstrap";
 import "./register.css";
 
 import { registerWithEmailAndPassword } from '../../firebase';
 
+import { useAuth } from "../../contexts/authContext";
+
 
 export default function RegisterForm(props){
-    const [summitModalShow, setSummitModalShow] = React.useState(false);
-    const handleShowSummitModal = () => setSummitModalShow(true)
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [termChecked, setTermChecked] = useState(false);
+    const [error, setError] = useState("");
 
-    const register = () => {
-        if (!username) 
-            alert("Please enter username");
-        registerWithEmailAndPassword(username, email, password);
-        handleShowSummitModal();
+    const { signUp } = useAuth()
+
+    async function handleRegister(e) {
+        e.preventDefault();
+        if (!username||!password||!email){
+            setError("Please enter all field to create account")
+        }else if (password !== passwordConfirm){
+            setError("Password confirmation must be the same as the password")
+        }else if(termChecked === false){
+            setError("You need to agree to the Term of service to be able to create an account")
+        }else{
+            try{
+                await signUp(username, email, password);
+                alert("Account has been create successfully")
+            }catch(error){
+                console.log(error)
+                setError("Failed to create an account")
+            }
+            
+        }
     };
-
+    useEffect(() => {
+        setError("")
+    }, [props])
+    
+    
     return(
         <>
         <Modal
             {...props}
-            size="lg"
+            size="md"
             aria-labelledby="contained-modal-title-vcenter"
             centered
             backdrop="static"
@@ -36,7 +58,7 @@ export default function RegisterForm(props){
             </Modal.Header>
             <Modal.Body>
                 <Container className="registerWrapper">
-                    <Form className="registerForm">
+                    <Form className="registerForm" onSubmit={handleRegister}>
                         <Form.Group className="mb-3" >
                             <Form.Label>Username:</Form.Label>
                             <Form.Control 
@@ -71,34 +93,30 @@ export default function RegisterForm(props){
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" >
+                            <Form.Label>Password Confirmation:</Form.Label>
+                            <Form.Control 
+                                type="password" 
+                                size="lg" 
+                                id="passwordConfirm"
+                                value={passwordConfirm}
+                                placeholder="Enter Password confirmation"
+                                onChange={(e) => setPasswordConfirm(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" >
                             <Form.Check 
                                 type="checkbox" 
                                 size="lg" 
                                 id="registerCheckbox" 
                                 label="You are agree to our Term of service"
+                                checked={termChecked}
+                                onChange={(e)=>{e.target.checked ? setTermChecked(true) : setTermChecked(false)}}
                             />
                         </Form.Group>
-                        <Button variant="primary" size="lg" onClick={register}>Register</Button>
+                        <Container className="register_err">{error}</Container>
+                        <Button variant="primary" size="lg" type="summit">Register</Button> 
                     </Form>
                 </Container>
-            </Modal.Body>
-        </Modal>
-        <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-            className="summitModal"
-            show={summitModalShow}
-            onHide={() => setSummitModalShow(false)}
-        >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Aleart
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <p>Account has been successfully created</p>
             </Modal.Body>
         </Modal>
         </>

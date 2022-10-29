@@ -10,6 +10,10 @@ export const routes = [
         component: React.lazy(() => import("../pages/HomePage/index")),
     },
     {
+        path: "/home",
+        component: React.lazy(() => import("../pages/HomePage/index")),
+    },
+    {
         path: "/404",
         component: React.lazy(() => import("../pages/NotFoundPage")),
     },
@@ -22,3 +26,9 @@ export const routes = [
         component: React.lazy(() => import("../pages/Admin")),
     },
 ]
+// export const protectedRoutes = [
+//     {
+//         path: "/admin",
+//         component: React.lazy(() => import("../pages/Admin")),
+//     },
+// ]

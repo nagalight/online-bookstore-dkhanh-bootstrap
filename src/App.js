@@ -5,13 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 
-import { BrowserRouter, Routes, NavLink, HashRouter } from "react-router-dom";
+import { BrowserRouter, Routes } from "react-router-dom";
 import { listRoute } from "./utils/routes";
 import { routes } from "./routes";
 
-
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLoading = () =>{
     setTimeout(() => {
@@ -32,11 +31,11 @@ function App() {
   return (
     !isLoading ? (
       <>
+      <NavigationBar />
         <BrowserRouter>
-          <NavigationBar />
           <Routes>{listRoute(routes)}</Routes>
-          <Footer/>
         </BrowserRouter>
+      <Footer/>
       </>
     ) : (
       <div id='spinner' className='loadingWrapper'>

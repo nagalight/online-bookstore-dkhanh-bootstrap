@@ -73,8 +73,6 @@ export default function NavigationBar(){
         .finally(() => logedInDisplay());
     }, [user, role]);
 
-    
-    
     const loggingOut= () => {
         logout();
         window.location.reload()
