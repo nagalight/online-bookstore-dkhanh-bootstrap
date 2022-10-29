@@ -2,12 +2,7 @@
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
-  signInWithPopup,
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  signOut,
-  setPersistence, 
-  browserSessionPersistence,
   GoogleAuthProvider,
 } from "firebase/auth";
 import {
@@ -50,49 +45,7 @@ const dbRealTime= getDatabase(app);
 const app2 = initializeApp(firebaseConfig, "Secondary");
 const auth2 = getAuth(app2);
 const bookStorage = getStorage(app);
-
-const registerWithEmailAndPassword = async (username, email, password) => {
-  const res = await createUserWithEmailAndPassword(auth, email, password);
-  const user = res.user;
-  await addDoc(collection(db, "users"), {
-    uid: user.uid,
-    username,
-    authProvider: "Local",
-    email,
-    password,
-    role:"User",
-    isAdmin:false
-  });
-};
-
-const logInWithEmailAndPassword = async (email, username, password) => {
-  setPersistence(auth, browserSessionPersistence)
-    .then(() => {
-      return signInWithEmailAndPassword(auth, email, username, password);
-    })
-};
-
-const logout = () => {
-  signOut(auth);
-};
-
 const googleProvider = new GoogleAuthProvider();
-const signInWithGoogle = async () => {
-  const res = await signInWithPopup(auth, googleProvider);
-  const user = res.user;
-  const q = query(collection(db, "users"), where("uid", "==", user.uid));
-  const docs = await getDocs(q);
-  if (docs.docs.length === 0) {
-    await addDoc(collection(db, "users"), {
-      uid: user.uid,
-      username: user.displayName,
-      authProvider: "Google",
-      email: user.email,
-      role:"User",
-      isAdmin:false
-    });
-  }
-}
 
 const adminAddUser = async (username, email, password) => {
   const res = await createUserWithEmailAndPassword(auth2, email, password);
@@ -150,11 +103,7 @@ const getBookData = async (id) =>{
 export {
   auth,
   db,
-  registerWithEmailAndPassword,
-  logInWithEmailAndPassword,
-  logout,
   googleProvider,
-  signInWithGoogle,
   dbRealTime,
   adminAddUser,
   adminAddAdmin,

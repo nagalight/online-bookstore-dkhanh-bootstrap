@@ -5,10 +5,12 @@ import "./navbar.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGlobe, faMagnifyingGlass, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
-import { auth, db, logout } from "../../firebase";
+import { auth, db } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+
+import { useAuth } from "../../contexts/authContext";
 
 import LoginForm from "../Login";
 import RegisterForm from "../Register";
@@ -67,15 +69,19 @@ export default function NavigationBar(){
         })
     }
     useEffect(() => {
-        // if (loading) return;
         fetchUserRole()
         .then(()=>fetchUserName())
         .finally(() => logedInDisplay());
     }, [user, role]);
 
+    const { logout } = useAuth()
+
     const loggingOut= () => {
-        logout();
-        window.location.reload()
+        try{
+            logout();
+        }catch(e){
+            console.log(e)
+        }
     }
 
     const test = () => {

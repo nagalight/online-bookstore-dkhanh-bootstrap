@@ -245,7 +245,9 @@ export default function AdminManagement() {
                                                 }
                                             </th>
                                             <th>{data.publicDate}</th>
-                                            <th>{data.price} VND</th>
+                                            <th>{Number(data.price).toLocaleString("en-US", {
+                                                maximumFractionDigits: 0
+                                            })} VND</th>
                                             <th style={{width:'130px'}}>
                                                 <OverlayTrigger
                                                     placement="bottom"

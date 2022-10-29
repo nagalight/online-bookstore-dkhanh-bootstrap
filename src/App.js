@@ -32,9 +32,9 @@ function App() {
     !isLoading ? (
       <>
       <NavigationBar />
-        <BrowserRouter>
-          <Routes>{listRoute(routes)}</Routes>
-        </BrowserRouter>
+      <BrowserRouter>
+        <Routes>{listRoute(routes)}</Routes>
+      </BrowserRouter>
       <Footer/>
       </>
     ) : (

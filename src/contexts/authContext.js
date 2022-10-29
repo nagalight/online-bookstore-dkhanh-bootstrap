@@ -7,7 +7,6 @@ import {
     signOut,
     setPersistence, 
     browserSessionPersistence,
-    GoogleAuthProvider,
 } from "firebase/auth";
 import {
     query,
@@ -69,6 +68,10 @@ export function AuthProvider({ children }) {
             });
         }
     }
+
+    const logout = () => {
+        signOut(auth);
+      };
     
     useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged(user =>{
@@ -84,7 +87,8 @@ export function AuthProvider({ children }) {
         currentUser,
         signUp,
         logIn,
-        loginWithGoogle
+        loginWithGoogle,
+        logout
     }
     return (
         <AuthContext.Provider value={value}>

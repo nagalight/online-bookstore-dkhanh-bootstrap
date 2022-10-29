@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import {  Button, Container, Form, Modal, Alert } from "react-bootstrap";
-import { logInWithEmailAndPassword, signInWithGoogle } from "../../firebase";
 import "./login.css"
 
 import { useAuth } from "../../contexts/authContext";

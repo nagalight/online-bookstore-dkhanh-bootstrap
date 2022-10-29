@@ -2,8 +2,6 @@ import React, {useEffect, useState} from "react";
 import { Button, Container, Form, Modal, Alert } from "react-bootstrap";
 import "./register.css";
 
-import { registerWithEmailAndPassword } from '../../firebase';
-
 import { useAuth } from "../../contexts/authContext";
 
 
@@ -34,7 +32,6 @@ export default function RegisterForm(props){
                 console.log(error)
                 setError("Failed to create an account")
             }
-            
         }
     };
     useEffect(() => {
@@ -46,7 +43,6 @@ export default function RegisterForm(props){
         }else{
             setShowError("none")
         }
-        
     }, [error])
     
     
