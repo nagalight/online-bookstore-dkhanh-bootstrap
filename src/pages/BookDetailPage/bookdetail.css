@@ -1,0 +1,60 @@
+.pageWrapper{
+    max-width: 90%;
+    min-height: 70vh;
+}
+.sellingWrapper{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+.imageWrapper{
+    width: 800px;
+}
+.imageContainer{
+    width: 300px;
+    margin-right: 3vh;
+    /* margin-left: 10vh; */
+}
+.bookImage{
+    width:inherit;
+}
+.modal-content{
+    width: fit-content;
+}
+.imageModalBody{
+    padding: 0px;
+    width: fit-content;
+}
+.imageZoomContainer{
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+}
+.imageZoom{
+    width: 80vh;
+    margin: 10px;
+}
+.bookTitle{
+    padding-left: 0%;
+    font-size: 34px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
+}
+.bookAuthor{
+    font-size: 15px;
+}
+.bookPrice{
+    margin-top: 3vh;
+    font-size: 30px;
+}
+.addCartBtn{
+    width: 170px;
+    height: 52px;
+    font-size: 15px;
+    font-family:sans-serif;
+    font-weight: 600;
+}
+.addCartIcon{
+    margin-right: 5px;
+}

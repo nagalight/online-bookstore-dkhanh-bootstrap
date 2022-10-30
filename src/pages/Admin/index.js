@@ -342,9 +342,6 @@ export default function AdminManagement() {
     }else if (!currentUser){
         return <Navigate to="/404"/>
     }
-
-    
-    
     
     function AddUserForm(props) {
         const [email, setEmail] = useState("");

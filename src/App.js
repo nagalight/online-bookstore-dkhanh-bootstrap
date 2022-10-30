@@ -35,8 +35,8 @@ function App() {
   return (
     !isLoading ? (
       <>
-      <NavigationBar />
       <BrowserRouter>
+        <NavigationBar />
         <Routes>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/home" element={<HomePage/>}/>
@@ -48,8 +48,8 @@ function App() {
           <Route exact path="/books/:id" element={<BookDetailPage/>}/>
           <Route exact path="/book" element={<BookDetailPage/>}/>
         </Routes>
+        <Footer/>
       </BrowserRouter>
-      <Footer/>
       </>
     ) : (
       <div id='spinner' className='loadingWrapper'>
