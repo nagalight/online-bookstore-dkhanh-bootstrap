@@ -49,7 +49,7 @@ export default function BookDetailPage() {
     }
     useEffect(() => {
         fetchBookDetail()
-    }, [])
+    }, [params.id])
 
     const [zoomImage, setZoomImage] = useState(false);
     
@@ -199,7 +199,9 @@ export default function BookDetailPage() {
                     recommendBookData?.map(({ id, data }) =>{
                         return(
                             <Card key={id}>
-                                <Card.Img variant='top' src={data.image.url} style={{ width: '190px' }}/>
+                                <Link to={`/books/${id}`}>
+                                    <Card.Img variant='top' src={data.image.url} style={{ width: '190px' }}/>
+                                </Link>
                                 <Card.Body>
                                     <Card.Title>{data.title}</Card.Title>
                                     <Card.Subtitle>{data.author}</Card.Subtitle>
