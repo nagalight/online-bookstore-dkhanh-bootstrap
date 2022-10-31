@@ -46,7 +46,6 @@ function App() {
           <Route path="/404" element={<NotFoundPage/>}/>
           <Route path="/inconstruction" element={<InconstructionPage/>}/>
           <Route exact path="/books/:id" element={<BookDetailPage/>}/>
-          <Route exact path="/book" element={<BookDetailPage/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

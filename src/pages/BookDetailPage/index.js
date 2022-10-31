@@ -11,11 +11,12 @@ import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 
 export default function BookDetailPage() {
     const params = useParams();
-    const [bookDetail, setBookDetail] = useState({});
+
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [genre, setGenre] = useState([]);
     const [publicDate, setPublicDate] = useState("");
+    const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [imageData, setImageData] = useState(
         {
@@ -37,6 +38,7 @@ export default function BookDetailPage() {
         setGenre(snapBookData.data().genre)
         setPublicDate(snapBookData.data().publicDate)
         setPrice(snapBookData.data().price)
+        setDescription(snapBookData.data().description)
         setImageData(snapBookData.data().image)
     }
     useEffect(() => {
@@ -67,21 +69,56 @@ export default function BookDetailPage() {
                         </Button>
                     </Container>
                     <Container className='detailWrapper'>
-                        <Container className='descriptionWrapper'></Container>
-                        <Container className='bookDetailWrapper'></Container>
-                        <Container className='bookGenreWrapper'></Container>
+                        <Container className='detailContener descriptionWrapper'>
+                            <Container className='detailTitle descriptionTitle'>Description</Container>
+                            <Container className='detailContent descriptionContent'>{description}</Container>
+                        </Container>
+                        <Container className='detailContener bookDetailWrapper'>
+                            <Container className='detailTitle'>Book Detail</Container>
+                            <Container className='detailContent bookInfromation'>
+                                <Container className='detailTextLeft'>
+                                    <Container>Price:</Container>
+                                    <Container>Publisher:</Container>
+                                    <Container >Publish&nbsp;Date:</Container>
+                                    <Container>Page:</Container>
+                                    <Container>Language:</Container>
+                                     
+                                </Container>
+                                <Container className='detailTextRight'>
+                                    <Container>{Number(price).toLocaleString("en-US",)} VND</Container>
+                                    <Container>No Data</Container>
+                                    <Container>{publicDate}</Container>
+                                    <Container>No Data</Container>
+                                    <Container>No Data</Container>
+                                </Container>
+                            </Container>
+                        </Container>
+                        <Container className='bookGenreWrapper'>
+                            <Container className='detailGenreTitile'>Book&nbsp;Gerne:</Container>
+                            <Container className='detailGenreTag'>
+                                {
+                                    genre.map(genreData=>{
+                                        return(
+                                            <Container className="detailTagContainer">{genreData}</Container>
+                                        )
+                                    })
+                                }
+                            </Container>
+                        </Container>
                     </Container>
                 </Container>
             </Container>
-        </Container>
-        <Container className='recommendBooksWrapper'>
-            <Container className='recommendTitleWrapper'>
-                <Container className='recommendTitle'>You might have interrested in:</Container>
-                <Container className='recommendPerson'>by ZA-BookStore</Container>
+
+            <Container className='recommendBooksWrapper'>
+                <Container className='recommendTitleWrapper'>
+                    <Container className='recommendTitle'>You might have interrested in:</Container>
+                    <Container className='recommendPerson'>by ZA-BookStore</Container>
+                </Container>
+                
+                Bookslider Running here
             </Container>
-            
-            Bookslider Running here
         </Container>
+        <Button onClick={()=>console.log(genre)}></Button>
         <ZoomBookCover show={zoomImage} onHide={()=>setZoomImage(false)}/>
         </>
     )
@@ -94,6 +131,7 @@ export default function BookDetailPage() {
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+                contentClassName='imageModal'
             >
                 <Modal.Body className='imageModalBody'>
                     <Container className='imageZoomContainer'>
