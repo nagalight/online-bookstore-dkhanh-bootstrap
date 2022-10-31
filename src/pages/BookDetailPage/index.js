@@ -1,13 +1,19 @@
 import React, {useState, useEffect} from 'react'
-import { Button, Container, Image, Modal } from 'react-bootstrap'
-import { useParams } from "react-router-dom"
+import { Button, Container, Image, Modal, Card } from 'react-bootstrap'
+import { Link, useParams } from "react-router-dom"
 import "./bookdetail.css"
 
 import { db } from '../../firebase';
-import { doc, getDoc} from "firebase/firestore";
+import { collection, onSnapshot, query, doc, getDoc } from "firebase/firestore";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import next from "../../assets/next.svg"
+import prev from "../../assets/prev.svg"
 
 export default function BookDetailPage() {
     const params = useParams();
@@ -114,11 +120,11 @@ export default function BookDetailPage() {
                     <Container className='recommendTitle'>You might have interrested in:</Container>
                     <Container className='recommendPerson'>by ZA-BookStore</Container>
                 </Container>
-                
-                Bookslider Running here
+                <Container className='recommendSlider'>
+                    <BookRecommendSlider/>
+                </Container>
             </Container>
         </Container>
-        <Button onClick={()=>console.log(genre)}></Button>
         <ZoomBookCover show={zoomImage} onHide={()=>setZoomImage(false)}/>
         </>
     )
@@ -140,6 +146,75 @@ export default function BookDetailPage() {
                     
                 </Modal.Body>
             </Modal>
+            </>
+        )
+    }
+
+    function BookRecommendSlider(){
+        const [recommendBookData, setRecommendBookData] = useState([]);
+        const fetchBookData = () =>{
+            const q = query(collection(db, "books"))
+            onSnapshot(q,(querySnapshot)=>{
+                setRecommendBookData(
+                    querySnapshot.docs.map((doc)=>({
+                        id: doc.id,
+                        data: doc.data(),
+                    }))
+                );
+            });
+        }
+        useEffect(() => {
+            fetchBookData()
+        }, [])
+        const settings={
+            dots: false,
+            swipe: false,
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            speed: 300,
+            lazyLoad: true,
+            adaptiveHeight:true,
+            variableHeight:false,
+            nextArrow: <NextArrow />,
+            prevArrow: <PrevArrow />,
+        }
+        function NextArrow(props) {
+            const { className, onClick } = props;
+            return (
+                <img src={next} className={className + " next-arrow"} onClick={onClick} />
+            );
+        }
+        function PrevArrow(props) {
+            const { className, onClick } = props;
+            return (
+                <img src={prev} className={className + " prev-arrow"} onClick={onClick} />
+            );
+        }
+        
+        return(
+            <>
+            <Slider {...settings}>
+                {
+                    recommendBookData?.map(({ id, data }) =>{
+                        return(
+                            <Card key={id}>
+                                <Card.Img variant='top' src={data.image.url} style={{ width: '190px' }}/>
+                                <Card.Body>
+                                    <Card.Title>{data.title}</Card.Title>
+                                    <Card.Subtitle>{data.author}</Card.Subtitle>
+                                    <Card.Text className='recommendBookPrice'>{Number(data.price).toLocaleString("en-US",)} VND</Card.Text>
+                                    <Card.Text style={{display:'flex'}}>
+                                        Genre:
+                                        <Container className="detailTagContainer">{data.genre[0]}</Container>
+                                        <Container className="detailTagContainer">...</Container>
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        )
+                    })
+                }
+            </Slider>
             </>
         )
     }
