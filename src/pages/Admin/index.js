@@ -21,7 +21,7 @@ import { ref, uploadBytes, getDownloadURL} from "firebase/storage";
 import { async } from "@firebase/util";
 
 import { useAuth } from "../../contexts/authContext"
-import { Navigate } from "react-router-dom"
+import { Navigate, Link } from "react-router-dom"
 
 export default function AdminManagement() {
     const { currentUser } = useAuth()
@@ -273,15 +273,18 @@ export default function AdminManagement() {
                                                             delay={{ show: 250, hide: 400 }}
                                                             overlay={<Tooltip id="button-tooltip-2">Go to this book product site</Tooltip>}
                                                         >
-                                                            <Button
-                                                                className="btnAction"
-                                                                variant="primary"
-                                                                onClick={() => {
-                                                                    console.log("This book have the id of: " + id);
-                                                                }}
-                                                            >
-                                                                <FontAwesomeIcon icon={faInfo}/>
-                                                            </Button>
+                                                            <Link to={`/books/${id}`}>
+                                                                <Button
+                                                                    className="btnAction"
+                                                                    variant="primary"
+                                                                    onClick={() => {
+                                                                        console.log("This book have the id of: " + id);
+                                                                    }}
+                                                                >
+                                                                    <FontAwesomeIcon icon={faInfo}/>
+                                                                </Button>
+                                                            </Link>
+                                                            
                                                         </OverlayTrigger>
         
                                                         <OverlayTrigger
@@ -339,9 +342,6 @@ export default function AdminManagement() {
     }else if (!currentUser){
         return <Navigate to="/404"/>
     }
-
-    
-    
     
     function AddUserForm(props) {
         const [email, setEmail] = useState("");
@@ -487,6 +487,7 @@ export default function AdminManagement() {
         const [genre, setGenre] = useState([]);
         const [publicDate, setPublicDate] = useState("");
         const [price, setPrice] = useState("");
+        const [description, setDescription] = useState("");
         const [image, setImage] = useState(null);
         const [imageData, setImageData] = useState(
             {
@@ -526,6 +527,7 @@ export default function AdminManagement() {
             publicDate,
             price,
             image: imageData,
+            description,
             addDateTime: serverTimestamp()
         }
 
@@ -543,6 +545,8 @@ export default function AdminManagement() {
             e.preventDefault();
             if (title === "" || author === "" || publicDate === "" || genre === [] || price ==="" || image == null){
                 return console.log("All field need to be fill !!!");
+            }else if (description == ""){
+                return setDescription("There are no description");
             }
             loopSummit()
         }
@@ -700,6 +704,18 @@ export default function AdminManagement() {
                                     onChange={handleImageChange}
                                 />
                             </Form.Group>
+                            
+                            <Form.Group className="mb-3" id="Description">
+                                <Form.Label>Description:</Form.Label>
+                                <Form.Control 
+                                    as="textarea"
+                                    rows={5}
+                                    size="lg"
+                                    value={description}
+                                    id="description"
+                                    onChange={(e)=>setDescription(e.target.value)}
+                                />
+                            </Form.Group>
 
                             <Button variant="primary" size="lg" type="Submit">Add Book</Button>
                             <Button variant="secondary" size="lg" onClick={testData}>Test Data</Button>
@@ -713,11 +729,13 @@ export default function AdminManagement() {
 
     function UpdateBookData(props){
         const [decoyData, setDecoyData] = useState("");
+
         const [title, setTitle] = useState("");
         const [author, setAuthor] = useState("");
         const [genre, setGenre] = useState([]);
         const [publicDate, setPublicDate] = useState("");
         const [price, setPrice] = useState("");
+        const [description, setDescription] = useState("");
         const [image, setImage] = useState(null);
         const [imageData, setImageData] = useState(
             {
@@ -765,6 +783,7 @@ export default function AdminManagement() {
                 setGenre(snapBookData.data().genre)
                 setPublicDate(snapBookData.data().publicDate)
                 setPrice(snapBookData.data().price)
+                setDescription(snapBookData.data().description)
                 setImageData(snapBookData.data().image)
 
                 setDecoyData(snapBookData.data().title)
@@ -788,6 +807,7 @@ export default function AdminManagement() {
             genre: genre,
             publicDate: publicDate,
             price: price,
+            description: description,
             image: imageData
         }
         const updateBookWithImageChange = {
@@ -796,6 +816,7 @@ export default function AdminManagement() {
             genre: genre,
             publicDate: publicDate,
             price: price,
+            description: description,
             image: imageUpdate
         }
 
@@ -854,7 +875,7 @@ export default function AdminManagement() {
 
         useEffect(() => {
             updateValidation()
-        }, [imageUpdate.url])
+        }, [imageUpdate])
 
         useEffect(() => {
           if (getBookId !== "" && getBookId !== undefined){
@@ -1028,6 +1049,18 @@ export default function AdminManagement() {
                                     onChange={handleImageChange}
                                 />
                                 <Container>(The curent image being save is: {imageData.name})</Container>
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" id="Description">
+                                <Form.Label>Description:</Form.Label>
+                                <Form.Control 
+                                    as="textarea"
+                                    rows={5}
+                                    size="lg"
+                                    value={description}
+                                    id="description"
+                                    onChange={(e)=>setDescription(e.target.value)}
+                                />
                             </Form.Group>
 
                             <Button variant="primary" size="lg" type="Submit">Update Book</Button>

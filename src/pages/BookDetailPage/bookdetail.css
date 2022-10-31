@@ -1,0 +1,135 @@
+.pageWrapper{
+    max-width: 60%;
+    min-height: 70vh;
+}
+.sellingWrapper{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+.imageWrapper{
+    width: 800px;
+}
+.imageContainer{
+    width: 300px;
+    margin-right: 3vh;
+    /* margin-left: 10vh; */
+}
+.bookImage{
+    width:inherit;
+}
+ .imageModal{
+    width: fit-content;
+}
+.imageModalBody{
+    padding: 0px;
+    width: fit-content;
+}
+.imageZoomContainer{
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+}
+.imageZoom{
+    width: 60vh;
+    margin: 5px;
+}
+.bookTitle{
+    padding-left: 0%;
+    font-size: 34px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
+}
+.bookAuthor{
+    font-size: 15px;
+}
+.bookPrice{
+    margin-top: 3vh;
+    font-size: 30px;
+}
+.addCartBtn{
+    width: 170px;
+    height: 52px;
+    font-size: 15px;
+    font-family:sans-serif;
+    font-weight: 600;
+}
+.addCartIcon{
+    margin-right: 5px;
+}
+.detailContener{
+    padding: 0;
+}
+.detailTitle{
+    padding: 0;
+    font-size: 28px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
+    margin-top: 1vh;
+}
+.detailContent{
+    padding: 0;
+    font-size: 16px;
+}
+.bookInfromation{
+    display: flex;
+    flex-direction: row;
+}
+.detailTextLeft{
+    text-align: end;
+    width: fit-content;
+    padding: 0;
+    margin: 0;
+    color: grey;
+}
+.detailTextRight{
+    padding: 0;
+}
+.bookGenreWrapper{
+    margin-top: 3vh;
+    display: flex;
+}
+.detailGenreTitile{
+    width: fit-content;
+    height: fit-content;
+    font-size: 16px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
+    padding: 0;
+}
+.detailGenreTag{
+    display: flex;
+    flex-direction: row;
+    height:max-content;
+}
+.detailTagContainer {
+    background-color: rgb(37, 36, 40);
+    color: white;
+    width: fit-content;
+    height: fit-content;
+    margin: 2px;
+    border-radius: 8%;
+}
+.recommendTitle{
+    padding: 0;
+    font-size: 28px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
+}
+.recommendPerson{
+    font-size: 15px;
+}
+.recommendSlider{
+    display: block;
+    height: auto;
+    margin-bottom: 5vh;
+}
+
+.recommendSliderItemWrapper{
+    display: flex;
+}
+.recommendBookPrice{
+    font-size: 16px;
+    font-weight: 600;
+}
