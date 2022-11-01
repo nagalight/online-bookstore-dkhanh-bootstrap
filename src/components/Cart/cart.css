@@ -1,0 +1,51 @@
+.cartBookWrapper{
+    max-height: 60vh;
+    min-height: 60vh;
+    overflow-y: scroll;
+    padding: 0;
+}
+.cartBookContainer{
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.cartBookImage{
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+}
+.cartBookName{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.cartBookNameTitle{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cartBookPrice {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: flex-end;
+    width: fit-content;
+    font-size: 23px;
+    font-weight: bold;
+}
+.cartBookDelete{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: inherit;
+    font-size: 30px;
+}
+.cartTotalPrice{
+    width: fit-content;
+    font-size: 20px;
+    font-weight: bold;
+}

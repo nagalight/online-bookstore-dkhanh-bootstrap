@@ -3,7 +3,7 @@ import {  Button, Container, Nav, Navbar, Form, Image, InputGroup } from "react-
 import "./navbar.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGlobe, faMagnifyingGlass, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faGlobe, faMagnifyingGlass, faArrowRightFromBracket, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
 import { auth, db } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -14,6 +14,7 @@ import { useAuth } from "../../contexts/authContext";
 
 import LoginForm from "../Login";
 import RegisterForm from "../Register";
+import CartModal from "../Cart";
 
 
 export default function NavigationBar(){
@@ -22,6 +23,9 @@ export default function NavigationBar(){
 
     const [showRegister, setShowRegister] = useState(false);
     const handleShowRegister = () => setShowRegister(true);
+
+    const [showCart, setShowCart] = useState(false);
+    const handleShowCart = () => setShowCart(true);
 
     const [user] = useAuthState(auth);
     const [username, setUsername] = useState("");
@@ -133,8 +137,11 @@ export default function NavigationBar(){
                                 <FontAwesomeIcon icon={faMagnifyingGlass} className="searchIcon"/>
                             </Button>
                         </InputGroup>
-                        
                     </Form>
+                    <Container style={{width:"fit-content", height:"fit-content", marginLeft:"10px"}} onClick={handleShowCart}>
+                        <FontAwesomeIcon icon={faCartShopping} style={{color:"white", fontSize:"20px"}}/>
+                    </Container>
+                    <CartModal show={showCart} onHide={()=>setShowCart(false)}/>
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text className="notLogin" style={{display:showNotLogedIn}}>
                             <a onClick={handleShowLogin}>Login</a>/<a onClick={handleShowRegister}>Register</a>

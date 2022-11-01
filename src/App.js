@@ -32,11 +32,13 @@ function App() {
     }
   }, [])
 
+  const [cartItems, setCartItems] = useState([]);
+
   return (
     !isLoading ? (
       <>
       <BrowserRouter>
-        <NavigationBar />
+        <NavigationBar cartItems={cartItems}/>
         <Routes>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/home" element={<HomePage/>}/>
