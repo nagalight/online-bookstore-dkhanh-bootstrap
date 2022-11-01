@@ -7,7 +7,7 @@ import { db } from '../../firebase';
 import { collection, onSnapshot, query, doc, getDoc } from "firebase/firestore";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
+import { faCartPlus, faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -21,9 +21,13 @@ export default function BookDetailPage() {
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [genre, setGenre] = useState([]);
+    const [publisher, setPublisher] = useState("");
     const [publicDate, setPublicDate] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
+    const [page, setPage] = useState("");
+    const [language, setLanguage] = useState("");
+    const [stock, setStock] = useState("");
     const [imageData, setImageData] = useState(
         {
             name: "",
@@ -42,8 +46,12 @@ export default function BookDetailPage() {
         setTitle(snapBookData.data().title)
         setAuthor(snapBookData.data().author)
         setGenre(snapBookData.data().genre)
+        setPublisher(snapBookData.data().publisher)
         setPublicDate(snapBookData.data().publicDate)
         setPrice(snapBookData.data().price)
+        setPage(snapBookData.data().page)
+        setLanguage(snapBookData.data().language)
+        setStock(snapBookData.data().stock)
         setDescription(snapBookData.data().description)
         setImageData(snapBookData.data().image)
     }
@@ -52,6 +60,26 @@ export default function BookDetailPage() {
     }, [params.id])
 
     const [zoomImage, setZoomImage] = useState(false);
+
+    const [avalible, setAvalible] = useState("none");
+    const [unavalible, setUnavalible] = useState("none");
+
+    const setAvaliblityText = () =>{
+        if (stock === "0"){
+            setAvalible("none")
+            setUnavalible("block")
+        }else if (stock !== "0" && stock > 0){
+            setAvalible("block")
+            setUnavalible("none")
+        }else{
+            setAvalible("none")
+            setUnavalible("none")
+        }
+    }
+
+    useEffect(() => {
+        setAvaliblityText()
+    }, [params.id, stock])
     
     return (
         <>
@@ -67,6 +95,8 @@ export default function BookDetailPage() {
                         <Container className='bookTitle'>{title}</Container>
                         <Container className='bookAuthor'>by {author}</Container>
                     </Container>
+                    <AvalibleStatusText/>
+                    <UnavalibleStatusText/>
                     <Container className='bookPrice'>{Number(price).toLocaleString("en-US",)} VND</Container>
                     <Container className='btnWrapper'>
                         <Button variant='primary' className='addCartBtn'>
@@ -92,10 +122,10 @@ export default function BookDetailPage() {
                                 </Container>
                                 <Container className='detailTextRight'>
                                     <Container>{Number(price).toLocaleString("en-US",)} VND</Container>
-                                    <Container>No Data</Container>
+                                    <Container>{publisher}</Container>
                                     <Container>{publicDate}</Container>
-                                    <Container>No Data</Container>
-                                    <Container>No Data</Container>
+                                    <Container>{page}</Container>
+                                    <Container>{language}</Container>
                                 </Container>
                             </Container>
                         </Container>
@@ -217,6 +247,27 @@ export default function BookDetailPage() {
                     })
                 }
             </Slider>
+            </>
+        )
+    }
+
+    function AvalibleStatusText(){
+        return(
+            <>
+                <Container className='avalibleText' style={{display:avalible}}>
+                    <FontAwesomeIcon icon={faCircleCheck} style={{marginRight:'5px'}}/>
+                    Avalible
+                </Container>
+            </>
+        )
+    }
+    function UnavalibleStatusText(){
+        return(
+            <>
+                <Container className='unavalibleText' style={{display:unavalible}}>
+                    <FontAwesomeIcon icon={faCircleXmark} style={{marginRight:'5px'}}/>
+                    Not Avalible
+                </Container>
             </>
         )
     }

@@ -17,8 +17,12 @@ export default function HomePage(){
                 <h3>Work in progress</h3>
             </Container>
         </Container>
-        <LoginForm/>
-        <RegisterForm/>
         </>
     )
+    function HomeSliderLatest(){
+        return(
+            <>
+            </>
+        )
+    }
 }

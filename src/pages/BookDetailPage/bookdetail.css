@@ -45,7 +45,6 @@
     font-size: 15px;
 }
 .bookPrice{
-    margin-top: 3vh;
     font-size: 30px;
 }
 .addCartBtn{
@@ -132,4 +131,14 @@
 .recommendBookPrice{
     font-size: 16px;
     font-weight: 600;
+}
+.avalibleText{
+    margin-top: 3vh;
+    color:rgb(23, 194, 37);
+    font-size: 20px;
+}
+.unavalibleText{
+    margin-top: 3vh;
+    color:rgb(235, 45, 45);
+    font-size: 20px;
 }
