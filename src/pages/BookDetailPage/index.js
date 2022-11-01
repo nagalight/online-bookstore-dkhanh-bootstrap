@@ -212,13 +212,13 @@ export default function BookDetailPage() {
         function NextArrow(props) {
             const { className, onClick } = props;
             return (
-                <img src={next} className={className + " next-arrow"} onClick={onClick} />
+                <img src={next} className={className + " next-arrow"} onClick={onClick} alt={"nextArrow"} />
             );
         }
         function PrevArrow(props) {
             const { className, onClick } = props;
             return (
-                <img src={prev} className={className + " prev-arrow"} onClick={onClick} />
+                <img src={prev} className={className + " prev-arrow"} onClick={onClick} alt={"prevArrow"}/>
             );
         }
         

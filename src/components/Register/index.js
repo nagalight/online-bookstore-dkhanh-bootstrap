@@ -6,6 +6,8 @@ import { useAuth } from "../../contexts/authContext";
 
 
 export default function RegisterForm(props){
+    const{ onHide } = props;
+
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -28,6 +30,10 @@ export default function RegisterForm(props){
             try{
                 await signUp(username, email, password);
                 alert("Account has been create successfully")
+                setEmail("")
+                setUsername("")
+                setPassword("")
+                onHide();
             }catch(error){
                 console.log(error)
                 setError("Failed to create an account")

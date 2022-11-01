@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, Suspense, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NavigationBar from './components/NavigationBar';

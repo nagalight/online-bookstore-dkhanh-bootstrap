@@ -7,13 +7,10 @@ import {
 } from "firebase/auth";
 import {
   getFirestore,
-  query,
   getDoc,
   getDocs,
   collection,
-  where,
   addDoc,
-  setDoc,
   updateDoc,
   deleteDoc,
   doc,

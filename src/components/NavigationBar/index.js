@@ -15,6 +15,7 @@ import { useAuth } from "../../contexts/authContext";
 import LoginForm from "../Login";
 import RegisterForm from "../Register";
 import CartModal from "../Cart";
+import { Link } from "react-router-dom";
 
 
 export default function NavigationBar(){
@@ -111,7 +112,9 @@ export default function NavigationBar(){
                             <Nav.Link>Q&a</Nav.Link>
                         </Nav.Item>
                         <Nav.Item className="Nav-FirstlineItems">
-                            <Nav.Link href="/admin" style={{display:showManage}}>Manage</Nav.Link>
+                            <Link to={"/admin"} style={{textDecoration:"none"}}>
+                                <Nav.Link href="/admin" style={{display:showManage}}>Manage</Nav.Link>
+                            </Link>
                         </Nav.Item>
                         <Nav.Item className="Nav-FirstlineItems">
                             <Nav.Link onClick={test}>Test Function</Nav.Link>
@@ -125,10 +128,10 @@ export default function NavigationBar(){
                 </Container>
 
                 <Container className="Navhead">
-                    <a href="/" className="siteName">
+                    <Link to={"/"} className="siteName">
                         <Image className="siteName_image" src="images\Navbar\ZAicon192.png"/>
                         <Navbar.Brand style={{ fontSize:'27px' }}>Bookstore</Navbar.Brand>
-                    </a>
+                    </Link>
                     
                     <Form className="Navbar-Search">
                         <InputGroup>
@@ -160,30 +163,47 @@ export default function NavigationBar(){
                 <Container>
                     <Nav bg="dark" variant="dark" className="justify-content-start Category-wrapper">
                         <Nav.Item className="categoryItems">
-                            <Nav.Link href="/inconstruction">Book</Nav.Link>
+                            <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
+                                <Nav.Link href="/inconstruction">Book</Nav.Link>
+                            </Link>
+                            
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Nav.Link href="/inconstruction">Fiction</Nav.Link>
+                            <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
+                                <Nav.Link href="/inconstruction">Fiction</Nav.Link>
+                            </Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Nav.Link href="/inconstruction">Nonfiction</Nav.Link>
+                            <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
+                                <Nav.Link href="/inconstruction">Nonfiction</Nav.Link>
+                            </Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Nav.Link href="/inconstruction">Teen</Nav.Link>
+                            <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
+                                <Nav.Link href="/inconstruction">Teen</Nav.Link>
+                            </Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Nav.Link href="/inconstruction">Kids</Nav.Link>
+                            <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
+                                <Nav.Link href="/inconstruction">Kids</Nav.Link>
+                            </Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Nav.Link href="/inconstruction">Education</Nav.Link>
+                            <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
+                                <Nav.Link href="/inconstruction">Education</Nav.Link>
+                            </Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
+                        <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
                             <Nav.Link href="/inconstruction">Magazine</Nav.Link>
+                        </Link>
                         </Nav.Item>
                     </Nav>
                     <Nav className="justify-content-start Category-wrapper">
                         <Nav.Item >
-                            <Nav.Link href="/inconstruction">Your Library</Nav.Link>
+                            <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
+                                <Nav.Link href="/inconstruction">Your Library</Nav.Link>
+                            </Link>
                         </Nav.Item>
                     </Nav>
                 </Container>

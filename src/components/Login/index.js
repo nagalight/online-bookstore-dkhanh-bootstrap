@@ -5,6 +5,8 @@ import "./login.css"
 import { useAuth } from "../../contexts/authContext";
 
 export default function LoginForm(props){
+    const{ onHide } = props;
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -16,9 +18,12 @@ export default function LoginForm(props){
             setError("Please enter all field to login")
         }else{
             try {
-                logIn(email, password)
+                logIn(email, password);
+                setEmail("");
+                setPassword("");
+                onHide();
             } catch (error) {
-                setError("Failed to login")
+                setError("Failed to login");
             }
         }
     }
@@ -49,9 +54,9 @@ export default function LoginForm(props){
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-            <Alert variant={'danger'} style={{display:showError}}>{error}</Alert>
+                <Alert variant={'danger'} style={{display:showError}}>{error}</Alert>
                 <Container className="loginWrapper">
-                    <Form className="loginForm">
+                    <Form className="loginForm" onSubmit={loggingIn}>
                         <Form.Group className="mb-3" controlId="formLoginEmail">
                             <Form.Label>Email:</Form.Label>
                             <Form.Control 
@@ -70,21 +75,11 @@ export default function LoginForm(props){
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="checkboxLoginKeeplogin">
-                            <Form.Check 
-                                type="checkbox" 
-                                size="lg" 
-                                label="Keep login"
-                                onChange={(event) =>{
-                                    const value = event.target.checked;
-                                }}
-                            />
-                        </Form.Group>
+
                         <Button 
                             variant="primary" 
                             size="lg" 
-                            // type="summit"
-                            onClick={loggingIn}
+                            type="summit"
                         >Login</Button>
                         <Button
                             variant="primary"
