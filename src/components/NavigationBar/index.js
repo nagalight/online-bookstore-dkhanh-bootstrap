@@ -163,8 +163,8 @@ export default function NavigationBar(){
                 <Container>
                     <Nav bg="dark" variant="dark" className="justify-content-start Category-wrapper">
                         <Nav.Item className="categoryItems">
-                            <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
-                                <Nav.Link href="/inconstruction">Book</Nav.Link>
+                            <Link to={"/books"} style={{textDecoration:"none"}}>
+                                <Nav.Link href="/books">Book</Nav.Link>
                             </Link>
                             
                         </Nav.Item>

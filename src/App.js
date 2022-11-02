@@ -12,6 +12,7 @@ import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import InconstructionPage from './pages/InconstructionPage';
 import BookDetailPage from './pages/BookDetailPage';
+import AllBook from './pages/AllBook';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -47,6 +48,7 @@ function App() {
           <Route path="/*" element={<NotFoundPage/>}/>
           <Route path="/404" element={<NotFoundPage/>}/>
           <Route path="/inconstruction" element={<InconstructionPage/>}/>
+          <Route exact path="/books" element={<AllBook/>}/>
           <Route exact path="/books/:id" element={<BookDetailPage/>}/>
         </Routes>
         <Footer/>

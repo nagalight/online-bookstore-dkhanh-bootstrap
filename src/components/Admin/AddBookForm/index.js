@@ -63,12 +63,25 @@ export default function AddBookForm(props){
         description,
         addDateTime: serverTimestamp()
     }
+    const handleHide=()=>{
+        setTitle("")
+        setAuthor("")
+        setGenre([])
+        setPublisher("")
+        setPublicDate("")
+        setPrice("")
+        setPage("")
+        setLanguage("")
+        setStock("")
+        setDescription("")
+        onHide();
+    }
 
     const handleBookSummit = async () => {
             try{
                 await addBookToDatabase(addingBook);
                 console.log("New book has been add successfully");
-                onHide();
+                handleHide()
             }catch(error){
                 console.log(error);
             }
