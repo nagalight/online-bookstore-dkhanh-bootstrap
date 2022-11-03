@@ -135,7 +135,7 @@ export default function BookDetailPage() {
                                 {
                                     genre.map(genreData=>{
                                         return(
-                                            <Link to={`/genres/${genreData}`}>
+                                            <Link to={`/genres/${genreData}`} style={{textDecoration:"none"}}>
                                                 <Container className="detailTagContainer">{genreData}</Container>
                                             </Link>
                                             

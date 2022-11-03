@@ -177,40 +177,40 @@ export default function NavigationBar(props){
                             
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
-                                <Nav.Link href="/inconstruction">Fiction</Nav.Link>
+                            <Link to={"/genres/Fiction"} style={{textDecoration:"none"}}>
+                                <Nav.Link href="/genres/Fiction">Fiction</Nav.Link>
                             </Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
-                                <Nav.Link href="/inconstruction">Nonfiction</Nav.Link>
+                            <Link to={"/genres/Non-Fiction"} style={{textDecoration:"none"}}>
+                                <Nav.Link href="/genres/Non-Fiction">Non-fiction</Nav.Link>
                             </Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
-                                <Nav.Link href="/inconstruction">Teen</Nav.Link>
+                            <Link to={"/genres/Teen"} style={{textDecoration:"none"}}>
+                                <Nav.Link href="/genres/Teen">Teen</Nav.Link>
                             </Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
-                                <Nav.Link href="/inconstruction">Kids</Nav.Link>
+                            <Link to={"/genres/Kid"} style={{textDecoration:"none"}}>
+                                <Nav.Link href="/genres/Kid">Kids</Nav.Link>
                             </Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                            <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
-                                <Nav.Link href="/inconstruction">Education</Nav.Link>
+                            <Link to={"/genres/Education"} style={{textDecoration:"none"}}>
+                                <Nav.Link href="/genres/Education">Education</Nav.Link>
                             </Link>
                         </Nav.Item>
                         <Nav.Item className="categoryItems">
-                        <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
-                            <Nav.Link href="/inconstruction">Magazine</Nav.Link>
+                        <Link to={"/genres/Magazine"} style={{textDecoration:"none"}}>
+                            <Nav.Link href="/genres/Magazine">Magazine</Nav.Link>
                         </Link>
                         </Nav.Item>
                     </Nav>
                     <Nav className="justify-content-start Category-wrapper">
                         <Nav.Item >
                             <Link to={"/inconstruction"} style={{textDecoration:"none"}}>
-                                <Nav.Link href="/inconstruction">Your Library</Nav.Link>
+                                <Nav.Link href="/inconstruction">Your Book</Nav.Link>
                             </Link>
                         </Nav.Item>
                     </Nav>

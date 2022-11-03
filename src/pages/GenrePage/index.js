@@ -29,8 +29,7 @@ function GenrePage(props) {
         if(collection){
             fetchBookDataFromGenre();
         }
-
-    }, [])
+    }, [params.genre])
     
     return (
         <>
