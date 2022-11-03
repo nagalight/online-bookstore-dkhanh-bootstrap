@@ -13,6 +13,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import InconstructionPage from './pages/InconstructionPage';
 import BookDetailPage from './pages/BookDetailPage';
 import AllBook from './pages/AllBook';
+import GenrePage from './pages/GenrePage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -89,6 +90,7 @@ function App() {
           <Route path="/*" element={<NotFoundPage/>}/>
           <Route path="/404" element={<NotFoundPage/>}/>
           <Route path="/inconstruction" element={<InconstructionPage/>}/>
+          <Route path="/genres/:genre" element={<GenrePage handleAddToCart={handleAddToCart}/>}/>
           <Route exact path="/books" element={<AllBook handleAddToCart={handleAddToCart}/>} />
           <Route exact path="/books/:id" element={<BookDetailPage/>} handleAddToCart={handleAddToCart}/>
         </Routes>

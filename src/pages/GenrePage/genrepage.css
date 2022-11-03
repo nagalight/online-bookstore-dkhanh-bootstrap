@@ -1,22 +1,26 @@
-.allBookWrapper{
+.genrePageWrapper{
     width: fit-content;
     height: fit-content;
 }
-.allBookTitile{
+
+.genrePageTitleTextContainer{
     padding: 0;
     font-size: 40px;
     font-weight: bold;
 }
-.allBookContainer{
+
+.genrePageBookContainer{
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(5, 1fr);
 }
-.allBookPrice{
+
+.genrePageBookPrice{
     font-size: 16px;
     font-weight: 600;
 }
-.allBookTagContainer{
+
+.genrePageTagContainer{
     background-color: rgb(37, 36, 40);
     color: white;
     width: fit-content;
@@ -25,7 +29,8 @@
     border-radius: 8%;
     padding: 1px 9px;
 }
-.addCardBtn{
+.genrePageAddCartBtn{
+    /* height: fit-content; */
     justify-content: center;
     width: 100%;
 }
