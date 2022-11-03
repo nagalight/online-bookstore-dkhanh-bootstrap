@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { Container, Image, Modal, Button } from 'react-bootstrap'
 import './cart.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 export default function CartModal(props) {
   const {cartItems, handleAddToCart, handleRemoveFromCart, clearCart} = props;
