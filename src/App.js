@@ -33,13 +33,54 @@ function App() {
     }
   }, [])
 
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(
+    !window.sessionStorage.getItem('ZA_LIBRARY_CART_ITEM') ? 
+      [] : JSON.parse(window.sessionStorage.getItem('ZA_LIBRARY_CART_ITEM'))
+  );
+
+  const handleAddToCart = ({id, data}) =>{
+    const bookExist = cartItems.find((item) => item.id === id);
+    if (bookExist){
+      setCartItems(cartItems.map((item)=> item.id === id ? {...bookExist, quantity:bookExist.quantity + 1} : item));
+    }else{
+      setCartItems([...cartItems,{...{id, data}, quantity: 1}])
+    }
+  }
+  const handleRemoveFromCart = (id) =>{
+    const bookExist = cartItems.find((item) => item.id === id);
+    if (bookExist.quantity === 1){
+      setCartItems(cartItems.filter((item) => item.id !== id));
+    }else{
+      setCartItems(cartItems.map((item)=> item.id === id ? {...bookExist, quantity:bookExist.quantity - 1} : item))
+    }
+  }
+  const clearCart = () =>{
+    setCartItems([])
+  }
+
+  useEffect(() => {
+    window.sessionStorage.setItem('ZA_LIBRARY_CART_ITEM', JSON.stringify(cartItems))
+  }, [cartItems])
+
+  useEffect(() => {
+    const cartData = window.sessionStorage.getItem('ZA_LIBRARY_CART_ITEM');
+    if (cartData !== null){
+      setCartItems(JSON.parse(cartData))
+    }
+  }, [])
+  
+  
 
   return (
     !isLoading ? (
       <>
       <BrowserRouter>
-        <NavigationBar cartItems={cartItems}/>
+        <NavigationBar 
+          cartItems={cartItems} 
+          handleAddToCart={handleAddToCart} 
+          handleRemoveFromCart={handleRemoveFromCart}
+          clearCart={clearCart}
+        />
         <Routes>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/home" element={<HomePage/>}/>
@@ -48,8 +89,8 @@ function App() {
           <Route path="/*" element={<NotFoundPage/>}/>
           <Route path="/404" element={<NotFoundPage/>}/>
           <Route path="/inconstruction" element={<InconstructionPage/>}/>
-          <Route exact path="/books" element={<AllBook/>}/>
-          <Route exact path="/books/:id" element={<BookDetailPage/>}/>
+          <Route exact path="/books" element={<AllBook handleAddToCart={handleAddToCart}/>} />
+          <Route exact path="/books/:id" element={<BookDetailPage/>} handleAddToCart={handleAddToCart}/>
         </Routes>
         <Footer/>
       </BrowserRouter>
