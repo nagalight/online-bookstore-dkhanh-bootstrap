@@ -18,7 +18,8 @@ import CartModal from "../Cart";
 import { Link } from "react-router-dom";
 
 
-export default function NavigationBar(){
+export default function NavigationBar(props){
+    const {cartItems, handleAddToCart, handleRemoveFromCart, clearCart} = props;
     const [showLogin, setShowLogin] = useState(false);
     const handleShowLogin = () => setShowLogin(true);
 
@@ -90,7 +91,7 @@ export default function NavigationBar(){
     }
 
     const test = () => {
-        console.log(user.email)
+        console.log(cartItems)
     }
 
     return(
@@ -144,7 +145,14 @@ export default function NavigationBar(){
                     <Container style={{width:"fit-content", height:"fit-content", marginLeft:"10px"}} onClick={handleShowCart}>
                         <FontAwesomeIcon icon={faCartShopping} style={{color:"white", fontSize:"20px"}}/>
                     </Container>
-                    <CartModal show={showCart} onHide={()=>setShowCart(false)}/>
+                    <CartModal 
+                        show={showCart} 
+                        onHide={()=>setShowCart(false)} 
+                        cartItems={cartItems} 
+                        handleAddToCart={handleAddToCart} 
+                        handleRemoveFromCart={handleRemoveFromCart}
+                        clearCart={clearCart}
+                    />
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text className="notLogin" style={{display:showNotLogedIn}}>
                             <a onClick={handleShowLogin}>Login</a>/<a onClick={handleShowRegister}>Register</a>

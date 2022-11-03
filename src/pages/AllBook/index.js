@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap'
+import { Button, Card, Container} from 'react-bootstrap'
 import './allbook.css'
 
 import { db } from "../../firebase";
@@ -9,7 +9,8 @@ import { collection, onSnapshot, query } from "firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 
-export default function AllBook() {
+export default function AllBook(props) {
+    const { handleAddToCart } = props;
     const [bookData, setBookData] = useState([]);
     const fetchBookData = () =>{
         const q = query(collection(db, "books"))
@@ -47,7 +48,10 @@ export default function AllBook() {
                                     <Container className="allBookTagContainer">{data.genre[0]}</Container>
                                     <Container className="allBookTagContainer">...</Container>
                                 </Card.Text>
-                                <Button className='addCardBtn'><FontAwesomeIcon icon={faCartPlus}/>&nbsp;Add to Cart</Button>
+                                <Button className='addCardBtn' onClick={()=>handleAddToCart({id, data})}>
+                                    <FontAwesomeIcon icon={faCartPlus}/>
+                                    &nbsp;Add to Cart
+                                </Button>
                             </Card.Body>
                         </Card>
                     )

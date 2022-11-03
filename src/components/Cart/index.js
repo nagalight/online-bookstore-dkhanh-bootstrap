@@ -1,48 +1,65 @@
 import React from 'react'
-import { Container, Image, Modal } from 'react-bootstrap'
+import { Container, Image, Modal, Button } from 'react-bootstrap'
 import './cart.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 export default function CartModal(props) {
-  const {cartItems} = props;
+  const {cartItems, handleAddToCart, handleRemoveFromCart, clearCart} = props;
+  const totalPrice = cartItems.reduce((price, item) =>price + item.quantity * item.data.price, 0)
+  
   return (
     <>
-    {/* {cartItems.length === 0 && <Container>Cart is empty</Container>} */}
     <Modal
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
       backdrop="static">
-        <Modal.Header closeButton></Modal.Header>
+        <Modal.Header closeButton>
+          <Container className='cartBookHeadTitle'>SHOPPING CART</Container>
+        </Modal.Header>
         <Modal.Body>
-          <Container className='cartBookWrapper'>
-            <Container className='cartBookContainer'>
-              <Container className='cartBookImage'>
-                <Image 
-                  src='https://firebasestorage.googleapis.com/v0/b/za-library-account.appspot.com/o/BookCover%2FSampleCover.png?alt=media&token=929287b3-dd90-4764-b2f9-a1663ead0f5a'
-                  style={{
-                    width:"50px"
-                  }}
-                />
-              </Container>
-              <Container className='cartBookName'>
-                <Container className='cartBookNameTitle'>Title</Container>
-                <Container className='cartBookNameSubtitle'>By Author</Container>
-              </Container>
-              <Container className='cartBookPrice'>{Number(100000).toLocaleString("en-US",)}&nbsp;VND</Container>
-              <Container className='cartBookDelete'>
-                <FontAwesomeIcon icon={faXmark}/>
-              </Container>
-            </Container>
+          <Container className='cartClearContainer'>
+            <a className='cartClearAll' onClick={clearCart}>Remove all book from cart({cartItems.length})</a>
           </Container>
-          
+          <Container className='cartBookWrapper'>
+            {cartItems.map(({id, data, quantity})=>{
+              if(!id || !data){
+                return <Button onClick={()=>console.log({id, data})}>Data</Button>
+              }
+              return(
+                <Container className='cartBookContainer' key={id}>
+                  <Container className='cartBookImage'>
+                    <Image 
+                      src={data.image.url}
+                      style={{
+                        width:"50px"
+                      }}
+                    />
+                  </Container>
+                  <Container className='cartBookName'>
+                    <Container className='cartBookNameTitle'>{data.title}</Container>
+                    <Container className='cartBookNameSubtitle'>By {data.author}</Container>
+                  </Container>
+                  <Container className='cartQuantityChange'>
+                    <Button variant='white' className='cartQuantityAdd' onClick={()=>handleAddToCart({id, data})}>
+                      <FontAwesomeIcon icon={faPlus}/>
+                    </Button>
+                    <Button variant='white' className='cartQuantityRemove' onClick={()=>handleRemoveFromCart(id)}>
+                      <FontAwesomeIcon icon={faMinus}/>
+                    </Button>
+                  </Container>
+                  <Container className='cartBookPrice'>{quantity}&nbsp;x&nbsp;{Number(data.price).toLocaleString("en-US",)}&nbsp;VND</Container>
+                </Container>
+              )
+            })}
+          </Container>
         </Modal.Body>
         <Modal.Footer>
           <Container className='cartTotalPrice'>
-            Total Price: {Number(100000000).toLocaleString("en-US",)}&nbsp;VND
+            Total Price: {Number(totalPrice).toLocaleString("en-US",)}&nbsp;VND
           </Container>
         </Modal.Footer>
     </Modal>
