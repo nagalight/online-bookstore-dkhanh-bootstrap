@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faTrash, faInfo, faUserSlash } from '@fortawesome/free-solid-svg-icons'
 
 import { db, deleteBookOnDatabase } from "../../firebase";
-import { collection, onSnapshot, where, query, doc, deleteDoc, getDocs} from "firebase/firestore";
+import { collection, onSnapshot, where, query, doc, deleteDoc, getDocs } from "firebase/firestore";
 
 import { useAuth } from "../../contexts/authContext"
 import { Navigate, Link } from "react-router-dom"
@@ -268,7 +268,6 @@ export default function AdminManagement() {
                                                                     <FontAwesomeIcon icon={faInfo}/>
                                                                 </Button>
                                                             </Link>
-                                                            
                                                         </OverlayTrigger>
         
                                                         <OverlayTrigger
