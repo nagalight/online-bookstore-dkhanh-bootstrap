@@ -39,21 +39,20 @@ export default function BookDetailPage() {
         const bookDoc = doc(db,"books", params.id)
         const snapBookData = await getDoc(bookDoc)
         if (snapBookData.exists()) {
-            console.log("Document data:", snapBookData.data());
-        } else {
-            console.log("No such document!");
+            // console.log("Document data:", snapBookData.data());
+            setTitle(snapBookData.data().title)
+            setAuthor(snapBookData.data().author)
+            setGenre(snapBookData.data().genre)
+            setPublisher(snapBookData.data().publisher)
+            setPublicDate(snapBookData.data().publicDate)
+            setPrice(snapBookData.data().price)
+            setPage(snapBookData.data().page)
+            setLanguage(snapBookData.data().language)
+            setStock(snapBookData.data().stock)
+            setDescription(snapBookData.data().description)
+            setImageData(snapBookData.data().image)
         }
-        setTitle(snapBookData.data().title)
-        setAuthor(snapBookData.data().author)
-        setGenre(snapBookData.data().genre)
-        setPublisher(snapBookData.data().publisher)
-        setPublicDate(snapBookData.data().publicDate)
-        setPrice(snapBookData.data().price)
-        setPage(snapBookData.data().page)
-        setLanguage(snapBookData.data().language)
-        setStock(snapBookData.data().stock)
-        setDescription(snapBookData.data().description)
-        setImageData(snapBookData.data().image)
+        
     }
     useEffect(() => {
         fetchBookDetail()

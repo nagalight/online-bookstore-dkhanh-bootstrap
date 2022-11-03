@@ -47,9 +47,7 @@ export default function NavigationBar(props){
         const q = query(collection(db, "users"), where("uid", "==", user?.uid));
         const doc = await getDocs(q);
         const data = doc.docs[0].data();
-        // console.log(data.isAdmin)
         setRole(data.isAdmin);
-        // console.log(role); 
     }
     const logedInDisplay=()=>{
         onAuthStateChanged(auth, (users) => {
@@ -57,20 +55,16 @@ export default function NavigationBar(props){
                 setShowLogedIn("block");
                 setShowNotLogedIn("none");
                 setShowLogin(false) && setShowRegister(false);
-                console.log("Loged In");
                 setShowManage("none");
                 if (role === true){
-                    console.log("This is an Admin account");
                     setShowManage("block");
                 }else{
-                    console.log("This is an User account");
                     setShowManage("none");
                 }
             } else if(!users) {
                 setShowLogedIn("none");
                 setShowNotLogedIn("block");
                 setShowManage("none");
-                console.log("Not Loged In") 
             }
         })
     }
@@ -88,10 +82,6 @@ export default function NavigationBar(props){
         }catch(e){
             console.log(e)
         }
-    }
-
-    const test = () => {
-        console.log(cartItems)
     }
 
     return(
@@ -116,9 +106,6 @@ export default function NavigationBar(props){
                             <Link to={"/admin"} style={{textDecoration:"none"}}>
                                 <Nav.Link href="/admin" style={{display:showManage}}>Manage</Nav.Link>
                             </Link>
-                        </Nav.Item>
-                        <Nav.Item className="Nav-FirstlineItems">
-                            <Nav.Link onClick={test}>Test Function</Nav.Link>
                         </Nav.Item>
                     </Nav>
                     <Nav className="justify-content-end Nav-Firstline">
@@ -161,7 +148,7 @@ export default function NavigationBar(props){
                             <RegisterForm show={showRegister} onHide={() => setShowRegister(false)}/>
                         </Navbar.Text>
                         <Navbar.Text className="wellcomeUser" style={{display:showLogedIn}}>
-                            Wellcome, <Nav.Link style={{padding:'0', display:'unset'}}>{username}</Nav.Link>
+                            Welcome, <Nav.Link style={{padding:'0', display:'unset'}}>{username}</Nav.Link>
                             <Button variant="danger" size="sm" className="logOutButton" onClick={loggingOut}>
                                 <FontAwesomeIcon icon={faArrowRightFromBracket} className="logOutIcon"/>
                             </Button>

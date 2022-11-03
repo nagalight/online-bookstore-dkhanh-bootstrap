@@ -52,7 +52,7 @@ function GenrePage(props) {
                                 <Card.Text className='genrePageBookPrice'>{Number(data.price).toLocaleString("en-US",)} VND</Card.Text>
                                 <Card.Text style={{display:'flex'}}>
                                     Genre:
-                                    <Container className="genrePageTagContainer">{data.genre[0]}</Container>
+                                    <Container className="genrePageTagContainer">{params.genre}</Container>
                                     <Container className="genrePageTagContainer">...</Container>
                                 </Card.Text>
                                 <Button className='genrePageAddCartBtn' onClick={()=>handleAddToCart({id, data})}>

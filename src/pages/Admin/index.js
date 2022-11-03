@@ -23,7 +23,6 @@ export default function AdminManagement() {
         const q = query(collection(db, "users"), where("uid", "==", currentUser?.uid));
         const doc = await getDocs(q);
         const data = doc.docs[0].data();
-        console.log(data.isAdmin)
         setRole(data.isAdmin);
     }
     useEffect(() => {
@@ -261,9 +260,9 @@ export default function AdminManagement() {
                                                                 <Button
                                                                     className="btnAction"
                                                                     variant="primary"
-                                                                    onClick={() => {
-                                                                        console.log("This book have the id of: " + id);
-                                                                    }}
+                                                                    // onClick={() => {
+                                                                    //     console.log("This book have the id of: " + id);
+                                                                    // }}
                                                                 >
                                                                     <FontAwesomeIcon icon={faInfo}/>
                                                                 </Button>
