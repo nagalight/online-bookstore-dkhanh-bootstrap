@@ -15,7 +15,7 @@ import { useAuth } from "../../contexts/authContext";
 import LoginForm from "../Login";
 import RegisterForm from "../Register";
 import CartModal from "../Cart";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 
 export default function NavigationBar(props){
@@ -84,6 +84,8 @@ export default function NavigationBar(props){
         }
     }
 
+    const [searchKeyword, setSearchKeyword] = useState("")
+
     return(
         <>
         <Container className="Navbar-wrapper" fixed="top">
@@ -123,10 +125,18 @@ export default function NavigationBar(props){
                     
                     <Form className="Navbar-Search">
                         <InputGroup>
-                            <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
-                            <Button variant="outline-light" className="searchButton">
-                                <FontAwesomeIcon icon={faMagnifyingGlass} className="searchIcon"/>
-                            </Button>
+                            <Form.Control type="text" placeholder="Search" className="mr-sm-2" onChange={(e)=>{setSearchKeyword(e.target.value)}}/>
+                            {!searchKeyword ? 
+                                <Button variant="outline-light" className="searchButton">
+                                    <FontAwesomeIcon icon={faMagnifyingGlass} className="searchIcon"/>
+                                </Button>
+                                :
+                                <Link to={`/searchResult/${searchKeyword}`}>
+                                    <Button variant="outline-light" className="searchButton">
+                                        <FontAwesomeIcon icon={faMagnifyingGlass} className="searchIcon"/>
+                                    </Button>
+                                </Link>
+                            }
                         </InputGroup>
                     </Form>
                     <Container style={{width:"fit-content", height:"fit-content", marginLeft:"10px"}} onClick={handleShowCart}>
