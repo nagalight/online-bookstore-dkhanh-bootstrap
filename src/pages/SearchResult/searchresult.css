@@ -5,8 +5,9 @@
 
 .searchResultTitleTextContainer{
     padding: 0;
-    font-size: 40px;
+    font-size: 60px;
     font-weight: bold;
+    text-align: center;
 }
 
 .searchResultBookContainer{
@@ -32,4 +33,16 @@
 .searchResultAddCartBtn{
     justify-content: center;
     width: 100%;
+}
+.noResultContainer{
+    min-height: 70vh;
+    color: rgba(66, 66, 66, 0.63);
+    text-align: center;
+}
+.noResultIcon{
+    font-size: 200px;
+    /* margin-top: 60px; */
+}
+.noResultText{
+    font-size: 50px;
 }

@@ -136,8 +136,6 @@ export default function NavigationBar(props){
                                         <FontAwesomeIcon icon={faMagnifyingGlass} className="searchIcon"/>
                                     </Button>
                                 </Link>
-
-                                
                             }
                         </InputGroup>
                     </Form>
