@@ -1,0 +1,37 @@
+.homeBookSliderWrapper{
+    margin-top: 15px;
+}
+.homeBookSliderTitleWrapper{
+    display: flex;
+}
+.homeBookSliderTitleContainer{
+    padding: 0;
+    font-size: 28px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
+}
+.homeBookSliderViewAllContainer{
+    font-size: 15px;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.homeBookSliderContainer{
+    display: block;
+    height: auto;
+    margin-bottom: 5vh;
+    /* margin-top: 5px; */
+}
+.homeBookPrice{
+    font-size: 16px;
+    font-weight: 600;
+}
+.homeTagContainer {
+    background-color: rgb(37, 36, 40);
+    color: white;
+    width: fit-content;
+    height: fit-content;
+    margin: 2px;
+    border-radius: 8%;
+}

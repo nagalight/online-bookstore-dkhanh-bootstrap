@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import "./homepage.css";
 import AdSlider from "../../components/AdSlider";
+import LatestUpdateSlider from "../../components/HomePage/LatestUpdate";
 
 export default function HomePage(){
     return(
@@ -9,19 +10,12 @@ export default function HomePage(){
         <AdSlider/>
         <Container>
             <Container>
-                <h1>This is Home page</h1>
+                <LatestUpdateSlider/>
             </Container>
             <Container>
                 <h3>Work in progress</h3>
-                <HomeSliderLatest/>
             </Container>
         </Container>
         </>
     )
-    function HomeSliderLatest(){
-        return(
-            <>
-            </>
-        )
-    }
 }

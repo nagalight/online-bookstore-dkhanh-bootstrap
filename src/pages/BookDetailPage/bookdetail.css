@@ -124,10 +124,6 @@
     height: auto;
     margin-bottom: 5vh;
 }
-
-.recommendSliderItemWrapper{
-    display: flex;
-}
 .recommendBookPrice{
     font-size: 16px;
     font-weight: 600;
