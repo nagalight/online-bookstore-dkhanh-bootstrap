@@ -47,8 +47,7 @@ function SearchResult(props) {
                     <Button onClick={()=>console.log(bookData)}/>
                 </Container>
             </Container>
-            {!noData &&
-                <Container className="searchResultBookContainer">
+            {!noData &&<Container className="searchResultBookContainer">
                     {bookData?.map(({ id, data })=>{
                         return(
                             <Card key={id} style={{marginTop:"1vh"}}>
@@ -72,16 +71,17 @@ function SearchResult(props) {
                             </Card>
                         )
                     })}
-                </Container>}
-                {noData&&<Container className="noResultContainer">
-                    <Container className='noResultIcon'>
-                        <FontAwesomeIcon icon={faInbox}/>
-                    </Container>
-                    <Container className='noResultText'>NO RESULT FOUND</Container>
-                    <Container>
-                        <Button onClick={()=>console.log(bookData)}/>
-                    </Container>
                 </Container>
+                }
+                {noData&&<Container className="noResultContainer">
+                        <Container className='noResultIcon'>
+                            <FontAwesomeIcon icon={faInbox}/>
+                        </Container>
+                        <Container className='noResultText'>NO RESULT FOUND</Container>
+                        <Container>
+                            <Button onClick={()=>console.log(bookData)}/>
+                        </Container>
+                    </Container>
                 }
             
             
