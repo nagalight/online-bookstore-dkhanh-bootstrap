@@ -15,7 +15,7 @@ import prev from "../../../assets/prev.svg"
 function GenreSlider1() {
     const [genreBookData, setGenreBookData] = useState([]);
     const fetchBookData = () =>{
-        const q = query(collection(db, "books"), where("genre","array-contains","Fiction"), orderBy("addDateTime", "desc"), limit(7))
+        const q = query(collection(db, "books"), where("genre","array-contains","Fiction"), limit(7))
         onSnapshot(q,(querySnapshot)=>{
             setGenreBookData(
                 querySnapshot.docs.map((doc)=>({
