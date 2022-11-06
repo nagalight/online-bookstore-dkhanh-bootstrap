@@ -15,7 +15,7 @@ import prev from "../../../assets/prev.svg"
 function LatestUpdateSlider() {
     const [latestBookData, setLatestBookData] = useState([]);
     const fetchBookData = () =>{
-        const q = query(collection(db, "books"), limit(7))
+        const q = query(collection(db, "books"), orderBy("addDateTime", "desc"), limit(7))
         onSnapshot(q,(querySnapshot)=>{
             setLatestBookData(
                 querySnapshot.docs.map((doc)=>({

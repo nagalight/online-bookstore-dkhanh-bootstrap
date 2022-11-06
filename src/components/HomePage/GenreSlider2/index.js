@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import '../homebookslider.css'
 
 import { db } from '../../../firebase';
-import { limit, orderBy, collection, onSnapshot, query, where } from 'firebase/firestore';
+import { limit, collection, onSnapshot, query, where } from 'firebase/firestore';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
