@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import '../homebookslider.css'
 
 import { db } from '../../../firebase';
-import { limit, orderBy, collection, onSnapshot, query } from 'firebase/firestore';
+import { limit, orderBy, collection, onSnapshot, query, where } from 'firebase/firestore';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -12,12 +12,12 @@ import "slick-carousel/slick/slick-theme.css";
 import next from "../../../assets/next.svg"
 import prev from "../../../assets/prev.svg"
 
-function LatestUpdateSlider() {
-    const [latestBookData, setLatestBookData] = useState([]);
+function GenreSlider3() {
+    const [genreBookData, setGenreBookData] = useState([]);
     const fetchBookData = () =>{
-        const q = query(collection(db, "books"), orderBy("addDateTime", "desc"), limit(7))
+        const q = query(collection(db, "books"), where("genre","array-contains","Magazine"), orderBy("addDateTime", "desc"), limit(7))
         onSnapshot(q,(querySnapshot)=>{
-            setLatestBookData(
+            setGenreBookData(
                 querySnapshot.docs.map((doc)=>({
                     id: doc.id,
                     data: doc.data(),
@@ -61,7 +61,7 @@ function LatestUpdateSlider() {
     return (
         <Container className='homeBookSliderWrapper'>
             <Container className='homeBookSliderTitleWrapper'>
-                <Container className='homeBookSliderTitleContainer'>Latest Update:</Container>
+                <Container className='homeBookSliderTitleContainer'>Get Up-to-date with Magazine:</Container>
                 <Container className='homeBookSliderViewAllContainer'>
                     <Container 
                         style={{
@@ -70,7 +70,7 @@ function LatestUpdateSlider() {
                             padding:0,
                         }}
                     />
-                    <Link to={'/books'}>
+                    <Link to={'/genres/Magazine'}>
                         <Container 
                             style={{
                                 width:'fit-content',
@@ -88,7 +88,7 @@ function LatestUpdateSlider() {
             <Container className='homeBookSliderContainer'>
                 <Slider {...settings}>
                     {
-                        latestBookData?.map(({ id, data }) =>{
+                        genreBookData?.map(({ id, data }) =>{
                             return(
                                 <Card key={id} >
                                     <Link to={`/books/${id}`}>
@@ -115,4 +115,4 @@ function LatestUpdateSlider() {
     )
 }
 
-export default LatestUpdateSlider
+export default GenreSlider3
