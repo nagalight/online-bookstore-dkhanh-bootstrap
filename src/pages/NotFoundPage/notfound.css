@@ -1,5 +1,4 @@
 .textNotFoundWrapper {
-    /* background: gray; */
     background-size: cover;
     height: auto;
     width: 100%;
@@ -7,7 +6,6 @@
     padding: 0;
     max-width: 100%;
     text-align: center;
-    /* color: white; */
     font-weight: 700;
 }
 .bigText {

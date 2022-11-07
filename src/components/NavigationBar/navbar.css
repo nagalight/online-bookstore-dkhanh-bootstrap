@@ -6,9 +6,7 @@
     font-size: 17px;
     padding: 0;
 }
-.Nav-FirstLine{
-    /* font-size: 12px; */
-}
+
 .Nav-FirstlineItems{
     font-size: 12px;
 }
@@ -52,8 +50,6 @@
     padding-right: 5%;
 }
 
-/* .notLogin{
-} */
 .wellcomeUser {
     font-size: 17px;
 }

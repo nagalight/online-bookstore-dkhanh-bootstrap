@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom"
 import "./bookdetail.css"
 
 import { db } from '../../firebase';
-import { collection, onSnapshot, query, doc, getDoc } from "firebase/firestore";
+import { collection, onSnapshot, query, doc, getDoc, where } from "firebase/firestore";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus, faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
@@ -15,9 +15,11 @@ import "slick-carousel/slick/slick-theme.css";
 import next from "../../assets/next.svg"
 import prev from "../../assets/prev.svg"
 
-export default function BookDetailPage() {
+export default function BookDetailPage(props) {
     const params = useParams();
-
+    const { handleAddToCart } = props;
+    const [bookId, setBookId]= useState("");
+    const [bookData, setBookData]= useState();
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [genre, setGenre] = useState([]);
@@ -39,7 +41,6 @@ export default function BookDetailPage() {
         const bookDoc = doc(db,"books", params.id)
         const snapBookData = await getDoc(bookDoc)
         if (snapBookData.exists()) {
-            // console.log("Document data:", snapBookData.data());
             setTitle(snapBookData.data().title)
             setAuthor(snapBookData.data().author)
             setGenre(snapBookData.data().genre)
@@ -51,8 +52,9 @@ export default function BookDetailPage() {
             setStock(snapBookData.data().stock)
             setDescription(snapBookData.data().description)
             setImageData(snapBookData.data().image)
+            setBookId(params.id)
+            setBookData(snapBookData.data())
         }
-        
     }
     useEffect(() => {
         fetchBookDetail()
@@ -98,7 +100,7 @@ export default function BookDetailPage() {
                     <UnavalibleStatusText/>
                     <Container className='bookPrice'>{Number(price).toLocaleString("en-US",)} VND</Container>
                     <Container className='btnWrapper'>
-                        <Button variant='primary' className='addCartBtn'>
+                        <Button variant='primary' className='addCartBtn' onClick={()=>handleAddToCart(bookId, bookData)}>
                             <FontAwesomeIcon icon={faCartPlus} className='addCartIcon'/>
                             ADD TO CART
                         </Button>
@@ -155,6 +157,9 @@ export default function BookDetailPage() {
                 <Container className='recommendSlider'>
                     <BookRecommendSlider/>
                 </Container>
+            </Container>
+            <Container>
+                <Button onClick={()=>console.log(bookData)}/>
             </Container>
         </Container>
         <ZoomBookCover show={zoomImage} onHide={()=>setZoomImage(false)}/>

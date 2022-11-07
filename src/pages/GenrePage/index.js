@@ -57,7 +57,7 @@ function GenrePage(props) {
                                     <Container className="genrePageTagContainer">{params.genre}</Container>
                                     <Container className="genrePageTagContainer">...</Container>
                                 </Card.Text>
-                                <Button className='genrePageAddCartBtn' onClick={()=>handleAddToCart({id, data})}>
+                                <Button className='genrePageAddCartBtn' onClick={()=>handleAddToCart(id, data)}>
                                     <FontAwesomeIcon icon={faCartPlus}/>
                                     &nbsp;Add to Cart
                                 </Button>

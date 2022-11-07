@@ -260,9 +260,6 @@ export default function AdminManagement() {
                                                                 <Button
                                                                     className="btnAction"
                                                                     variant="primary"
-                                                                    // onClick={() => {
-                                                                    //     console.log("This book have the id of: " + id);
-                                                                    // }}
                                                                 >
                                                                     <FontAwesomeIcon icon={faInfo}/>
                                                                 </Button>

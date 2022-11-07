@@ -22,11 +22,11 @@ export default function CartModal(props) {
         </Modal.Header>
         <Modal.Body>
           <Container className='cartClearContainer'>
-            <a className='cartClearAll' onClick={clearCart}>Remove all book from cart({cartItems.length})</a>
+            <a className='cartClearAll' onClick={()=>clearCart()}>Remove all book from cart({cartItems.length})</a>
           </Container>
           <Container className='cartBookWrapper'>
             {cartItems.map(({id, data, quantity})=>{
-              if(!id || !data){
+              if(cartItems.length === 0){
                 return <Button onClick={()=>console.log({id, data})}>Data</Button>
               }
               return(
@@ -44,7 +44,7 @@ export default function CartModal(props) {
                     <Container className='cartBookNameSubtitle'>By {data.author}</Container>
                   </Container>
                   <Container className='cartQuantityChange'>
-                    <Button variant='white' className='cartQuantityAdd' onClick={()=>handleAddToCart({id, data})}>
+                    <Button variant='white' className='cartQuantityAdd' onClick={()=>handleAddToCart(id, data)}>
                       <FontAwesomeIcon icon={faPlus}/>
                     </Button>
                     <Button variant='white' className='cartQuantityRemove' onClick={()=>handleRemoveFromCart(id)}>

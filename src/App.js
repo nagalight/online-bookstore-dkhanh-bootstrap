@@ -40,7 +40,7 @@ function App() {
       [] : JSON.parse(window.sessionStorage.getItem('ZA_LIBRARY_CART_ITEM'))
   );
 
-  const handleAddToCart = ({id, data}) =>{
+  const handleAddToCart = (id, data) =>{
     const bookExist = cartItems.find((item) => item.id === id);
     if (bookExist){
       setCartItems(cartItems.map((item)=> item.id === id ? {...bookExist, quantity:bookExist.quantity + 1} : item));
@@ -93,7 +93,7 @@ function App() {
           <Route path="/inconstruction" element={<InconstructionPage/>}/>
           <Route path="/genres/:genre" element={<GenrePage handleAddToCart={handleAddToCart}/>}/>
           <Route exact path="/books" element={<AllBook handleAddToCart={handleAddToCart}/>} />
-          <Route exact path="/books/:id" element={<BookDetailPage/>} handleAddToCart={handleAddToCart}/>
+          <Route exact path="/books/:id" element={<BookDetailPage handleAddToCart={handleAddToCart}/>}/>
           <Route path="/searchResult/:keyword" element={<SearchResult handleAddToCart={handleAddToCart}/>}/>
         </Routes>
         <Footer/>

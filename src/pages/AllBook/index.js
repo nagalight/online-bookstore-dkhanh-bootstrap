@@ -50,7 +50,7 @@ export default function AllBook(props) {
                                     <Container className="allBookTagContainer">{data.genre[0]}</Container>
                                     <Container className="allBookTagContainer">...</Container>
                                 </Card.Text>
-                                <Button className='addCardBtn' onClick={()=>handleAddToCart({id, data})}>
+                                <Button className='addCardBtn' onClick={()=>handleAddToCart(id, data)}>
                                     <FontAwesomeIcon icon={faCartPlus}/>
                                     &nbsp;Add to Cart
                                 </Button>
