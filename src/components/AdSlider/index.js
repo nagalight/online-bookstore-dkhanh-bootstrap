@@ -10,19 +10,19 @@ export default function AdSlider(){
                 <Carousel.Item>
                     <Image
                         className="d-block w-100 sliderImage"
-                        src="images\Navbar\fgolb.jpg"
+                        src="https://firebasestorage.googleapis.com/v0/b/za-library-account.appspot.com/o/HomePage%2Fbookstoreslider1.png?alt=media&token=ca614da8-bbab-48b9-b33f-4906d20907be"
                     />
                 </Carousel.Item>
                 <Carousel.Item>
                     <Image
                         className="d-block w-100 sliderImage"
-                        src="images\Navbar\bookstoreslider1.png"
+                        src="https://firebasestorage.googleapis.com/v0/b/za-library-account.appspot.com/o/HomePage%2Fbookstoreslider1.png?alt=media&token=ca614da8-bbab-48b9-b33f-4906d20907be"
                     />
                 </Carousel.Item>
                 <Carousel.Item>
                     <Image
                         className="d-block w-100 sliderImage"
-                        src="images\Navbar\bookstoreslider1.png"
+                        src="https://firebasestorage.googleapis.com/v0/b/za-library-account.appspot.com/o/HomePage%2Fbookstoreslider1.png?alt=media&token=ca614da8-bbab-48b9-b33f-4906d20907be"
                     />
                 </Carousel.Item>
                 

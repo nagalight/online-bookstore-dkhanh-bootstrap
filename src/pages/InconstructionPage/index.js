@@ -7,9 +7,12 @@ export default function InconstructionPage(){
     return(
         <>
         <Container className="textWrapper">
-            <Image src="images\InconstructionPage\construction.png" className="constructionIcon"/>
+            <Image 
+                src="https://firebasestorage.googleapis.com/v0/b/za-library-account.appspot.com/o/Main%2Fconstruction.jpg?alt=media&token=0e5f39e1-c090-4ce9-a9a4-fd2e73b63220" 
+                className="constructionIcon"
+            />
             <Container className="title_bigText">
-                Page in Construction
+                Page is under Construction
             </Container>
             <Container className="title_smallText">
                 We apology for this inconvinion

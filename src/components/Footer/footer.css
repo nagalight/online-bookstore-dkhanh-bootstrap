@@ -1,5 +1,4 @@
 .footerWrapper{
-    /* background-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity))!important; */
     background-size: cover;
     min-height: 250px;
     width: 100%;
@@ -7,6 +6,9 @@
     margin:0;
     padding:0;
     color:white;
+}
+.grid_wrapper{
+    margin-bottom: 15px;
 }
 .column_item_title{
     font-size: 20px;
@@ -24,7 +26,7 @@
     margin-top: 5px;
 }
 .site_footer_image{
-    width: 60px;
+    width: 100px;
     height: auto;
 }
 .footer_Credit{

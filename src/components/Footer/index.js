@@ -9,7 +9,7 @@ export default function Footer(){
             <Container className="grid_wrapper">
                 <Row>
                     <Col>
-                        <Image className="site_footer_image" src="images\Navbar\ZAicon192.png"/>
+                        <Image className="site_footer_image" src="https://firebasestorage.googleapis.com/v0/b/za-library-account.appspot.com/o/Main%2Flogo192.png?alt=media&token=bd2a065f-ee30-48a7-a8aa-f49bd4cb694a"/>
                         <Container className="grid_column"></Container>
                     </Col>
                     <Col>
