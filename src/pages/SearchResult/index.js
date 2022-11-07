@@ -44,7 +44,6 @@ function SearchResult(props) {
             <Container className="searchResultContainer">
                 <Container className="searchResultTitleContainer">
                     <Container className="searchResultTitleTextContainer">Search Result of: {params.keyword}</Container>
-                    <Button onClick={()=>console.log(bookData)}/>
                 </Container>
             </Container>
             {!noData &&<Container className="searchResultBookContainer">

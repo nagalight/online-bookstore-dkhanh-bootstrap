@@ -26,9 +26,6 @@ export default function CartModal(props) {
           </Container>
           <Container className='cartBookWrapper'>
             {cartItems.map(({id, data, quantity})=>{
-              if(cartItems.length === 0){
-                return <Button onClick={()=>console.log({id, data})}>Data</Button>
-              }
               return(
                 <Container className='cartBookContainer' key={id}>
                   <Container className='cartBookImage'>
