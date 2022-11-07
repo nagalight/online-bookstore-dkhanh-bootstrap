@@ -152,7 +152,7 @@ export default function NavigationBar(props){
                     />
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text className="notLogin" style={{display:showNotLogedIn}}>
-                            <a onClick={handleShowLogin}>Login</a>/<a onClick={handleShowRegister}>Register</a>
+                            <a onClick={handleShowLogin}>Login</a> / <a onClick={handleShowRegister}>Register</a>
 
                             <LoginForm show={showLogin} onHide={() => setShowLogin(false)}/>
                             <RegisterForm show={showRegister} onHide={() => setShowRegister(false)}/>

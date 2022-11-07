@@ -44,7 +44,9 @@ function GenrePage(props) {
                     return(
                         <Card key={id} style={{marginTop:"1vh"}}>
                             <Link to={`/books/${id}`}>
-                                <Card.Img variant='top' src={data.image.url} style={{ width: '190px' }}/>
+                                <Container className='allBookImageContainer'>
+                                    <Card.Img variant='top' src={data.image.url} style={{ width: '190px' }}/>
+                                </Container>
                             </Link>
                             <Card.Body>
                                 <Card.Title>{data.title}</Card.Title>

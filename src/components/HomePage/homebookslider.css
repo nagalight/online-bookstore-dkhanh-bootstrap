@@ -22,6 +22,11 @@
     height: auto;
     margin-bottom: 5vh;
 }
+.homeBookImageContainer{
+    min-height: 306.55px;
+    padding: 0;
+    display: flex;
+}
 .homeBookPrice{
     font-size: 16px;
     font-weight: 600;

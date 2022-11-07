@@ -92,7 +92,9 @@ function GenreSlider2() {
                             return(
                                 <Card key={id} >
                                     <Link to={`/books/${id}`}>
-                                        <Card.Img variant='top' src={data.image.url} style={{ width: '205px' }}/>
+                                        <Container className='homeBookImageContainer'>
+                                            <Card.Img variant='top' src={data.image.url} style={{ width: '205px' }}/>
+                                        </Container>
                                     </Link>
                                     <Card.Body>
                                         <Card.Title>{data.title}</Card.Title>

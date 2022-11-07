@@ -232,7 +232,9 @@ export default function BookDetailPage() {
                         return(
                             <Card key={id}>
                                 <Link to={`/books/${id}`}>
-                                    <Card.Img variant='top' src={data.image.url} style={{ width: '190px' }}/>
+                                    <Container className='recommendImageContainer'>
+                                        <Card.Img variant='top' src={data.image.url} style={{ width: '190px' }}/>
+                                    </Container>
                                 </Link>
                                 <Card.Body>
                                     <Card.Title>{data.title}</Card.Title>
