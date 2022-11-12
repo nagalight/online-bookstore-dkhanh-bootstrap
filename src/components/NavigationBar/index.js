@@ -101,18 +101,13 @@ export default function NavigationBar(props){
                         <Nav.Item className="Nav-FirstlineItems">
                             <Nav.Link>Language: English</Nav.Link>
                         </Nav.Item>
-                        <Nav.Item className="Nav-FirstlineItems">
-                            <Nav.Link>Q&a</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item className="Nav-FirstlineItems">
+                        
+                    </Nav>
+                    <Nav className="justify-content-end Nav-Firstline">
+                        <Nav.Item className="Nav-FirstlineItems justify-content-end">
                             <Link to={"/admin"} style={{textDecoration:"none"}}>
                                 <Nav.Link href="/admin" style={{display:showManage}}>Manage</Nav.Link>
                             </Link>
-                        </Nav.Item>
-                    </Nav>
-                    <Nav className="justify-content-end Nav-Firstline">
-                        <Nav.Item className="Nav-FirstlineItems">
-                            <Nav.Link>Darkmode</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Container>
