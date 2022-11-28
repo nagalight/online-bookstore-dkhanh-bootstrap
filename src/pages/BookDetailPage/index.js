@@ -158,9 +158,6 @@ export default function BookDetailPage(props) {
                     <BookRecommendSlider/>
                 </Container>
             </Container>
-            <Container>
-                <Button onClick={()=>console.log(bookData)}/>
-            </Container>
         </Container>
         <ZoomBookCover show={zoomImage} onHide={()=>setZoomImage(false)}/>
         </>
@@ -238,7 +235,7 @@ export default function BookDetailPage(props) {
                             <Card key={id}>
                                 <Link to={`/books/${id}`}>
                                     <Container className='recommendImageContainer'>
-                                        <Card.Img variant='top' src={data.image.url} style={{ width: '190px' }}/>
+                                        <Card.Img variant='top' src={data.image.url} style={{ width: 'inherit' }}/>
                                     </Container>
                                 </Link>
                                 <Card.Body>

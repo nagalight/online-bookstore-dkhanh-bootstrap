@@ -77,9 +77,6 @@ function SearchResult(props) {
                             <FontAwesomeIcon icon={faInbox}/>
                         </Container>
                         <Container className='noResultText'>NO RESULT FOUND</Container>
-                        <Container>
-                            <Button onClick={()=>console.log(bookData)}/>
-                        </Container>
                     </Container>
                 }
             

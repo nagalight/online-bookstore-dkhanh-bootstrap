@@ -1,6 +1,7 @@
 .searchResultWrapper{
     width: fit-content;
     height: fit-content;
+    min-height: 70vh;
 }
 
 .searchResultTitleTextContainer{
