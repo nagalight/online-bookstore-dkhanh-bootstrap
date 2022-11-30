@@ -17,7 +17,7 @@ import GenrePage from './pages/GenrePage';
 import SearchResult from './pages/SearchResult';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleLoading = () =>{
     setTimeout(() => {
@@ -34,6 +34,7 @@ function App() {
       setIsLoading(false)
     }
   }, [])
+  
 
   const [cartItems, setCartItems] = useState(
     !window.sessionStorage.getItem('ZA_LIBRARY_CART_ITEM') ? 
@@ -101,7 +102,7 @@ function App() {
       </>
     ) : (
       <div id='spinner' className='loadingWrapper'>
-        <img className='loadingImage' src="images/Navbar/ZA_icon.png" />
+        <img className='loadingImage' src="https://firebasestorage.googleapis.com/v0/b/za-library-account.appspot.com/o/Main%2FZA_icon.png?alt=media&token=d281410f-e149-46b4-bf1a-b3e9375f62fd" />
         <div className='loading'></div>
       </div>
     )
