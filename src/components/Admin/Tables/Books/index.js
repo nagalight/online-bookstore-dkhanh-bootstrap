@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Container, Table, Button, Image, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Container, Table, Button, Image, OverlayTrigger, Tooltip, Pagination } from "react-bootstrap";
 
 import { db, deleteBookOnDatabase } from "../../../../firebase";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
@@ -10,6 +10,7 @@ import { faPenToSquare, faTrash, faInfo } from '@fortawesome/free-solid-svg-icon
 import { Link } from "react-router-dom"
 
 import UpdateBookData from "../../Form/UpdateBookData";
+import ConfirmRemoveBookWindow from "../../Confirmation/Book";
 
 export default function BookTable(props){
     const [bookData, setBookData] = useState([]);
@@ -34,6 +35,13 @@ export default function BookTable(props){
     const handleShowUpdateBookForm = () => setShowUpdateBookForm(true);
     const handleHideUpdateBookForm = () => {
         setShowUpdateBookForm(false);
+        setGetBookId("");
+    }
+
+    const [showConfirmDeleteBook, setShowConfirmDeleteBook] = useState(false);
+    const handleShowConfirmDeleteBook = () => setShowConfirmDeleteBook(true);
+    const handleHideConfirmDeleteBook = () => {
+        setShowConfirmDeleteBook(false);
         setGetBookId("");
     }
     
@@ -103,13 +111,12 @@ export default function BookTable(props){
                                             className="btnAction"
                                             variant="secondary"
                                             onClick={(e) => {
-                                                setGetBookId(id)
+                                                setGetBookId(id);
                                                 handleShowUpdateBookForm();
                                             }}
                                         >
                                             <FontAwesomeIcon icon={faPenToSquare}/>
                                         </Button>
-                                        
                                     </OverlayTrigger>
                                     
                                     <OverlayTrigger
@@ -121,7 +128,8 @@ export default function BookTable(props){
                                             className="btnAction"
                                             variant="danger"
                                             onClick={() => {
-                                                deleteBookOnDatabase(id);
+                                                setGetBookId(id);
+                                                handleShowConfirmDeleteBook();
                                             }}
                                         >
                                             <FontAwesomeIcon icon={faTrash}/>
@@ -134,6 +142,7 @@ export default function BookTable(props){
                 }
             </tbody>
         </Table>
+        <ConfirmRemoveBookWindow show={showConfirmDeleteBook} onHide={handleHideConfirmDeleteBook} showConfirmDeleteBook={showConfirmDeleteBook} getBookId={getBookId} setGetBookId={setGetBookId} handleHideConfirmDeleteBook={handleHideConfirmDeleteBook}/>
         <UpdateBookData show={showUpdateBookForm} onHide={handleHideUpdateBookForm} getBookId={getBookId} setGetBookId={setGetBookId}/>
         </>
     )
