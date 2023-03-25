@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import { Container, Modal, Form, Button, Row, Col, InputGroup, } from 'react-bootstrap';
+import { Container, Modal, Form, Button, Row, Col, InputGroup } from 'react-bootstrap';
 
 import { 
     db, 
     updateBookOnDatabase, 
     bookStorage
-} from "../../../firebase";
+} from "../../../../firebase";
 import { doc, getDoc} from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL} from "firebase/storage";
 

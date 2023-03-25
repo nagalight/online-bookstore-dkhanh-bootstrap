@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Container, Modal, Form, Button } from 'react-bootstrap';
-import { adminAddUser } from "../../../firebase";
+import { adminAddUser } from "../../../../firebase";
 
 export default function AddUserForm(props) {
     const {onHide} = props;
