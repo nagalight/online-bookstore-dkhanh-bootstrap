@@ -2,10 +2,11 @@ import React, {useEffect, useState} from "react";
 import {Table, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 import { db } from "../../../../firebase";
-import { collection, onSnapshot, where, query, doc, deleteDoc } from "firebase/firestore";
+import { collection, onSnapshot, where, query } from "firebase/firestore";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserSlash } from '@fortawesome/free-solid-svg-icons'
+import ConfirmRemoveAccountWindow from "../../Confirmation/Account";
 
 export default function UserTable(props){
     const [userData, setUserData] = useState([]);
@@ -25,12 +26,19 @@ export default function UserTable(props){
             fetchUserData();
         }
     }, [])
-    const deleteAccountData = (id) =>{
-        deleteDoc(doc(db, "users", id ))
+
+    const [showConfirmRemoveAccount, setShowConfirmRemoveAccount] = useState(false);
+    const handleShowConfirmRemoveAccount = () => setShowConfirmRemoveAccount(true);
+    const handleHideConfirmRemoveAccount = () => {
+        setShowConfirmRemoveAccount(false);
+        setGetAccountId("");
     }
+
+    const [getAccountId, setGetAccountId] = useState("");
+
     return(
         <>
-        <Table  striped bordered hover>
+        <Table striped bordered hover>
             <thead>
                 <tr>
                     <th>Username</th>
@@ -57,7 +65,8 @@ export default function UserTable(props){
                                             className="btnAction"
                                             variant="danger"
                                             onClick={() => {
-                                                deleteAccountData(id);
+                                                setGetAccountId(id);
+                                                handleShowConfirmRemoveAccount();
                                             }}
                                         >
                                             <FontAwesomeIcon icon={faUserSlash}/>
@@ -70,6 +79,7 @@ export default function UserTable(props){
                     })
                 }
             </tbody>
+            <ConfirmRemoveAccountWindow show={showConfirmRemoveAccount} onHide={handleHideConfirmRemoveAccount} getAccountId={getAccountId} setGetAccountId={setGetAccountId} showConfirmRemoveAccount={showConfirmRemoveAccount} handleHideConfirmRemoveAccount={handleHideConfirmRemoveAccount}/>
         </Table>
         </>
     )

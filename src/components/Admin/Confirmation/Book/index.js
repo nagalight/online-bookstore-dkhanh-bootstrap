@@ -30,15 +30,10 @@ export default function ConfirmRemoveBookWindow(props) {
         setGetBookId("");
         setTitle("");
     }
-    const testId = () =>{
-        console.log(title)
-        console.log (getBookId)
-    }
 
     useEffect(() => {
         if(showConfirmDeleteBook){
             handleGetBookTitle()
-            testId()
         }
     }, [getBookId])
     
