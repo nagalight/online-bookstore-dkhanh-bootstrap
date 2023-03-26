@@ -1,12 +1,13 @@
 import React from 'react'
 import { Container, Image, Modal, Button } from 'react-bootstrap'
 import './cart.css'
+import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faMinus, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 export default function CartModal(props) {
-  const {cartItems, handleAddToCart, handleRemoveFromCart, clearCart} = props;
+  const {cartItems, handleAddToCart, handleRemoveFromCart, clearCart, setShowCart} = props;
   const totalPrice = cartItems.reduce((price, item) =>price + item.quantity * item.data.price, 0)
   
   return (
@@ -54,10 +55,20 @@ export default function CartModal(props) {
             })}
           </Container>
         </Modal.Body>
-        <Modal.Footer>
-          <Container className='cartTotalPrice'>
+        <Modal.Footer className='cartTotalPrice'>
+          <Container className='cartTotalPriceContainer'>
             Total Price: {Number(totalPrice).toLocaleString("en-US",)}&nbsp;VND
           </Container>
+          <Container className='checkOutButton'>
+            <Link to={'/checkOut'}>
+              <Button
+                onClick={(e)=>{
+                  setShowCart(false);
+                }}
+              >Process&nbsp;to&nbsp;Checkout</Button>
+            </Link>
+          </Container>
+        
         </Modal.Footer>
     </Modal>
     </>

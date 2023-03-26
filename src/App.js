@@ -15,6 +15,7 @@ import BookDetailPage from './pages/BookDetailPage';
 import AllBook from './pages/AllBook';
 import GenrePage from './pages/GenrePage';
 import SearchResult from './pages/SearchResult';
+import CheckOutPage from './pages/CheckOutPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -96,6 +97,7 @@ function App() {
           <Route exact path="/books" element={<AllBook handleAddToCart={handleAddToCart}/>} />
           <Route exact path="/books/:id" element={<BookDetailPage handleAddToCart={handleAddToCart}/>}/>
           <Route path="/searchResult/:keyword" element={<SearchResult handleAddToCart={handleAddToCart}/>}/>
+          <Route path="/checkOut" element={<CheckOutPage/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

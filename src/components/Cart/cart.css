@@ -52,9 +52,17 @@
     font-size: 30px;
 }
 .cartTotalPrice{
-    width: fit-content;
+    /* width: fit-content; */
     font-size: 20px;
     font-weight: bold;
+    justify-content: start;
+}
+.cartTotalPriceContainer{
+    display: flex;
+}
+.checkOutButton{
+    justify-self: flex-end;
+    width: fit-content;
 }
 .cartQuantityChange{
     width: fit-content;
