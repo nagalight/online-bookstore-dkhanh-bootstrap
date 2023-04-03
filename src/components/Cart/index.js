@@ -60,12 +60,12 @@ export default function CartModal(props) {
             Total Price: {Number(totalPrice).toLocaleString("en-US",)}&nbsp;VND
           </Container>
           <Container className='checkOutButton'>
-            <Link to={'/checkOut'}>
+            <Link to={'/payment'}>
               <Button
                 onClick={(e)=>{
                   setShowCart(false);
                 }}
-              >Process&nbsp;to&nbsp;Checkout</Button>
+              >Process&nbsp;to&nbsp;Payment</Button>
             </Link>
           </Container>
         

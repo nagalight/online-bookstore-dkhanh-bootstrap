@@ -1,0 +1,12 @@
+.paymentPageContainer{
+    min-height: 70vh;
+}
+.paymentTitle{
+    font-size: 30px;
+    font-weight: bold; 
+}
+.paymentMedthodContainer{
+    background-color: rgba(0, 0, 0, 0.3);
+    min-width: 200px;
+    min-height: 200px
+}

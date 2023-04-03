@@ -15,7 +15,8 @@ import BookDetailPage from './pages/BookDetailPage';
 import AllBook from './pages/AllBook';
 import GenrePage from './pages/GenrePage';
 import SearchResult from './pages/SearchResult';
-import CheckOutPage from './pages/CheckOutPage';
+import PaymentPage from './pages/PaymentPage';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -97,7 +98,7 @@ function App() {
           <Route exact path="/books" element={<AllBook handleAddToCart={handleAddToCart}/>} />
           <Route exact path="/books/:id" element={<BookDetailPage handleAddToCart={handleAddToCart}/>}/>
           <Route path="/searchResult/:keyword" element={<SearchResult handleAddToCart={handleAddToCart}/>}/>
-          <Route path="/checkOut" element={<CheckOutPage/>}/>
+          <Route path="/payment" element={<PaymentPage cartItems={cartItems}/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>
