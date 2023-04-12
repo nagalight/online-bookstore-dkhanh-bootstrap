@@ -1,12 +1,99 @@
 .paymentPageContainer{
     min-height: 70vh;
+    margin-top: 15px;
 }
-.paymentTitle{
+.paymentPageTitle{
     font-size: 30px;
     font-weight: bold; 
+    padding:0;
 }
-.paymentMedthodContainer{
-    background-color: rgba(0, 0, 0, 0.3);
+.paymentContentWrapper{
+    align-content: space-around;
+    column-gap: 10px;
+    min-height: 250px;
+}
+.checkOutProductContainer{
     min-width: 200px;
-    min-height: 200px
+    min-height: 200px;
+    display: flex;
+}
+.cartItemContainer{
+    padding: 0;
+}
+.checkOutListNote{
+    padding: 0;
+    color: red;
+}
+.cartListContainer{
+    padding: 0;
+    overflow-y: scroll;
+    max-height: 400px;
+}
+.paymentSectionContainer{
+    height: fit-content;
+    border: solid black 3px;
+    padding: 0 10px;
+}
+.paymentPriceContainer{
+    display: flex;
+    padding:0;
+    font-size: 15px;
+}
+.paymentPriceTitle{
+    padding: 0;
+    margin-right: auto;
+}
+.paymentPriceNumber{
+    padding: 0;
+    margin-left: auto;
+    text-align: end;
+}
+.checkOutTotalPriceContainer{
+    padding: 0;
+    min-width: fit-content;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    margin-bottom: 10px;
+}
+.finalPriceTitle{
+    padding: 0;
+    margin-right: auto;
+}
+.finalPriceNumber{
+    padding: 0;
+    margin-left: auto;
+    text-align: end;
+}
+
+.paymentMidLine{
+    border-bottom: solid black 2px;
+}
+
+.paymentRecommendBooksWrapper{
+    max-width: 85%;
+    margin-top: 10px;
+}
+.recommendTitle{
+    padding: 0;
+    font-size: 28px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
+}
+.recommendPerson{
+    font-size: 15px;
+}
+.recommendSlider{
+    display: block;
+    height: auto;
+    margin-bottom: 5vh;
+}
+.recommendImageContainer{
+    min-height: 318.52px;
+    padding: 0;
+    display: flex;
+}
+.recommendBookPrice{
+    font-size: 16px;
+    font-weight: 600;
 }

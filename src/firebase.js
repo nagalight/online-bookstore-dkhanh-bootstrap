@@ -91,6 +91,22 @@ const getBookData = async (id) =>{
   await getDoc(bookDoc);
 };
 
+const orderRef= collection(db,"orders")
+
+const addOrderToDatabase = async (newOrder) =>{
+  await addDoc(orderRef, newOrder);
+}
+
+const updateOrderOnDatabase = async (id, updatedOrder) =>{
+  const orderDoc = doc(db, "orders", id);
+  await updateDoc(orderDoc, updatedOrder);
+}
+
+const deleteOrderOnDatabase = async (id) =>{
+  const orderDoc = doc(db, "orders", id);
+  await deleteDoc(orderDoc);
+}
+
 
 export {
   auth,
@@ -105,4 +121,7 @@ export {
   getAllBooksData,
   getBookData,
   bookStorage,
+  addOrderToDatabase,
+  updateOrderOnDatabase,
+  deleteOrderOnDatabase,
 };

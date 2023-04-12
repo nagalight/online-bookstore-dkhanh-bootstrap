@@ -4,7 +4,7 @@ import './cart.css'
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faMinus, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faMinus, } from '@fortawesome/free-solid-svg-icons'
 
 export default function CartModal(props) {
   const {cartItems, handleAddToCart, handleRemoveFromCart, clearCart, setShowCart} = props;
@@ -23,7 +23,7 @@ export default function CartModal(props) {
         </Modal.Header>
         <Modal.Body>
           <Container className='cartClearContainer'>
-            <a className='cartClearAll' onClick={()=>clearCart()}>Remove all book from cart({cartItems.length})</a>
+            <Container className='cartClearAll' onClick={()=>clearCart()}>Remove all book from cart({cartItems.length})</Container>
           </Container>
           <Container className='cartBookWrapper'>
             {cartItems.map(({id, data, quantity})=>{
