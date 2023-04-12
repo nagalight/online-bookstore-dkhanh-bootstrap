@@ -15,6 +15,7 @@ import BookDetailPage from './pages/BookDetailPage';
 import AllBook from './pages/AllBook';
 import GenrePage from './pages/GenrePage';
 import SearchResult from './pages/SearchResult';
+import PaymentPage from './pages/PaymentPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -96,13 +97,14 @@ function App() {
           <Route exact path="/books" element={<AllBook handleAddToCart={handleAddToCart}/>} />
           <Route exact path="/books/:id" element={<BookDetailPage handleAddToCart={handleAddToCart}/>}/>
           <Route path="/searchResult/:keyword" element={<SearchResult handleAddToCart={handleAddToCart}/>}/>
+          <Route path="/payment" element={<PaymentPage cartItems={cartItems} setCartItems={setCartItems}/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>
       </>
     ) : (
       <div id='spinner' className='loadingWrapper'>
-        <img className='loadingImage' src="https://firebasestorage.googleapis.com/v0/b/za-library-account.appspot.com/o/Main%2FZA_icon.png?alt=media&token=d281410f-e149-46b4-bf1a-b3e9375f62fd" />
+        <img className='loadingImage' src="https://firebasestorage.googleapis.com/v0/b/za-library-account.appspot.com/o/Main%2FZA_icon.png?alt=media&token=d281410f-e149-46b4-bf1a-b3e9375f62fd" alt='Za_Icon' />
         <div className='loading'></div>
       </div>
     )

@@ -18,11 +18,6 @@ import {
 import { getDatabase } from "firebase/database";
 import { getStorage, } from "firebase/storage";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyClZajZKue4wORclKuI5i2FQLkp2Co_zkc",
   authDomain: "za-library-account.firebaseapp.com",
@@ -96,6 +91,22 @@ const getBookData = async (id) =>{
   await getDoc(bookDoc);
 };
 
+const orderRef= collection(db,"orders")
+
+const addOrderToDatabase = async (newOrder) =>{
+  await addDoc(orderRef, newOrder);
+}
+
+const updateOrderOnDatabase = async (id, updatedOrder) =>{
+  const orderDoc = doc(db, "orders", id);
+  await updateDoc(orderDoc, updatedOrder);
+}
+
+const deleteOrderOnDatabase = async (id) =>{
+  const orderDoc = doc(db, "orders", id);
+  await deleteDoc(orderDoc);
+}
+
 
 export {
   auth,
@@ -110,4 +121,7 @@ export {
   getAllBooksData,
   getBookData,
   bookStorage,
+  addOrderToDatabase,
+  updateOrderOnDatabase,
+  deleteOrderOnDatabase,
 };

@@ -144,6 +144,7 @@ export default function NavigationBar(props){
                         handleAddToCart={handleAddToCart} 
                         handleRemoveFromCart={handleRemoveFromCart}
                         clearCart={clearCart}
+                        setShowCart={setShowCart}
                     />
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text className="notLogin" style={{display:showNotLogedIn}}>
