@@ -16,7 +16,7 @@ function SearchResult(props) {
     const [noData, setNoData] = useState(true);
 
     const fetchBookData = () =>{
-        const q = query(collection(db, "books"), where('title', '==', params.keyword))
+        const q = query(collection(db, "books"))
         onSnapshot(q,(querySnapshot)=>{
             setBookData(
                 querySnapshot.docs.map((doc)=>({
@@ -47,7 +47,11 @@ function SearchResult(props) {
                 </Container>
             </Container>
             {!noData &&<Container className="searchResultBookContainer">
-                    {bookData?.map(({ id, data })=>{
+                    {bookData?.filter(({id,data})=>{
+                        return {id, data}.data.title.toLowerCase().includes(params.keyword.toLowerCase()) || 
+                        {id, data}.data.author.toLowerCase().includes(params.keyword.toLowerCase()) ||
+                        {id, data}.data.price.toLowerCase().includes(params.keyword)
+                    }).map(({ id, data })=>{
                         return(
                             <Card key={id} style={{marginTop:"1vh"}}>
                                 <Link to={`/books/${id}`}>
@@ -79,8 +83,6 @@ function SearchResult(props) {
                         <Container className='noResultText'>NO RESULT FOUND</Container>
                     </Container>
                 }
-            
-            
         </Container>
         </>
     )

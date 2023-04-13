@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {  Button, Container, Nav, Navbar, Form, Image, InputGroup } from "react-bootstrap";
+import { Button, Container, Nav, Navbar, Form, Image, InputGroup } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom'
 import "./navbar.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -85,6 +86,12 @@ export default function NavigationBar(props){
     }
 
     const [searchKeyword, setSearchKeyword] = useState("")
+    const movePages = useNavigate()
+    const handleSearchSubmit = () => {
+        if (searchKeyword){
+            movePages(`/searchResult/${searchKeyword}`)
+        }
+    }
 
     return(
         <>
@@ -118,9 +125,14 @@ export default function NavigationBar(props){
                         <Navbar.Brand style={{ fontSize:'27px' }}>Bookstore</Navbar.Brand>
                     </Link>
                     
-                    <Form className="Navbar-Search">
+                    <Form className="Navbar-Search" onSubmit={handleSearchSubmit}>
                         <InputGroup>
-                            <Form.Control type="text" placeholder="Search" className="mr-sm-2" onChange={(e)=>{setSearchKeyword(e.target.value)}}/>
+                            <Form.Control 
+                                type="text" 
+                                placeholder="Search" 
+                                className="mr-sm-2" 
+                                onChange={(e)=>{setSearchKeyword(e.target.value)}}  
+                            />
                             {!searchKeyword ? 
                                 <Button variant="outline-light" className="searchButton">
                                     <FontAwesomeIcon icon={faMagnifyingGlass} className="searchIcon"/>
