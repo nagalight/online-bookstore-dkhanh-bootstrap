@@ -8,5 +8,5 @@ from = "/*"
 to = "/404"
 status = 404
 
-[[build]]
+[build]
 command = "CI= npm run build"
