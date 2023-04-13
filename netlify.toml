@@ -1,12 +1,2 @@
-[[redirects]]
-from = "/*"
-to = "/public/index.html"
-status = 200
-
-[[redirects]]
-from = "/*"
-to = "/src/pages/NotFoundPage/index.js"
-status = 404
-
 [build]
 command = "CI= npm run build"
