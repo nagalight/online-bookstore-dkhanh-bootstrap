@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Container, Modal, Form, Button } from 'react-bootstrap';
 import { adminAddAdmin } from "../../../../firebase";
 
@@ -11,6 +11,12 @@ export default function AddAdminForm(props) {
         adminAddAdmin(username, email, password);
         onHide();
     };
+
+    useEffect(() => {
+        setEmail("")
+        setPassword("")
+        setUsername("")
+    }, [onHide])
     return(
         <>
         <Modal

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Container, Modal, Form, Button } from 'react-bootstrap';
 import { adminAddUser } from "../../../../firebase";
 
@@ -7,10 +7,17 @@ export default function AddUserForm(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
-    const addUser = () => {
-        adminAddUser(username, email, password);
+    const addUser = async() => {
+        await adminAddUser(username, email, password);
         onHide();
     };
+
+    useEffect(() => {
+      setEmail("")
+      setPassword("")
+      setUsername("")
+    }, [onHide])
+    
 
     return(
         <>
