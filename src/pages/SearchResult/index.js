@@ -69,7 +69,11 @@ function SearchResult(props) {
                                     <Container className="searchResultTagContainer">{data.genre[0]}</Container>
                                     <Container className="searchResultTagContainer">...</Container>
                                 </Card.Text>
-                                <Button className='searchResultAddCartBtn' onClick={()=>handleAddToCart({id, data})}>
+                                <Button 
+                                    className='searchResultAddCartBtn' 
+                                    onClick={()=>handleAddToCart({id, data})}
+                                    disabled={(data.stock === "0") ? true : false}
+                                >
                                     <FontAwesomeIcon icon={faCartPlus}/>
                                     &nbsp;Add to Cart
                                 </Button>

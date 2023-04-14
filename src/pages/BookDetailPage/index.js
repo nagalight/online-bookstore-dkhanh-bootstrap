@@ -100,7 +100,12 @@ export default function BookDetailPage(props) {
                     <UnavalibleStatusText/>
                     <Container className='bookPrice'>{Number(price).toLocaleString("en-US",)} VND</Container>
                     <Container className='btnWrapper'>
-                        <Button variant='primary' className='addCartBtn' onClick={()=>handleAddToCart(bookId, bookData)}>
+                        <Button 
+                            variant='primary' 
+                            className='addCartBtn' 
+                            onClick={()=>handleAddToCart(bookId, bookData)}
+                            disabled={(stock === "0") ? true : false}
+                        >
                             <FontAwesomeIcon icon={faCartPlus} className='addCartIcon'/>
                             ADD TO CART
                         </Button>
