@@ -147,7 +147,9 @@ export default function NavigationBar(props){
                         </InputGroup>
                     </Form>
                     <Container style={{width:"fit-content", height:"fit-content", marginLeft:"10px"}} onClick={handleShowCart}>
-                        <FontAwesomeIcon icon={faCartShopping} style={{color:"white", fontSize:"20px"}}/>
+                        <Nav.Link style={{padding:0}}>
+                            <FontAwesomeIcon icon={faCartShopping} style={{color:"white", fontSize:"20px"}}/>
+                        </Nav.Link>
                     </Container>
                     <CartModal 
                         show={showCart} 
@@ -160,8 +162,12 @@ export default function NavigationBar(props){
                     />
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text className="notLogin" style={{display:showNotLogedIn}}>
-                            <a onClick={handleShowLogin}>Login</a> / <a onClick={handleShowRegister}>Register</a>
-
+                            <Container style={{display:"flex", padding:0}}>
+                                <Nav.Link onClick={handleShowLogin} style={{padding:0}}>Login</Nav.Link>
+                                &nbsp;/&nbsp;
+                                <Nav.Link onClick={handleShowRegister} style={{padding:0}}>Register</Nav.Link>
+                            </Container>
+                            
                             <LoginForm show={showLogin} onHide={() => setShowLogin(false)}/>
                             <RegisterForm show={showRegister} onHide={() => setShowRegister(false)}/>
                         </Navbar.Text>
