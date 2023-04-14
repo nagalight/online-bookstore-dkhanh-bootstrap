@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom"
 import "./bookdetail.css"
 
 import { db } from '../../firebase';
-import { collection, onSnapshot, query, doc, getDoc, where } from "firebase/firestore";
+import { collection, onSnapshot, query, doc, getDoc } from "firebase/firestore";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus, faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons'

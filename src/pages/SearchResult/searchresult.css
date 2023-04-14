@@ -17,6 +17,12 @@
     grid-template-columns: repeat(5, 1fr);
 }
 
+.searchResultBookImageContainer{
+    min-height: 284.12px;
+    padding: 0;
+    display: flex;
+}
+
 .searchResultBookPrice{
     font-size: 16px;
     font-weight: 600;
