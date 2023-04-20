@@ -11,6 +11,9 @@ import { Link } from "react-router-dom"
 
 import UpdateBookData from "../../Form/UpdateBookData";
 import ConfirmRemoveBookWindow from "../../Confirmation/Book";
+import useTable from "../../../Pagination/useTable";
+import TableFooter from "../../../Pagination/TableFooter";
+
 
 export default function BookTable(props){
     const [bookData, setBookData] = useState([]);
@@ -30,6 +33,12 @@ export default function BookTable(props){
             fetchBookData();
         }
     }, [])
+    
+    let rowsPerPage = 5
+    const [page, setPage] = useState(1);
+    const { slice, range } = useTable(bookData, page, rowsPerPage)
+
+
 
     const [showUpdateBookForm, setShowUpdateBookForm] = useState(false);
     const handleShowUpdateBookForm = () => setShowUpdateBookForm(true);
@@ -65,34 +74,35 @@ export default function BookTable(props){
             </thead>
             <tbody>
                 {
-                    bookData?.map(({ id, data }) =>{
+                    // bookData?.map(({ id, data }) =>{
+                    slice?.map((el) =>{
                         return(
-                            <tr key={id}>
+                            <tr key={el.id}>
                                 <th style={{width:'100px'}}>
-                                    <Image src={data.image.url} className="bookCoverImage" />
+                                    <Image src={el.data.image.url} className="bookCoverImage" />
                                 </th>
-                                <th>{data.title}</th>
-                                <th>{data.author}</th>
+                                <th>{el.data.title}</th>
+                                <th>{el.data.author}</th>
                                 <th className="genreTagContainer">
                                     {
-                                        data.genre.map(genreData =>{
+                                        el.data.genre.map(genreData =>{
                                             return(
                                                 <Container className="tagContainer">{genreData}</Container>
                                             )
                                         })
                                     }
                                 </th>
-                                <th>{data.publisher}</th>
-                                <th>{data.publicDate}</th>
-                                <th>{Number(data.price).toLocaleString("en-US",)} VND</th>
-                                <th>{data.stock}</th>
+                                <th>{el.data.publisher}</th>
+                                <th>{el.data.publicDate}</th>
+                                <th>{Number(el.data.price).toLocaleString("en-US",)} VND</th>
+                                <th>{el.data.stock}</th>
                                 <th style={{width:'130px'}}>
                                     <OverlayTrigger
                                         placement="bottom"
                                         delay={{ show: 250, hide: 400 }}
                                         overlay={<Tooltip id="button-tooltip-2">Go to this book product site</Tooltip>}
                                     >
-                                        <Link to={`/books/${id}`}>
+                                        <Link to={`/books/${el.id}`}>
                                             <Button
                                                 className="btnAction"
                                                 variant="primary"
@@ -111,7 +121,7 @@ export default function BookTable(props){
                                             className="btnAction"
                                             variant="secondary"
                                             onClick={(e) => {
-                                                setGetBookId(id);
+                                                setGetBookId(el.id);
                                                 handleShowUpdateBookForm();
                                             }}
                                         >
@@ -128,7 +138,7 @@ export default function BookTable(props){
                                             className="btnAction"
                                             variant="danger"
                                             onClick={() => {
-                                                setGetBookId(id);
+                                                setGetBookId(el.id);
                                                 handleShowConfirmDeleteBook();
                                             }}
                                         >
@@ -142,6 +152,8 @@ export default function BookTable(props){
                 }
             </tbody>
         </Table>
+        <TableFooter range={range} slice={slice} setPage={setPage} page={page}/>
+        
         <ConfirmRemoveBookWindow show={showConfirmDeleteBook} onHide={handleHideConfirmDeleteBook} showConfirmDeleteBook={showConfirmDeleteBook} getBookId={getBookId} setGetBookId={setGetBookId} handleHideConfirmDeleteBook={handleHideConfirmDeleteBook}/>
         <UpdateBookData show={showUpdateBookForm} onHide={handleHideUpdateBookForm} getBookId={getBookId} setGetBookId={setGetBookId}/>
         </>
