@@ -152,7 +152,8 @@ export default function BookTable(props){
                 }
             </tbody>
         </Table>
-        <TableFooter range={range} slice={slice} setPage={setPage} page={page}/>
+        {bookData.length > 5 && <TableFooter range={range} slice={slice} setPage={setPage} page={page}/>}
+        
         
         <ConfirmRemoveBookWindow show={showConfirmDeleteBook} onHide={handleHideConfirmDeleteBook} showConfirmDeleteBook={showConfirmDeleteBook} getBookId={getBookId} setGetBookId={setGetBookId} handleHideConfirmDeleteBook={handleHideConfirmDeleteBook}/>
         <UpdateBookData show={showUpdateBookForm} onHide={handleHideUpdateBookForm} getBookId={getBookId} setGetBookId={setGetBookId}/>
