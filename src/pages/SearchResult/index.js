@@ -9,6 +9,9 @@ import { faCartPlus, faInbox } from '@fortawesome/free-solid-svg-icons'
 import { db } from "../../firebase";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 
+import useTable from "../../components/Pagination/useTable";
+import TableFooter from "../../components/Pagination/TableFooter";
+
 function SearchResult(props) {
     const { handleAddToCart } = props;
     const params = useParams();
@@ -45,6 +48,11 @@ function SearchResult(props) {
             setNoData(true)
         }
     },[params.keyword,filteredBookData])
+
+    let rowsPerPage = 10
+    const [page, setPage] = useState(1);
+    const { slice, range } = useTable(filteredBookData, page, rowsPerPage)
+
     return (
         <>
         <Container className="searchResultWrapper">
@@ -52,27 +60,27 @@ function SearchResult(props) {
                 <Container className="searchResultTitleTextContainer">Search Result of: {params.keyword}</Container>
             </Container>
             {!noData &&<Container className="searchResultBookContainer">
-                {filteredBookData.map(({ id, data })=>{
+                {slice.map((el)=>{
                     return(
-                        <Card key={id} style={{marginTop:"1vh"}}>
-                            <Link to={`/books/${id}`}>
+                        <Card key={el.id} style={{marginTop:"1vh"}}>
+                            <Link to={`/books/${el.id}`}>
                                 <Container className='searchResultBookImageContainer'>
-                                    <Card.Img variant='top' src={data.image.url} style={{ width: '190px' }}/>
+                                    <Card.Img variant='top' src={el.data.image.url} style={{ width: '190px' }}/>
                                 </Container>
                             </Link>
                             <Card.Body>
-                                <Card.Title>{data.title}</Card.Title>
-                                <Card.Subtitle>{data.author}</Card.Subtitle>
-                                <Card.Text className='searchResultBookPrice'>{Number(data.price).toLocaleString("en-US",)} VND</Card.Text>
+                                <Card.Title>{el.data.title}</Card.Title>
+                                <Card.Subtitle>{el.data.author}</Card.Subtitle>
+                                <Card.Text className='searchResultBookPrice'>{Number(el.data.price).toLocaleString("en-US",)} VND</Card.Text>
                                 <Card.Text style={{display:'flex'}}>
                                     Genre:
-                                    <Container className="searchResultTagContainer">{data.genre[0]}</Container>
+                                    <Container className="searchResultTagContainer">{el.data.genre[0]}</Container>
                                     <Container className="searchResultTagContainer">...</Container>
                                 </Card.Text>
                                 <Button 
                                     className='searchResultAddCartBtn' 
-                                    onClick={()=>handleAddToCart({id, data})}
-                                    disabled={(data.stock === "0") ? true : false}
+                                    onClick={()=>handleAddToCart(el.id, el.data)}
+                                    disabled={(el.data.stock === "0") ? true : false}
                                 >
                                     <FontAwesomeIcon icon={faCartPlus}/>
                                     &nbsp;Add to Cart
@@ -89,6 +97,7 @@ function SearchResult(props) {
                 </Container>
                 <Container className='noResultText'>NO RESULT FOUND</Container>
             </Container>}
+            {filteredBookData.length>10 && <TableFooter range={range} slice={slice} setPage={setPage} page={page}/>}
                 
         </Container>
         </>

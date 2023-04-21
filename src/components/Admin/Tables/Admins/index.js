@@ -32,7 +32,7 @@ export default function AdminTable(props){
     let rowsPerPage = 5
     const [page, setPage] = useState(1);
     const { slice, range } = useTable(adminData, page, rowsPerPage)
-
+    
     const [showConfirmRemoveAccount, setShowConfirmRemoveAccount] = useState(false);
     const handleShowConfirmRemoveAccount = () => setShowConfirmRemoveAccount(true);
     const handleHideConfirmRemoveAccount = () => {
