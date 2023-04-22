@@ -9,6 +9,9 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 
+import useTable from "../../components/Pagination/useTable";
+import TableFooter from "../../components/Pagination/TableFooter";
+
 function GenrePage(props) {
     const { handleAddToCart } = props;
     const params = useParams();
@@ -30,6 +33,10 @@ function GenrePage(props) {
             fetchBookDataFromGenre();
         }
     }, [params.genre])
+
+    let rowsPerPage = 10
+    const [page, setPage] = useState(1);
+    const { slice, range } = useTable(bookDataFromGenre, page, rowsPerPage)
     
     return (
         <>
@@ -40,18 +47,18 @@ function GenrePage(props) {
                 </Container>
             </Container>
             <Container className="genrePageBookContainer">
-                {bookDataFromGenre?.map(({ id, data })=>{
+                {slice?.map((el)=>{
                     return(
-                        <Card key={id} style={{marginTop:"1vh"}}>
-                            <Link to={`/books/${id}`}>
+                        <Card key={el.id} style={{marginTop:"1vh"}}>
+                            <Link to={`/books/${el.id}`}>
                                 <Container className='allBookImageContainer'>
-                                    <Card.Img variant='top' src={data.image.url} style={{ width: '190px' }}/>
+                                    <Card.Img variant='top' src={el.data.image.url} style={{ width: '190px' }}/>
                                 </Container>
                             </Link>
                             <Card.Body>
-                                <Card.Title>{data.title}</Card.Title>
-                                <Card.Subtitle>{data.author}</Card.Subtitle>
-                                <Card.Text className='genrePageBookPrice'>{Number(data.price).toLocaleString("en-US",)} VND</Card.Text>
+                                <Card.Title>{el.data.title}</Card.Title>
+                                <Card.Subtitle>{el.data.author}</Card.Subtitle>
+                                <Card.Text className='genrePageBookPrice'>{Number(el.data.price).toLocaleString("en-US",)} VND</Card.Text>
                                 <Card.Text style={{display:'flex'}}>
                                     Genre:
                                     <Container className="genrePageTagContainer">{params.genre}</Container>
@@ -59,8 +66,8 @@ function GenrePage(props) {
                                 </Card.Text>
                                 <Button 
                                     className='genrePageAddCartBtn' 
-                                    onClick={()=>handleAddToCart(id, data)}
-                                    disabled={(data.stock === "0") ? true : false}
+                                    onClick={()=>handleAddToCart(el.id, el.data)}
+                                    disabled={(el.data.stock === "0") ? true : false}
                                 >
                                     <FontAwesomeIcon icon={faCartPlus}/>
                                     &nbsp;Add to Cart
@@ -70,6 +77,7 @@ function GenrePage(props) {
                     )
                 })}
             </Container>
+            {bookDataFromGenre.length>10 && <TableFooter range={range} slice={slice} setPage={setPage} page={page}/>}
         </Container>
         </>
     )
