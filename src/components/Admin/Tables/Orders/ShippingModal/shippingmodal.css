@@ -1,0 +1,44 @@
+.shippingBookWrapper{
+    max-height: 60vh;
+    min-height: fit-content;
+    overflow-y: scroll;
+    padding: 0;
+}
+.shippingBookHeadTitle{
+    font-size: 30px;
+    font-weight: bold;
+}
+.shippingBookContainer{
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.shippingBookImage{
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+    min-height: 74.76px;
+    display: flex;
+}
+.shippingBookName{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.shippingBookNameTitle{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.shippingBookPrice {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: flex-end;
+    width: fit-content;
+    font-size: 23px;
+    font-weight: bold;
+}
