@@ -58,6 +58,7 @@ function App() {
       setCartItems(cartItems.map((item)=> item.id === id ? {...bookExist, quantity:bookExist.quantity - 1} : item))
     }
   }
+  
   const clearCart = () =>{
     setCartItems([])
   }
