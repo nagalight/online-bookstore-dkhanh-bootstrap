@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import "./navbar.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGlobe, faMagnifyingGlass, faArrowRightFromBracket, faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlass, faArrowRightFromBracket, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
 import { auth, db } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -16,7 +16,7 @@ import { useAuth } from "../../contexts/authContext";
 import LoginForm from "../Login";
 import RegisterForm from "../Register";
 import CartModal from "../Cart";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 export default function NavigationBar(props){

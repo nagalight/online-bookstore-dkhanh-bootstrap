@@ -47,8 +47,6 @@ export default function PaymentPage(props) {
         }
     );
 
-    
-
     const totalPrice = cartItems.reduce((price, item) =>price + item.quantity * item.data.price, 0);
     const finalPrice = parseInt(totalPrice) + parseInt(shippingPrice);
     const vndToUsdRate = 0.000043;
@@ -90,7 +88,7 @@ export default function PaymentPage(props) {
         }else if (cartItems.length > 0){
             setHaveCartItem(true)
         }else {
-            console.log("some thing wrong")
+            console.log("Something wrong")
         }
     }, [cartItems.length])
 

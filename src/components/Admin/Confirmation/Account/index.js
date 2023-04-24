@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Button, Container, Modal } from 'react-bootstrap'
 
 import { db } from "../../../../firebase";
-import { collection, onSnapshot, where, query, doc, getDoc, deleteDoc } from "firebase/firestore";
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
 
 export default function ConfirmRemoveAccountWindow(props) {
     const { getAccountId, setGetAccountId, showConfirmRemoveAccount, handleHideConfirmRemoveAccount } = props;

@@ -50,12 +50,7 @@ export default function ShippingForm(props) {
         } else{
             setShowShippingForm(false)
             setShowPaymentMethod(true)
-            console.log(shippingOrderDetail)
         }
-    }
-    const handleShippingFormSummit = async () =>{
-        await addOrderToDatabase(shippingOrderDetail);
-        console.log("Success adding order!!!")
     }
     useEffect(() => {
         console.log(phoneNumber)

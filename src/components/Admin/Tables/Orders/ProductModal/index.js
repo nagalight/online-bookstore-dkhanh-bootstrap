@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import { Container, Image, Modal, Button } from 'react-bootstrap'
+import { Container, Image, Modal } from 'react-bootstrap'
 
 import { db } from "../../../../../firebase";
-import { collection, onSnapshot, query, orderBy, where, doc } from "firebase/firestore";
+import { collection, onSnapshot, doc } from "firebase/firestore";
 import "./productmodal.css"
 
 export default function ProductModal(props) {

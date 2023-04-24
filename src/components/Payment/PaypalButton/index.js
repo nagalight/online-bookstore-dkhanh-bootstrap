@@ -28,7 +28,6 @@ export default function PaypalButton(props) {
         if (paidFor){
             alert("Purchase Complete!!!");
             movePages("/")
-            console.log(shippingOrderDetail)
             handleSaveOrderDetails()
         }
     }, [paidFor])
