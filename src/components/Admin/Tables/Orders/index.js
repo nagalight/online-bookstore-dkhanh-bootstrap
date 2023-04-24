@@ -68,6 +68,7 @@ export default function OrderTable() {
                                     overlay={<Tooltip id="button-tooltip-2">Shipping Info</Tooltip>}
                                 >
                                     <Button
+                                        style={{margin:'0 5px 0'}}
                                         onClick={()=>{
                                             openShippingInfoModal()
                                             setGetOrderId(id)
@@ -83,6 +84,7 @@ export default function OrderTable() {
                                     overlay={<Tooltip id="button-tooltip-2">Transaction Info</Tooltip>}
                                 >
                                     <Button
+                                        style={{margin:'0 5px 0'}}
                                         onClick={()=>{
                                             openTransactionInfoModal()
                                             setGetOrderId(id)
@@ -99,6 +101,7 @@ export default function OrderTable() {
                                     overlay={<Tooltip id="button-tooltip-2">Product List</Tooltip>}
                                 >
                                     <Button
+                                        style={{margin:'0 5px 0'}}
                                         onClick={()=>{
                                             openProductModal()
                                             setGetOrderId(id)

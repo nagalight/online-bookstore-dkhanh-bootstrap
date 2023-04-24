@@ -9,6 +9,8 @@ export default function TransactionModal(props) {
     const {getOrderId, openTransactionInfoModal} = props
 
     const [transactionInfo, setTransactionInfo] = useState({});
+    const [transactionPrice, setTransactionPrice] = useState("");
+
 
     const fetchTransactionData = () =>{
         if(getOrderId !== ""){
@@ -18,9 +20,18 @@ export default function TransactionModal(props) {
             });
         }
     }
+    const fetchOrderPriceData = () =>{
+        if(getOrderId !== ""){
+            const q = doc(db, "orders", getOrderId)
+            onSnapshot(q,(querySnapshot)=>{
+                setTransactionPrice(querySnapshot.data().orderTotalPrice);
+            });
+        }
+    }
     useEffect(() => {
         if(collection){
             fetchTransactionData();
+            fetchOrderPriceData();
         }
     }, [openTransactionInfoModal])
     return(
@@ -32,7 +43,7 @@ export default function TransactionModal(props) {
         centered>
             <Modal.Body>
                 <Container className='transactionInfoWrapper'>
-                    <Container className='transactionInfoTitle'>Shipping info - Order {getOrderId}</Container>
+                    <Container className='transactionInfoTitle'>Transaction info</Container>
                     <Container className='transactionInfoBodyWrapper'>
                         <Table bordered>
                             <tbody>
@@ -58,7 +69,7 @@ export default function TransactionModal(props) {
                                 </tr>
                                 <tr>
                                     <th>Transaction Amount</th>
-                                    {/* <th className='transactionInfoTableInfo'>{transactionInfo.transactionUnit.amount.value}</th> */}
+                                    <th className='transactionInfoTableInfo'>{Number(transactionPrice).toLocaleString("en-US",)}&nbsp;VND</th>
                                 </tr>
                             </tbody>
                         </Table>
