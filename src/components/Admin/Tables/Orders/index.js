@@ -5,8 +5,10 @@ import { db } from "../../../../firebase";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTruckFast, faList } from '@fortawesome/free-solid-svg-icons'
+import { faTruckFast, faList, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons'
 import ShippingModal from './ShippingModal';
+import ProductModal from './ProductModal';
+import TransactionModal from './TransactionModal';
 
 export default function OrderTable() {
     const [orderData, setOrderData] = useState([]);
@@ -30,6 +32,14 @@ export default function OrderTable() {
     const [showProduct, setShowProduct] = useState(false);
     const openProductModal = () =>{
         setShowProduct(true)
+    }
+    const [showShippingInfo, setShowShippingInfo] = useState(false);
+    const openShippingInfoModal = () =>{
+        setShowShippingInfo(true)
+    }
+    const [showTransactionInfo, setShowTransactionInfo] = useState(false);
+    const openTransactionInfoModal = () =>{
+        setShowTransactionInfo(true)
     }
 
     const [getOrderId, setGetOrderId] = useState("");
@@ -57,9 +67,30 @@ export default function OrderTable() {
                                     delay={{ show: 250, hide: 400 }}
                                     overlay={<Tooltip id="button-tooltip-2">Shipping Info</Tooltip>}
                                 >
-                                    <Button>
+                                    <Button
+                                        onClick={()=>{
+                                            openShippingInfoModal()
+                                            setGetOrderId(id)
+                                        }}
+                                    >
                                         <FontAwesomeIcon icon={faTruckFast}/>
                                     </Button>
+                                </OverlayTrigger>
+
+                                <OverlayTrigger
+                                    placement="top"
+                                    delay={{ show: 250, hide: 400 }}
+                                    overlay={<Tooltip id="button-tooltip-2">Transaction Info</Tooltip>}
+                                >
+                                    <Button
+                                        onClick={()=>{
+                                            openTransactionInfoModal()
+                                            setGetOrderId(id)
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon={faFileInvoiceDollar}/>
+                                    </Button>
+                                    
                                 </OverlayTrigger>
                                 
                                 <OverlayTrigger
@@ -82,7 +113,9 @@ export default function OrderTable() {
                     )
                 })}
             </tbody>
-            <ShippingModal show={showProduct} onHide={()=>setShowProduct(false)} getOrderId={getOrderId} openProductModal={openProductModal}/>
+            <ShippingModal show={showShippingInfo} onHide={()=>setShowShippingInfo(false)} getOrderId={getOrderId} openShippingInfoModal={openShippingInfoModal}/>
+            <TransactionModal show={showTransactionInfo} onHide={()=>setShowTransactionInfo(false)} getOrderId={getOrderId} openTransactionInfoModal={openTransactionInfoModal}/>
+            <ProductModal show={showProduct} onHide={()=>setShowProduct(false)} getOrderId={getOrderId} openProductModal={openProductModal}/>
         </Table>
         
         </>

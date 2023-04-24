@@ -156,7 +156,7 @@ export default function ShippingForm(props) {
                             />
                             <Form.Check
                                 type="radio"
-                                label="Standard - 50,000 VND"
+                                label="Priority - 50,000 VND"
                                 name="RadioButton_ShippingMethod"
                                 value={50000}
                                 onChange={(e)=>{setShippingPrice(e.target.value)}}
