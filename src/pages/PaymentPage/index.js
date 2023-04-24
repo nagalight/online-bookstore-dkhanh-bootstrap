@@ -47,6 +47,13 @@ export default function PaymentPage(props) {
         }
     );
 
+    
+
+    const totalPrice = cartItems.reduce((price, item) =>price + item.quantity * item.data.price, 0);
+    const finalPrice = parseInt(totalPrice) + parseInt(shippingPrice);
+    const vndToUsdRate = 0.000043;
+    const usdPrice = (finalPrice * vndToUsdRate).toFixed(2);
+
     const shippingOrderDetail = {
         fullName,
         phoneNumber,
@@ -55,14 +62,10 @@ export default function PaymentPage(props) {
         shippingCountry,
         shippingZipCode,
         shippingPrice,
+        orderTotalPrice: finalPrice,
         transactionDetail: transactionInfo,
         transactionItem: cartItems
     }
-
-    const totalPrice = cartItems.reduce((price, item) =>price + item.quantity * item.data.price, 0);
-    const finalPrice = parseInt(totalPrice) + parseInt(shippingPrice);
-    const vndToUsdRate = 0.000043;
-    const usdPrice = (finalPrice * vndToUsdRate).toFixed(2);
     
     const product = {
         description: "This and that(Book)",

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
-import { Container, Table, Button, Image, OverlayTrigger, Tooltip, Pagination } from "react-bootstrap";
+import { Container, Table, Button, Image, OverlayTrigger, Tooltip } from "react-bootstrap";
 
-import { db, deleteBookOnDatabase } from "../../../../firebase";
+import { db } from "../../../../firebase";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

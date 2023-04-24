@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus, faInbox } from '@fortawesome/free-solid-svg-icons'
 
 import { db } from "../../firebase";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { collection, onSnapshot, query } from "firebase/firestore";
 
 import useTable from "../../components/Pagination/useTable";
 import TableFooter from "../../components/Pagination/TableFooter";

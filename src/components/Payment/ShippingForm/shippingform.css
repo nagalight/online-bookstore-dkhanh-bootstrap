@@ -1,0 +1,19 @@
+.phoneNumberInputField{
+    width: 100%;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #212529;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ced4da;
+    border-radius:0.3rem;
+    line-height: 1.5;
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+}
+.phoneNumberInputField :focus{
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13,110,253,0.25);
+}

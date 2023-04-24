@@ -15,6 +15,7 @@ import { collection, where, query, getDocs } from "firebase/firestore";
 
 import { useAuth } from "../../contexts/authContext"
 import { Navigate } from "react-router-dom"
+import OrderTable from "../../components/Admin/Tables/Orders";
 
 export default function AdminManagement() {
     const { currentUser } = useAuth()
@@ -57,7 +58,6 @@ export default function AdminManagement() {
                     >
                         <Tab eventKey="admins" title="Admins account">
                             <Container className="tabContainer">
-                                <Container className="tabTitle">Admin accounts management</Container>
                                 <Button onClick={handleShowAddAdminForm}>Add Admin account</Button>
                                 <AdminTable/>
                             </Container> 
@@ -65,7 +65,6 @@ export default function AdminManagement() {
         
                         <Tab eventKey="users" title="Users account">
                             <Container className="tabContainer">
-                                <Container className="tabTitle">User accounts management</Container>
                                 <Button variant="primary" onClick={handleShowAddForm}>Add Users</Button>
                                 <UserTable/>
                             </Container>
@@ -76,7 +75,12 @@ export default function AdminManagement() {
                                 <Button onClick={handleShowAddBookForm}>Add Book</Button>
                                 <BookTable/>
                             </Container>
-                             
+                        </Tab>
+
+                        <Tab eventKey="orders" title="Orders">
+                            <Container className="tabContainer">
+                                <OrderTable/>
+                            </Container>
                         </Tab>
                     </Tabs>
                 </Container>

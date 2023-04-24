@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Alert, Button, Container, Col, Form, Row } from 'react-bootstrap';
+import { NumericFormat } from 'react-number-format';
 
 import { addOrderToDatabase } from "../../../firebase";
+import "./shippingform.css"
 
 export default function ShippingForm(props) {
     const {
@@ -55,6 +57,12 @@ export default function ShippingForm(props) {
         await addOrderToDatabase(shippingOrderDetail);
         console.log("Success adding order!!!")
     }
+    useEffect(() => {
+        console.log(phoneNumber)
+    }, [phoneNumber])
+
+    const [isPhoneInputFocused, setPhoneInputFocused] = useState(false)
+    
     return (
         <Form className='shippingOrderFormContainer' >
             <Alert variant={'danger'} style={{display:showError}}>{error}</Alert>
@@ -67,6 +75,7 @@ export default function ShippingForm(props) {
                             size="lg" 
                             id="fullname"
                             value={fullName}
+                            onFocus={() => setPhoneInputFocused(false)}
                             placeholder="Enter your full name"
                             onChange={(e) => setFullName(e.target.value)}
                         />
@@ -74,15 +83,24 @@ export default function ShippingForm(props) {
                 </Col>
                 <Col sm={4}>
                     <Form.Group className="mb-3" id="PhoneNumber">
-                        <Form.Label>Phone Number:</Form.Label>
-                        <Form.Control 
-                            type="number" 
-                            size="lg" 
-                            id="phonenumber"
-                            value={phoneNumber}
-                            placeholder="Enter your phone number"
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                        />
+                        <Form.Label>Phone Number:</Form.Label><br/>
+                        <NumericFormat
+                        className='phoneNumberInputField'
+                        type='tel'
+                        value={phoneNumber}
+                        id="phonenumber"
+                        allowLeadingZeros = "true"
+                        isnumericstring = "true"
+                        allowEmptyFormatting = "false"
+                        placeholder='Enter your phone number'
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        onFocus={() => setPhoneInputFocused(true)}
+                        style={{
+                            borderColor: isPhoneInputFocused === true ? '#86b7fe' : '#ced4da',
+                            boxShadow: isPhoneInputFocused === true ? '0 0 0 0.25rem rgba(13,110,253,0.25)': 'none',
+                            outline: 'none'
+                        }}
+                    />
                     </Form.Group>
                 </Col>
             </Row>
@@ -95,6 +113,7 @@ export default function ShippingForm(props) {
                             size="lg" 
                             id="address"
                             value={shippingAddress}
+                            onFocus={() => setPhoneInputFocused(false)}
                             placeholder="Enter shipping address"
                             onChange={(e) => setShippingAddress(e.target.value)}
                         />
@@ -110,6 +129,7 @@ export default function ShippingForm(props) {
                             size="lg" 
                             id="city"
                             value={shippingCity}
+                            onFocus={() => setPhoneInputFocused(false)}
                             placeholder="Enter shipping address"
                             onChange={(e) => setShippingCity(e.target.value)}
                         />
@@ -123,6 +143,7 @@ export default function ShippingForm(props) {
                             size="lg" 
                             id="country"
                             value={shippingCountry}
+                            onFocus={() => setPhoneInputFocused(false)}
                             placeholder="Enter shipping country"
                             onChange={(e) => setShippingCountry(e.target.value)}
                         />
@@ -136,6 +157,7 @@ export default function ShippingForm(props) {
                             size="lg" 
                             id="zipcode"
                             value={shippingZipCode}
+                            onFocus={() => setPhoneInputFocused(false)}
                             placeholder="Enter zip code"
                             onChange={(e) => setShippingZipCode(e.target.value)}
                         />
@@ -152,13 +174,15 @@ export default function ShippingForm(props) {
                                 label="Postal - 30,000 VND"
                                 name="RadioButton_ShippingMethod"
                                 value={30000}
+                                onFocus={() => setPhoneInputFocused(false)}
                                 onChange={(e)=>{setShippingPrice(e.target.value)}}
                             />
                             <Form.Check
                                 type="radio"
-                                label="Standard - 50,000 VND"
+                                label="Priority - 50,000 VND"
                                 name="RadioButton_ShippingMethod"
                                 value={50000}
+                                onFocus={() => setPhoneInputFocused(false)}
                                 onChange={(e)=>{setShippingPrice(e.target.value)}}
                             />
                             <Form.Check
@@ -166,6 +190,7 @@ export default function ShippingForm(props) {
                                 label="Express - 100,000 VND"
                                 name="RadioButton_ShippingMethod"
                                 value={100000}
+                                onFocus={() => setPhoneInputFocused(false)}
                                 onChange={(e)=>{setShippingPrice(e.target.value)}}
                             />
                         </Container>
