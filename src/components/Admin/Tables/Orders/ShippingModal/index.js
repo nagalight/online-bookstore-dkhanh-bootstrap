@@ -86,7 +86,7 @@ export default function ShippingModal(props) {
                                 </tr>
                                 <tr>
                                     <th>Shipping Method</th>
-                                    <th className='shippingInfoTableInfo'>{shippingMethod}</th>
+                                    <th className='shippingInfoTableInfo'>{shippingMethod}&nbsp;-&nbsp;{Number(shippingPrice).toLocaleString("en-US",)}&nbsp;VND</th>
                                 </tr>
                             </tbody>
                         </Table>
