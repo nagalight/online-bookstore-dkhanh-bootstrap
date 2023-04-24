@@ -99,7 +99,7 @@ export default function NavigationBar(props){
             <Navbar bg="dark" variant="dark" className="Navigationbar" width="100%">
                 <Container>
                     <Nav className="justify-content-start Nav-Firstline">
-                        <Nav.Item className="Nav-FirstlineItems">
+                        {/* <Nav.Item className="Nav-FirstlineItems">
                             <Nav.Link>
                                 <FontAwesomeIcon icon={faGlobe} className="locationIcon"/>
                                 Location: VN    
@@ -107,7 +107,7 @@ export default function NavigationBar(props){
                         </Nav.Item>
                         <Nav.Item className="Nav-FirstlineItems">
                             <Nav.Link>Language: English</Nav.Link>
-                        </Nav.Item>
+                        </Nav.Item> */}
                         
                     </Nav>
                     <Nav className="justify-content-end Nav-Firstline">
