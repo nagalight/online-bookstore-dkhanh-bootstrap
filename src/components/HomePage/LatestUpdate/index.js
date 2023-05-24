@@ -48,14 +48,30 @@ function LatestUpdateSlider() {
         dots: false,
         swipe: false,
         infinite: true,
-        slidesToShow: 6,
+        slidesToShow: 5,
         slidesToScroll: 1,
         speed: 300,
         lazyLoad: true,
         adaptiveHeight:true,
-        variableHeight:false,
+        variableHeight:true,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
+        responsive:[
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                }
+            },
+        ]
     }
 
     return (
@@ -76,7 +92,6 @@ function LatestUpdateSlider() {
                                 width:'fit-content',
                                 height:'fit-content',
                                 padding:0,
-                                fontSize:'16px'
                             }}
                         >
                             See&nbsp;More
@@ -93,14 +108,14 @@ function LatestUpdateSlider() {
                                 <Card key={id} >
                                     <Link to={`/books/${id}`}>
                                         <Container className='homeBookImageContainer'>
-                                            <Card.Img variant='top' src={data.image.url} style={{ width: '205px' }}/>
+                                            <Card.Img variant='top' src={data.image.url}/>
                                         </Container>
                                     </Link>
                                     <Card.Body>
-                                        <Card.Title>{data.title}</Card.Title>
-                                        <Card.Subtitle>{data.author}</Card.Subtitle>
+                                        <Card.Title className='homeBookCardBookTitle'>{data.title}</Card.Title>
+                                        <Card.Subtitle className='homeBookCardBookSubtitle'>{data.author}</Card.Subtitle>
                                         <Card.Text className='homeBookPrice'>{Number(data.price).toLocaleString("en-US",)} VND</Card.Text>
-                                        <Card.Text style={{display:'flex'}}>
+                                        <Card.Text className='homeBookCardGenre'>
                                             Genre:
                                             <Container className="homeTagContainer">{data.genre[0]}</Container>
                                             <Container className="homeTagContainer">...</Container>

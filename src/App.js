@@ -80,12 +80,12 @@ function App() {
     !isLoading ? (
       <>
       <BrowserRouter>
-        <NavigationBar 
+        {/* <NavigationBar 
           cartItems={cartItems} 
           handleAddToCart={handleAddToCart} 
           handleRemoveFromCart={handleRemoveFromCart}
           clearCart={clearCart}
-        />
+        /> */}
         <Routes>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/home" element={<HomePage/>}/>
