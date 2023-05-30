@@ -33,7 +33,7 @@ export default function CartModal(props) {
                     <Image 
                       src={data.image.url}
                       style={{
-                        width:"50px"
+                        width:"70px"
                       }}
                     />
                   </Container>
@@ -65,6 +65,7 @@ export default function CartModal(props) {
                 onClick={(e)=>{
                   setShowCart(false);
                 }}
+                style={{fontSize:'1.75vh'}}
               >Process&nbsp;to&nbsp;Payment</Button>
             </Link>
           </Container>

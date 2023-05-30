@@ -2,6 +2,7 @@
     max-height: 60vh;
     min-height: 60vh;
     overflow-y: scroll;
+    overflow-x: scroll;
     padding: 0;
 }
 .cartBookHeadTitle{
@@ -22,15 +23,23 @@
     padding: 0;
     min-height: 74.76px;
     display: flex;
+    align-content: center;
 }
 .cartBookName{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* min-width: 1vw; */
 }
 .cartBookNameTitle{
     font-size: 20px;
     font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.cartBookNameSubtitle{
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .cartBookPrice {
@@ -53,7 +62,7 @@
 }
 .cartTotalPrice{
     /* width: fit-content; */
-    font-size: 20px;
+    font-size: 2vh;
     font-weight: bold;
     justify-content: start;
     flex-wrap: nowrap;
