@@ -1,0 +1,96 @@
+.offcanvas-start{width: 100%; border: 0}
+.NavigationbarMobile{
+    display: flex;
+    /* flex-flow: column; */
+    margin:0;
+    padding-left: 0;
+    padding-right: 0;
+}
+.siteNameMobile {
+    text-decoration: none;
+    display: flex;
+}
+.siteNameMobile_image{
+    width: 5vh;
+    height: auto;
+}
+
+.IconToggleMobile{
+    font-weight:normal;
+    color: white;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.searchBarMobileContainer{
+    display: flex;
+    flex-wrap: nowrap !important;
+    margin: 0.9vh auto 0.9vh;
+}
+.NavbarMobile-Search{
+    width: 100%;
+}
+.searchButton-Mobile{
+    /* padding-left: 20px; 
+    padding-right:20px; */
+}
+.searchIcon-Mobile{ 
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.OffCanvasHeadContainer{
+    padding: 13px;
+    background-color: rgb(33, 37, 41);
+}
+.OffCanvasBodyContainer{
+    width: 100%;
+    background-color: rgb(33, 37, 41);
+}
+.userMobileContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.userImageMobileContainer{
+    width: fit-content;
+}
+.userTitleMobileContainer{
+    width: fit-content;
+}
+.userActionMobileContainer{
+    width: fit-content;
+}
+.guestActionMobileContainer{
+    display:flex;
+    padding: 0;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 2.5vh;
+}
+.userActionMobileContainer{
+    display: flex;
+    align-self: center;
+}
+.logOutIcon {
+    font-size: 1.8vh;
+    margin-left: 0.8vh;
+}
+.userImageMobile{
+    max-width: 13vh;
+    border-radius: 50%;
+}
+.OffCanvasLinkTextColor_header{
+    color: rgb(255, 255, 255);
+}
+.OffCanvasLinkTextColor_body{
+    color: rgb(33, 37, 41);
+}
+.OffCanvasDarkBackground_Header{
+    /* background-color: rgb(33, 37, 41); */
+}
+
+.OffCanvasCategoryItems{
+    text-align: center;
+    background-color: white;
+    margin: 1vh;
+    border-radius: 15px;
+}

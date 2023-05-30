@@ -22,22 +22,20 @@
 .Navhead{
     border-bottom: 1px solid white;
 }
-.DarkmodeSwitch{
-    margin-left: 50px;
-    border: 2px solid white;
+.siteName {
+    text-decoration: none;
+    display: flex;
 }
-.DarkmodeSwitch:hover{
-    border: 2px solid white
+.siteName_image{
+    width: 5vh;
+    height: auto;
 }
-.Category-wrapper{
-    font-size: 23px;
-}
-.categoryItems{
-    margin: 0 10px 0;
+.siteName_title{
+    font-size: 3.2vh;
 }
 .Navbar-Search{
-    margin-left: 50px;
-    width: 57%;
+    margin-left: 2vh;
+    width: 50%;
 }
 
 .searchButton{
@@ -49,25 +47,34 @@
     padding-left: 5%;
     padding-right: 5%;
 }
+.NavCartIconContainer{
+    width: fit-content;
+    height: fit-content;
+    margin-right: 1vh;
+    padding: 0;
+    align-self: center;
+}
+.NavCartIcon{
+    color: white;
+    font-size: 3vh;
+}
+.Category-wrapper{
+    font-size: 2.4vh;
+}
+.categoryItems{
+    margin: 0 10px 0;
+}
 
 .wellcomeUser {
-    font-size: 17px;
+    font-size: 1.8vh;
 }
 
 .logOutButton {
     margin-left: 3px;
 }
 .logOutIcon {
-    font-size: 17px; 
+    font-size: 1.8vh; 
 }
 .googleLogin{
     margin-left: 4px;
-}
-.siteName {
-    text-decoration: none;
-    display: flex;
-}
-.siteName_image{
-    width: 45px;
-    height: auto;
 }

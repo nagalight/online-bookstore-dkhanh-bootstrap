@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import NavigationBar from './components/NavigationBar';
+import NavigationBar from './components/NavigationBar/Web';
 import Footer from './components/Footer';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -16,6 +16,7 @@ import AllBook from './pages/AllBook';
 import GenrePage from './pages/GenrePage';
 import SearchResult from './pages/SearchResult';
 import PaymentPage from './pages/PaymentPage';
+import NavigationBarMobile from './components/NavigationBar/Mobile';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -86,6 +87,12 @@ function App() {
           handleRemoveFromCart={handleRemoveFromCart}
           clearCart={clearCart}
         /> */}
+        <NavigationBarMobile
+          cartItems={cartItems} 
+          handleAddToCart={handleAddToCart} 
+          handleRemoveFromCart={handleRemoveFromCart}
+          clearCart={clearCart}
+        />
         <Routes>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/home" element={<HomePage/>}/>

@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Button, Container, Nav, Navbar, Form, Image, InputGroup } from "react-bootstrap";
+import { Button, Container, Nav, Navbar, Form, Image, InputGroup, Offcanvas } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom'
 import "./navbar.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass, faArrowRightFromBracket, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
-import { auth, db } from "../../firebase";
+import { auth, db } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
-import { useAuth } from "../../contexts/authContext";
+import { useAuth } from "../../../contexts/authContext";
 
-import LoginForm from "../Login";
-import RegisterForm from "../Register";
-import CartModal from "../Cart";
+import LoginForm from "../../Login";
+import RegisterForm from "../../Register";
+import CartModal from "../../Cart";
 import { Link } from "react-router-dom";
 
 
@@ -96,7 +96,13 @@ export default function NavigationBar(props){
     return(
         <>
         <Container className="Navbar-wrapper" fixed="top">
-            <Navbar bg="dark" variant="dark" className="Navigationbar" width="100%">
+            <Navbar 
+                bg="dark" 
+                variant="dark" 
+                className="Navigationbar" 
+                width="100%" 
+                // expand={''}
+            >
                 <Container>
                     <Nav className="justify-content-start Nav-Firstline">
                         {/* <Nav.Item className="Nav-FirstlineItems">
@@ -122,7 +128,7 @@ export default function NavigationBar(props){
                 <Container className="Navhead">
                     <Link to={"/"} className="siteName">
                         <Image className="siteName_image" src="https://firebasestorage.googleapis.com/v0/b/za-library-account.appspot.com/o/Main%2Flogo192.png?alt=media&token=bd2a065f-ee30-48a7-a8aa-f49bd4cb694a"/>
-                        <Navbar.Brand style={{ fontSize:'27px' }}>Bookstore</Navbar.Brand>
+                        <Navbar.Brand className="siteName_title">Bookstore</Navbar.Brand>
                     </Link>
                     
                     <Form className="Navbar-Search" onSubmit={handleSearchSubmit}>
@@ -146,21 +152,22 @@ export default function NavigationBar(props){
                             }
                         </InputGroup>
                     </Form>
-                    <Container style={{width:"fit-content", height:"fit-content", marginLeft:"10px"}} onClick={handleShowCart}>
-                        <Nav.Link style={{padding:0}}>
-                            <FontAwesomeIcon icon={faCartShopping} style={{color:"white", fontSize:"20px"}}/>
-                        </Nav.Link>
-                    </Container>
-                    <CartModal 
-                        show={showCart} 
-                        onHide={()=>setShowCart(false)} 
-                        cartItems={cartItems} 
-                        handleAddToCart={handleAddToCart} 
-                        handleRemoveFromCart={handleRemoveFromCart}
-                        clearCart={clearCart}
-                        setShowCart={setShowCart}
-                    />
-                    <Navbar.Collapse className="justify-content-end">
+                    
+                    <Nav className="justify-content-end">
+                        <Container className="NavCartIconContainer" onClick={handleShowCart}>
+                            <Nav.Link style={{padding:0}}>
+                                <FontAwesomeIcon icon={faCartShopping} className="NavCartIcon"/>
+                            </Nav.Link>
+                        </Container>
+                        <CartModal 
+                            show={showCart} 
+                            onHide={()=>setShowCart(false)} 
+                            cartItems={cartItems} 
+                            handleAddToCart={handleAddToCart} 
+                            handleRemoveFromCart={handleRemoveFromCart}
+                            clearCart={clearCart}
+                            setShowCart={setShowCart}
+                        />
                         <Navbar.Text className="notLogin" style={{display:showNotLogedIn}}>
                             <Container style={{display:"flex", padding:0}}>
                                 <Nav.Link onClick={handleShowLogin} style={{padding:0}}>Login</Nav.Link>
@@ -177,7 +184,7 @@ export default function NavigationBar(props){
                                 <FontAwesomeIcon icon={faArrowRightFromBracket} className="logOutIcon"/>
                             </Button>
                         </Navbar.Text>
-                    </Navbar.Collapse>
+                    </Nav>
                 </Container>
                 <Container>
                     <Nav bg="dark" variant="dark" className="justify-content-start Category-wrapper">

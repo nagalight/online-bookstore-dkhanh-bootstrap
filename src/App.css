@@ -47,8 +47,8 @@
 }
 
 .loadingImage{
-  width: 13%;
-  height: 30%;
+  width: 20vh;
+  /* height: 30%; */
 }
 
 .loadingWrapper{
