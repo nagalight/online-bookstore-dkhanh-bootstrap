@@ -1,66 +1,67 @@
-.homeBookSliderWrapper{
-    margin-top: 15px;
+.homeBookSliderWrapper {
+  margin-top: 15px;
 }
-.homeBookSliderTitleWrapper{
-    display: flex;
+.homeBookSliderTitleWrapper {
+  display: flex;
 }
-.homeBookSliderTitleContainer{
-    padding: 0;
-    font-size: 3vh;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: 600;
+.homeBookSliderTitleContainer {
+  padding: 0;
+  font-size: 3vh;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: 600;
 }
-.homeBookSliderViewAllContainer{
-    font-size: 1.5vh;
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+.homeBookSliderViewAllContainer {
+  font-size: 1.5vh;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
-.homeBookSliderContainer{
-    display: block;
-    height: auto;
-    margin-bottom: 5vh;
+.homeBookSliderContainer {
+  display: block;
+  height: auto;
+  margin-bottom: 5vh;
 }
-.homeBookImageContainer{
-    min-height: 2vh;
-    min-width: fit-content;
-    padding: 0;
-    display: flex;
+.homeBookImageContainer {
+  min-height: 2vh;
+  min-width: fit-content;
+  padding: 0;
+  display: flex;
 }
-.homeBookCardBookTitle{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 2.3vh;
+.homeBookCardBookTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 2.3vh;
 }
-.homeBookCardBookSubtitle{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 1.8vh;
+.homeBookCardBookSubtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1.8vh;
 }
-.homeBookCardGenre{
-    display: flex;
+.homeBookCardGenre {
+  display: flex;
 }
-.homeBookPrice{
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 1vh;
+.homeBookPrice {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 1vh;
 }
 .homeTagContainer {
-    background-color: rgb(37, 36, 40);
-    color: white;
-    width: fit-content;
-    height: fit-content;
-    margin: 2px;
-    border-radius: 8%;
+  background-color: rgb(37, 36, 40);
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  margin: 2px;
+  border-radius: 8%;
 }
-@media screen and (max-width: 1023px) {
-    .homeBookCardGenre{
-        display: none;
-    }
-    .homeBookPrice{
-        margin-bottom: 0;
-    }
+@media screen and (max-width: 1024px) {
+  .homeBookCardGenre {
+    display: none;
+  }
+  .homeBookPrice {
+    margin-bottom: 0;
+  }
 }

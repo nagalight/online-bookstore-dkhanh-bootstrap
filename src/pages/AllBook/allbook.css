@@ -1,37 +1,76 @@
-.allBookWrapper{
-    width: fit-content;
-    height: fit-content;
+.allBookWrapper {
+  width: fit-content;
+  height: fit-content;
 }
-.allBookTitile{
-    padding: 0;
-    font-size: 40px;
-    font-weight: bold;
+.allBookTitile {
+  padding: 0;
+  font-size: 40px;
+  font-weight: bold;
 }
-.allBookContainer{
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(5, 1fr);
-    margin-bottom: 20px;
+.allBookContainer {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 20px;
 }
-.allBookImageContainer{
-    min-height: 284.12px;
-    padding: 0;
-    display: flex;
+.allBookImageContainer {
+  min-width: fit-content;
+  min-height: 284.12px;
+  padding: 0;
+  display: flex;
 }
-.allBookPrice{
-    font-size: 16px;
-    font-weight: 600;
+.allBookPrice {
+  font-size: 16px;
+  font-weight: 600;
 }
-.allBookTagContainer{
-    background-color: rgb(37, 36, 40);
-    color: white;
-    width: fit-content;
-    height: fit-content;
-    margin: 2px;
-    border-radius: 8%;
-    padding: 1px 9px;
+.allBookTagContainer {
+  background-color: rgb(37, 36, 40);
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  margin: 2px;
+  border-radius: 8%;
+  padding: 1px 9px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.addCardBtn{
-    justify-content: center;
-    width: 100%;
+.allBookTagContainerEtc {
+  background-color: rgb(37, 36, 40);
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  margin: 2px;
+  border-radius: 8%;
+  padding: 1px 9px;
+}
+.addCardBtn {
+  justify-content: center;
+  width: 100%;
+}
+@media screen and (max-width: 1024px) {
+  .allBookContainer {
+    /* display: grid;
+        gap: 1rem; */
+    grid-template-columns: repeat(3, 1fr);
+    /* margin-bottom: 20px; */
+  }
+  .allBookCardTitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .allBookCardSubTitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+@media screen and (max-width: 425px) {
+  .allBookContainer {
+    /* display: grid;
+            gap: 1rem; */
+    grid-template-columns: repeat(2, 1fr);
+    /* margin-bottom: 20px; */
+  }
 }

@@ -65,7 +65,7 @@ function GenreSlider2() {
                 }
             },
             {
-                breakpoint: 600,
+                breakpoint: 425,
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1,
