@@ -1,41 +1,77 @@
-.genrePageWrapper{
-    width: fit-content;
-    height: fit-content;
+.genrePageWrapper {
+  width: fit-content;
+  height: fit-content;
 }
 
-.genrePageTitleTextContainer{
-    padding: 0;
-    font-size: 40px;
-    font-weight: bold;
+.genrePageTitleContainer {
+  padding: 0;
+  font-size: 40px;
+  font-weight: bold;
 }
 
-.genrePageBookContainer{
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(5, 1fr);
-    margin-bottom: 20px;
+.genrePageBookContainer {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 20px;
 }
-.genrePageBookImageContainer{
-    min-height: 284.12px;
-    padding: 0;
-    display: flex;
-}
-
-.genrePageBookPrice{
-    font-size: 16px;
-    font-weight: 600;
+.genrePageBookImageContainer {
+  min-width: fit-content;
+  min-height: 284.12px;
+  padding: 0;
+  display: flex;
 }
 
-.genrePageTagContainer{
-    background-color: rgb(37, 36, 40);
-    color: white;
-    width: fit-content;
-    height: fit-content;
-    margin: 2px;
-    border-radius: 8%;
-    padding: 1px 9px;
+.genrePageBookPrice {
+  font-size: 16px;
+  font-weight: 600;
 }
-.genrePageAddCartBtn{
-    justify-content: center;
-    width: 100%;
+
+.genrePageTagContainer {
+  background-color: rgb(37, 36, 40);
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  margin: 2px;
+  border-radius: 8%;
+  padding: 1px 9px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.genrePageTagContainerEtc {
+  background-color: rgb(37, 36, 40);
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  margin: 2px;
+  border-radius: 8%;
+  padding: 1px 9px;
+}
+.genrePageAddCartBtn {
+  justify-content: center;
+  width: 100%;
+}
+.genrePageCardTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.genrePageCardSubTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media screen and (max-width: 1024px) {
+  .genrePageBookContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 425px) {
+  .genrePageBookContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .genrePageTitleContainer {
+    font-size: 35px;
+  }
 }

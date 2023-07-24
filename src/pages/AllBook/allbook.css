@@ -48,29 +48,26 @@
   justify-content: center;
   width: 100%;
 }
+.allBookCardTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.allBookCardSubTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 @media screen and (max-width: 1024px) {
   .allBookContainer {
-    /* display: grid;
-        gap: 1rem; */
     grid-template-columns: repeat(3, 1fr);
-    /* margin-bottom: 20px; */
-  }
-  .allBookCardTitle {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .allBookCardSubTitle {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 }
 @media screen and (max-width: 425px) {
   .allBookContainer {
-    /* display: grid;
-            gap: 1rem; */
     grid-template-columns: repeat(2, 1fr);
-    /* margin-bottom: 20px; */
+  }
+  .allBookTitile {
+    font-size: 35px;
   }
 }
