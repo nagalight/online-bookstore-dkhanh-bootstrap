@@ -1,55 +1,91 @@
-.searchResultWrapper{
-    width: fit-content;
-    height: fit-content;
-    min-height: 70vh;
+.searchResultWrapper {
+  width: fit-content;
+  height: fit-content;
+  min-height: 70vh;
 }
 
-.searchResultTitleTextContainer{
-    padding: 0;
-    font-size: 60px;
-    font-weight: bold;
-    text-align: center;
+.searchResultTitleTextContainer {
+  padding: 0;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
 }
 
-.searchResultBookContainer{
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(5, 1fr);
-    margin-bottom: 20px;
+.searchResultBookContainer {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 20px;
 }
 
-.searchResultBookImageContainer{
-    min-height: 284.12px;
-    padding: 0;
-    display: flex;
+.searchResultBookImageContainer {
+  min-width: fit-content;
+  min-height: 284.12px;
+  padding: 0;
+  display: flex;
 }
 
-.searchResultBookPrice{
-    font-size: 16px;
-    font-weight: 600;
+.searchResultBookPrice {
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.searchResultTagContainer{
-    background-color: rgb(37, 36, 40);
-    color: white;
-    width: fit-content;
-    height: fit-content;
-    margin: 2px;
-    border-radius: 8%;
-    padding: 1px 9px;
+.searchResultTagContainer {
+  background-color: rgb(37, 36, 40);
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  margin: 2px;
+  border-radius: 8%;
+  padding: 1px 9px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.searchResultAddCartBtn{
-    justify-content: center;
-    width: 100%;
+.searchResultTagContainerEtc {
+  background-color: rgb(37, 36, 40);
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  margin: 2px;
+  border-radius: 8%;
+  padding: 1px 9px;
 }
-.noResultContainer{
-    min-height: 70vh;
-    color: rgba(66, 66, 66, 0.63);
-    text-align: center;
+.searchResultAddCartBtn {
+  justify-content: center;
+  width: 100%;
 }
-.noResultIcon{
-    font-size: 200px;
+.noResultContainer {
+  min-height: 70vh;
+  color: rgba(66, 66, 66, 0.63);
+  text-align: center;
 }
-.noResultText{
-    font-size: 50px;
+.noResultIcon {
+  font-size: 200px;
+}
+.noResultText {
+  font-size: 50px;
+}
+.searchResultCardTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.searchResultCardSubTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media screen and (max-width: 1024px) {
+  .searchResultBookContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 425px) {
+  .searchResultBookContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .searchResultTitleTextContainer {
+    font-size: 35px;
+  }
 }
