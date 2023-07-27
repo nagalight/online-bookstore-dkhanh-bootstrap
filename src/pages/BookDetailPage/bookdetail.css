@@ -181,6 +181,9 @@
     margin-top: 1vh;
     margin-bottom: 2vh;
   }
+  .titleWrapper {
+    display: inline-block;
+  }
   .imageContainer {
     margin-right: auto;
   }
