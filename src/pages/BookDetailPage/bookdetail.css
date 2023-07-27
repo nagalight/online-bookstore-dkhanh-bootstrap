@@ -1,145 +1,202 @@
-.pageWrapper{
-    max-width: 60%;
-    min-height: 70vh;
+.pageWrapper {
+  min-height: 70vh;
 }
-.sellingWrapper{
-    display: flex;
-    flex-direction: row;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+.sellingWrapper {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 }
-.imageWrapper{
-    width: 800px;
+.imageWrapper {
+  width: 800px;
 }
-.imageContainer{
-    width: 300px;
-    margin-right: 3vh;
-    min-height: 448px;
+.imageContainer {
+  max-width: 300px;
+  margin-right: 3vh;
 }
-.bookImage{
-    width:inherit;
+.bookImage {
+  width: inherit;
 }
- .imageModal{
-    width: fit-content;
+.imageModal {
+  width: fit-content;
 }
-.imageModalBody{
-    padding: 0px;
-    width: fit-content;
+.imageModalBody {
+  padding: 0px;
+  width: fit-content;
 }
-.imageZoomContainer{
-    width: fit-content;
-    height: fit-content;
-    padding: 0;
+.imageZoomContainer {
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
 }
-.imageZoom{
-    width: 60vh;
-    margin: 5px;
+.imageZoom {
+  width: 60vh;
+  margin: 5px;
 }
-.bookTitle{
-    padding-left: 0%;
-    font-size: 34px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: 600;
+.bookTitle {
+  padding-left: 0%;
+  font-size: 34px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: 600;
 }
-.bookAuthor{
-    font-size: 15px;
+.bookAuthor {
+  font-size: 15px;
 }
-.bookPrice{
-    font-size: 30px;
+.bookPrice {
+  font-size: 30px;
 }
-.addCartBtn{
-    width: 170px;
-    height: 52px;
-    font-size: 15px;
-    font-family:sans-serif;
-    font-weight: 600;
+.addCartBtn {
+  width: 170px;
+  height: 52px;
+  font-size: 15px;
+  font-family: sans-serif;
+  font-weight: 600;
 }
-.addCartIcon{
-    margin-right: 5px;
+.addCartIcon {
+  margin-right: 5px;
 }
-.detailContener{
-    padding: 0;
+.detailContener {
+  padding: 0;
 }
-.detailTitle{
-    padding: 0;
-    font-size: 28px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: 600;
-    margin-top: 1vh;
+.detailTitle {
+  padding: 0;
+  font-size: 28px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: 600;
+  margin-top: 1vh;
 }
-.detailContent{
-    padding: 0;
-    font-size: 16px;
+.detailContent {
+  padding: 0;
+  font-size: 16px;
 }
-.bookInfromation{
-    display: flex;
-    flex-direction: row;
+.bookInfromation {
+  display: flex;
+  flex-direction: row;
 }
-.detailTextLeft{
-    text-align: end;
-    width: fit-content;
-    padding: 0;
-    margin: 0;
-    color: grey;
+.detailTextLeft {
+  text-align: end;
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+  color: grey;
 }
-.detailTextRight{
-    padding: 0;
+.detailTextRight {
+  padding: 0;
 }
-.bookGenreWrapper{
-    margin-top: 3vh;
-    display: flex;
+.bookGenreWrapper {
+  margin-top: 3vh;
+  display: flex;
 }
-.detailGenreTitile{
-    width: fit-content;
-    height: fit-content;
-    font-size: 16px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: 600;
-    padding: 0;
+.detailGenreTitile {
+  width: fit-content;
+  height: fit-content;
+  font-size: 16px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: 600;
+  padding: 0;
 }
-.detailGenreTag{
-    display: flex;
-    flex-direction: row;
-    height:max-content;
+.detailGenreTag {
+  display: flex;
+  flex-direction: row;
+  height: max-content;
 }
 .detailTagContainer {
-    background-color: rgb(37, 36, 40);
-    color: white;
-    width: fit-content;
-    height: fit-content;
-    margin: 2px;
-    border-radius: 8%;
+  background-color: rgb(37, 36, 40);
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  margin: 2px;
+  border-radius: 8%;
 }
-.recommendTitle{
-    padding: 0;
-    font-size: 28px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: 600;
+.recommendTitle {
+  padding: 0;
+  font-size: 28px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: 600;
 }
-.recommendPerson{
-    font-size: 15px;
+.recommendPerson {
+  font-size: 15px;
 }
-.recommendSlider{
-    display: block;
-    height: auto;
-    margin-bottom: 5vh;
+.recommendSlider {
+  display: block;
+  height: auto;
+  margin-bottom: 5vh;
 }
-.recommendImageContainer{
-    min-height: 318.52px;
-    padding: 0;
-    display: flex;
+.recommendImageContainer {
+  min-width: fit-content;
+  min-height: 318.52px;
+  padding: 0;
+  display: flex;
 }
-.recommendBookPrice{
-    font-size: 16px;
-    font-weight: 600;
+.recommendCardTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.avalibleText{
-    margin-top: 3vh;
-    color:rgb(23, 194, 37);
-    font-size: 20px;
+.recommendCardSubTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.unavalibleText{
-    margin-top: 3vh;
-    color:rgb(235, 45, 45);
-    font-size: 20px;
+.recommendBookPrice {
+  font-size: 16px;
+  font-weight: 600;
 }
+.recommendTagContainer {
+  background-color: rgb(37, 36, 40);
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  margin: 2px;
+  border-radius: 8%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.recommendTagContainerEtc {
+  background-color: rgb(37, 36, 40);
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  margin: 2px;
+  border-radius: 8%;
+}
+.avalibleText {
+  margin-top: 3vh;
+  color: rgb(23, 194, 37);
+  font-size: 20px;
+}
+.unavalibleText {
+  margin-top: 3vh;
+  color: rgb(235, 45, 45);
+  font-size: 20px;
+}
+@media screen and (max-width: 768px) {
+  .sellingWrapper {
+    flex-direction: column;
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+  }
+  .imageContainer {
+    margin-right: auto;
+  }
+  .bookTitle {
+    text-align: center;
+  }
+  .bookAuthor {
+    text-align: center;
+  }
+  .addCartBtn {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 425px) {
+  .detailGenreTag {
+    flex-direction: column;
+  }
+}
+@media screen, mobie;
